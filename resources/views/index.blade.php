@@ -17,7 +17,7 @@
             @include('header')
         </div>
 
-        {!! Form::open(array('action' => 'inademController@insertar')) !!}
+        {!! Form::open(array('action' => 'InademController@insertar')) !!}
 
 
             <!--Tecnologia o Proyecto y Equipo Emprendedor o Inventor-->
