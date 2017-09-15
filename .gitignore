@@ -1,5 +1,15 @@
-# https://git-scm.com/docs/gitignore
-# https://help.github.com/articles/ignoring-files
-# Example .gitignore files: https://github.com/github/gitignore
-/bower_components/
-/node_modules/
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
+*.log
+*.DS_Store
+/app/Http/Controllers/inademController.php
