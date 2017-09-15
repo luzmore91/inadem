@@ -23,7 +23,7 @@ Route::get('home', function () {
 });
 */
 //LLAMAR CONTROLADOR A LA VISTA
-Route::get('/','inademController@ver');
+Route::get('/','InademController@ver');
 
 
 //Route::get('admin', function () {return view('admin');});
@@ -37,13 +37,13 @@ Route::get('editar', function(){
 });
 
 //metodo para token
-Route::post('tokenInademApp', 'inademController@tokenInademApp');
+Route::post('tokenInademApp', 'InademController@tokenInademApp');
 //// enrutamiento de la accion
-Route::post('insertar', 'inademController@insertar');
-Route::post('insertarParticipante','inademController@insertarParticipante');
-Route::post('eliminarParticipante','inademController@eliminarParticipante');
-Route::post('insertarRiesgo','inademController@insertarRiesgo');
-Route::post('eliminarRiesgo','inademController@eliminarRiesgo');
+Route::post('insertar', 'InademController@insertar');
+Route::post('insertarParticipante','InademController@insertarParticipante');
+Route::post('eliminarParticipante','InademController@eliminarParticipante');
+Route::post('insertarRiesgo','InademController@insertarRiesgo');
+Route::post('eliminarRiesgo','InademController@eliminarRiesgo');
 
 #DataTables - Admin
 Route::get('datatable', ['uses'=>'PostController@datatable']);
