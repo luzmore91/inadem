@@ -1,4 +1,4 @@
-<html>
+<html>    
     <head>
         <title>convocatoria INADEM</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
