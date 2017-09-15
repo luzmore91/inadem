@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+holaa luzzzzzzzzzzz
         <title>Laravel 5 - Implementing datatables tutorial using yajra package</title>
 
     <head>
