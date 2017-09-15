@@ -43,6 +43,7 @@ Route::post('insertar', 'inademController@insertar');
 Route::post('insertarParticipante','inademController@insertarParticipante');
 Route::post('eliminarParticipante','inademController@eliminarParticipante');
 Route::post('insertarRiesgo','inademController@insertarRiesgo');
+Route::post('eliminarRiesgo','inademController@eliminarRiesgo');
 
 #DataTables - Admin
 Route::get('datatable', ['uses'=>'PostController@datatable']);
