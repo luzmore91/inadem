@@ -293,7 +293,7 @@ participante.fk_idTokenAppIn  = '.$idT);
       foreach($resultInP as $i){
           $idIPrimerInst= $i['fk_idInstitucion'];
       }
-     $col->fk_Institucion=$idIPrimerInst;
+     $col->fk_idInstitucion=$idIPrimerInst;
      $col->descripcion = Input::get('desIES');
      $col->fk_idEquipoEmprendedor = $idEqEmp;
      $col->bajaLogica = 1;
@@ -307,13 +307,7 @@ participante.fk_idTokenAppIn  = '.$idT);
       $objP->save();
       $col->save();
 
-      guardarProyecto();
-
-}
-
-    function public guardarProyecto(){
-
-          //Tabla proyecto
+      //Tabla proyecto
 
        //obtener el ultimo id de la tabla colaboracion
      $idColaboracionQuery = DB::select('SELECT colaboracion.idColaboracion FROM `colaboracion` ORDER BY  idColaboracion desc limit 1');
@@ -354,7 +348,7 @@ participante.fk_idTokenAppIn  = '.$idT);
      $proyecto->fk_idObjetivoProyecto =$idOp;
      $proyecto->fk_idAnalisisEntorno=$idAe;
      $proyecto->fk_idTRL = Input::get('madurezProy');
-     $proyecto->fk_idTecnologiaProyecto=$Tp;
+     $proyecto->fk_idTecnologiaProyecto=$idTp;
      $proyecto->bajaLogica = 1;
 
     $proyecto->save();
