@@ -327,3 +327,22 @@ function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, no
     }*/
    
 }
+
+function eliminarRiesgo(idR){
+   $.ajax({
+        url:'eliminarRiesgo',
+        type: 'POST',
+        dataType: 'json',
+        data:{idRiesgo:parseInt(idR)},
+        success: function(success) {
+            console.log("Retorno  "+success);
+            eliminarRegistroRiesgo(success);
+
+
+      },
+error: function(response){
+    console.log('Error Ajax');
+    }
+    });
+
+}
