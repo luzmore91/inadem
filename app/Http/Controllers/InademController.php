@@ -144,7 +144,7 @@ participante.fk_idTokenAppIn  = '.$idT);
 
     }
     public function eliminarParticipante(Request $request){
-if($request->ajax()){
+    if($request->ajax()){
     $dato =$request->idParticipante;
 
     $saved = DB::select("DELETE FROM participante WHERE idParticipante = ".$dato);
@@ -156,7 +156,7 @@ if($request->ajax()){
     }
     return response()->json(['eliminado'=>$envio,'idParticipante'=>$dato]);
 }
-}
+    }
     public function eliminarRiesgo(Request $request){
        if($request->ajax()){
     $dato =$request->idRiesgo;
@@ -231,6 +231,12 @@ if($request->ajax()){
      $equipo = new EquipoEmprendedor;
 
 
+     /*TOKEN DE LA SESION DEL FORMULARIO */
+     $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+     $result = json_decode(json_encode($token), true);
+      foreach($result as $i){
+          $idToken = $i['idToken'];
+      }
 
     /* Tabla tecnologia  */
     $tecnologia->titulo = Input::get('titulo');
@@ -265,14 +271,33 @@ if($request->ajax()){
      $objP->otraDescripcion=Input::get('otro_ObjetivoProyecto');
      $objP->bajaLogica=1;
 
+    //Tabla equipo emprendedor
+     $EquipoQuery = DB::select('select idParticipante from participante WHERE participante.fk_idTokenAppIn='.$idToken);
+     $resultEquipo = json_decode(json_encode($EquipoQuery), true);
+      foreach($resultEquipo as $i){
+         $equipo->fk_participante = $i['idParticipante'];
+         $equipo->bajaLogica = 1;
+      }
 
 
-       //Tabla colaboracion
-/*     $col->fk_Institucion
+    //Tabla colaboracion
+     //obtener el id del ultimo equipo emprendedor que se registro
+     $fkEquipoQuery = DB::select('select idEquipoEmprendedor from equipoemprendedor ORDER BY idEquipoEmprendedor DESC LIMIT 1 ');
+     $resultIdEq = json_decode(json_encode($fkEquipoQuery), true);
+      foreach($resultIdEq as $i){
+          $idEqEmp = $i['idEquipoEmprendedor'];
+      }
+     //obtener la primera escuela registrada de los participantes del equipo emprendedor
+     $fkEqInstQuery = DB::select('SELECT participante.fk_idInstitucion FROM `participante` WHERE participante.fk_idTokenAppIn ='.$idToken.' ORDER BY  fk_idInstitucion desc limit 1');
+     $resultInP = json_decode(json_encode($fkEqInstQuery), true);
+      foreach($resultInP as $i){
+          $idIPrimerInst= $i['fk_idInstitucion'];
+      }
+     $col->fk_Institucion=$idIPrimerInst;
      $col->descripcion = Input::get('desIES');
-     $col->fk_idEquipoEmprendedor
+     $col->fk_idEquipoEmprendedor = $idEqEmp;
      $col->bajaLogica = 1;
-*/
+
 
 
 
@@ -298,9 +323,10 @@ if($request->ajax()){
 
       $tecnologia->save();
       $anEnt->save();
-      //$proyecto->save();
+      $equipo->save();
       $propInt->save();
       $objP->save();
+      $col->save();
 
     return redirect()->back();
 }
