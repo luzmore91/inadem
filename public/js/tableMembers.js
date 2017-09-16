@@ -170,6 +170,9 @@ function enviarRiesgos(){
         data:{riesgo:RiesArreglo},
         success: function(success) {
             console.log("Sent values "+success);
+             //reiniciar el arreglo
+            RiesArreglo = [];
+            crearTablaRiesgo(success);
 
       },
 error: function(response){
@@ -251,5 +254,24 @@ error: function(response){
     console.log('Error Ajax');
     }
     });
+}
+
+function eliminarRiesgo(idR){
+   $.ajax({
+        url:'eliminarRiesgo',
+        type: 'POST',
+        dataType: 'json',
+        data:{idRiesgo:parseInt(idR)},
+        success: function(success) {
+            console.log("Retorno  "+success);
+            eliminarRegistroRiesgo(success);
+
+
+      },
+error: function(response){
+    console.log('Error Ajax');
+    }
+    });
+
 }
 

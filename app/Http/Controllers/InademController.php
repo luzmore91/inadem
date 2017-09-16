@@ -56,7 +56,18 @@ $retorno = '';
     }
 
     public function eliminarRiesgo(Resquest $request){
-        
+        if($request->ajax()){
+    $dato =$request->idParticipante;
+
+    $saved = DB::select("DELETE FROM participante WHERE idParticipante = ".$dato);
+
+    if($saved){
+        $envio = "si";
+     }else{
+        $envio = "no";
+     }
+    return response()->json(['eliminado'=>$envio,'idParticipante'=>$dato]);
+     }
     }
     public function tokenInademApp(Request $request){
         if($request->ajax()){
