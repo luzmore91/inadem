@@ -69,7 +69,7 @@ function obtenerDatosEquipo()
             +"<span class='glyphicon glyphicon-remove'></span>"
             +"</button></td>";
     
-  trPart.innerHTML = infoPart;
+  rPart.innerHTML = infoPart;
   tbodyPart.appendChild(trPart);
   limpiarComponentesParticipate();
   banderaTablaParticipate = true;
@@ -78,15 +78,11 @@ function obtenerDatosEquipo()
       console.log("Si entra a quitar atributo");
         quitarAtributoParticipantes();
   }
-  //enviarParticipante();
+enviarParticipante();
 
 }
 
-function getIDEliminar(validandoId){
-     var numeroID = validandoId.split("_");
-    console.log("id",numeroID);
-         return numeroID;
-}
+
 function getNombreBien(nombre){
     var nombreC = nombre.split(" ");
     var nombresArray = new Array(2);
@@ -127,41 +123,13 @@ function obtenerDatosRiesgos()
 
     var estrategiaMitigacion = document.getElementById("estMitigacion").value;
 
-
-
-    var tbody = document.getElementById("contenidoTablaRiesgos");
-    var tr = document.createElement('tr');
-    count_tr1++;
-
-
-
     RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
                       estrategiaMitigacion:estrategiaMitigacion ,
-                      descripcion:descripcion,
+                      descripcionRiesgo:descripcion,
                       bajaLogica:1});
 
 
-    tr.id= "riesgo_" + count_tr1;
 
-    var info="<td classs='' id='nombreRiesgo_"+ count_tr1+"' name='nombreRiesgo_"+ count_tr1 +"'>"+ tipoRiesgo+"</td>";
-
-	info+="<td classs='' id='descripcionRiesgo_"+ count_tr1+"' name='descripcionRiesgo_"+ count_tr1+"'>"+descripcion+"</td>";
-    info+="<td classs='' id='estrategiaMitigacion_"+ count_tr1+"' name='estrategiaMitigacion_"+ count_tr1+"'>"+ estrategiaMitigacion+"</td>";
-
-	info += "<td classs='' id='botonRiesgo_"+ count_tr1 +"' name='botonRiesgo_"+  count_tr1 +"'>"
-            +"<button type='submit' class='btn btn-red' onclick='eliminarRiesgo("+tr.id+")'>"
-            +"<span class='glyphicon glyphicon-remove'></span>"
-            +"</button></td>";
-
-  tr.innerHTML = info;
-  tbody.appendChild(tr);
-  limpiarComponentesRiesgo();
-  banderaTablaRiesgos = true;
-    
-  if(banderaTablaRiesgos){
-      console.log("Si entra a quitar atributo");
-        quitarAtributoRiesgos();
-  }
   enviarRiesgos();
 }
 
@@ -173,15 +141,11 @@ function eliminarRegistroParticipante(objP)
      }
 }
 
-function eliminarRiesgo(idRegistroRiesgo)
+function eliminarRegistroRiesgo(objR)
 {
-    var registroEliminarRiesgo = idRegistroRiesgo.id;
-    var campoEliminarRiesgo = document.getElementById(registroEliminarRiesgo);
-    campoEliminarRiesgo.remove();
-
-    console.log(idRegistroRiesgo);
-    console.log(campoEliminarRiesgo);
-  RiesArreglo.splice(getIDEliminar(registroEliminarRiesgo), 1);
+     if(objP.eliminado = 1){
+     $('#miembro_'+objR.idRiesgo).remove();
+     }
 }
 
 
@@ -210,10 +174,13 @@ function enviarRiesgos(){
         data:{riesgo:RiesArreglo},
         success: function(success) {
             console.log("Sent values "+success);
+            RiesArreglo = [];
+            crearTablaRiesgos(success);
 
       },
 error: function(response){
     console.log('Error'+JSON.stringify(response));
+     RiesArreglo = [];
     }
     });
 }
@@ -236,6 +203,7 @@ function enviarParticipante() {
       },
 error: function(response){
     console.log('Error'+JSON.stringify(response));
+     ParArreglo = [];
     }
     });
    event.preventDefault();
@@ -274,6 +242,39 @@ function crearTablaParticipante(tabla){
 
 }
 
+function crearTablaRiesgos(tabla){
+
+
+    var tbody = document.getElementById("contenidoTablaRiesgos");
+    var tr = document.createElement('tr');
+
+    jQuery.each(tabla, function(i,val) {
+      tr.id= "riesgo_" + count_tr1;
+
+    var info="<td classs='' id='nombreRiesgo_"+ val.idRiesgo+"' name='nombreRiesgo_"+val.idRiesgo +"'>"+ val.descripcion+"</td>";
+
+	info+="<td classs='' id='descripcionRiesgo_"+ val.idRiesgo+"' name='descripcionRiesgo_"+ val.idRiesgo+"'>"+val.descripcionRiesgo+"</td>";
+    info+="<td classs='' id='estrategiaMitigacion_"+ val.idRiesgo+"' name='estrategiaMitigacion_"+ val.idRiesgo+"'>"+ val.estrategiaMitigacion+"</td>";
+
+	info += "<td classs='' id='botonRiesgo_"+val.idRiesgo +"' name='botonRiesgo_"+ val.idRiesgo +"'>"
+            +"<button type='submit' class='btn btn-red' onclick='eliminarRiesgo("+val.idRiesgo+")'>"
+            +"<span class='glyphicon glyphicon-remove'></span>"
+            +"</button></td>";
+
+  tr.innerHTML = info;
+  tbody.appendChild(tr);
+
+    });
+
+  limpiarComponentesRiesgo();
+  banderaTablaRiesgos = true;
+
+  if(banderaTablaRiesgos){
+      console.log("Si entra a quitar atributo");
+        quitarAtributoRiesgos();
+  }
+
+}
 function eliminarParticipante(idP){
  console.log("vamos a eliminar a "+idP);
     $.ajax({
@@ -336,8 +337,6 @@ function eliminarRiesgo(idR){
         data:{idRiesgo:parseInt(idR)},
         success: function(success) {
             console.log("Retorno  "+success);
-            eliminarRegistroRiesgo(success);
-
 
       },
 error: function(response){
