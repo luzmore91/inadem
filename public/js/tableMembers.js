@@ -2,13 +2,16 @@ var count_tr = 0;
 var count_tr1 = 0;
 var ParArreglo = [];
 var RiesArreglo = [];
+var banderaTablaParticipate = false;
+var banderaTablaRiesgos = false;
+
 function obtenerDatosEquipo()
 {
     var nombreMiembro = document.getElementById("nomPart").value;
 
     var comboGradoEstudio = document.getElementById("gradoEstP");
     var gradoEstudio = comboGradoEstudio.options[comboGradoEstudio.selectedIndex].text;
-
+    
     var comboAreaConocimiento = document.getElementById("areaConocimiento");
     var areaConocimiento = comboAreaConocimiento.options[comboAreaConocimiento.selectedIndex].text;
 
@@ -19,7 +22,13 @@ function obtenerDatosEquipo()
     var comboInstitucion = document.getElementById("instPart");
     var institucion = comboInstitucion.options[comboInstitucion.selectedIndex].text;
 
-
+    
+    validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
+    
+    
+    var tbodyPart = document.getElementById("cuerpoTabla");
+    var trPart = document.createElement('tr');
+    count_tr++;
 
     var nom = getNombreBien(nombreMiembro);
 
@@ -41,10 +50,35 @@ function obtenerDatosEquipo()
                      bajaLogica:1
                     });
 
+    trPart.id= "miembro_" + count_tr;
+    
+    var infoPart = "<td classs='' id='nombreParticipante_"+ count_tr +"' name='nombreParticipante_"+ count_tr +"'>"+ nombreMiembro+"</td>";
 
+	infoPart += "<td classs='' id='gradoEstudioParticipante_"+ count_tr +"' name='gradoEstudioParticipante_"+ count_tr +"'>"+ gradoEstudio+"</td>";
+  
+    infoPart += "<td classs='' id='areaConocimientoParticipante_"+ count_tr +"' name='areaConocimientoParticipante_"+ count_tr +"'>"+ areaConocimiento+"</td>";
+    
+    infoPart += "<td classs='' id='correoParticipante_"+ count_tr +"' name='correoParticipante_"+ count_tr +"'>"+ correo+"&nbsp&nbsp"+"</td>";
+    
+    infoPart += "<td classs='' id='telefonoMovilParticipante_"+ count_tr +"' name='telefonoMovilParticipante_"+ count_tr +"'>"+ telefonoMovil+"</td>";
+    
+    infoPart += "<td classs='' id='institucionParticipante_"+ count_tr +"' name='institucionParticipante_"+ count_tr +"'>"+ institucion+"</td>";
+    
+	infoPart += "<td classs='' id='botonParticipante_"+ count_tr +"' name='botonParticipante_"+ count_tr +"'>"
+            +"<button type='submit' class='btn btn-red' onclick='eliminarParticipante("+trPart.id+")'>"
+            +"<span class='glyphicon glyphicon-remove'></span>"
+            +"</button></td>";
+    
+  trPart.innerHTML = infoPart;
+  tbodyPart.appendChild(trPart);
   limpiarComponentesParticipate();
-  enviarParticipante();
-
+  banderaTablaParticipate = true;
+    
+  if(banderaTablaParticipate){
+      console.log("Si entra a quitar atributo");
+        quitarAtributoParticipantes();
+  }
+  //enviarParticipante();
 
 }
 
@@ -56,7 +90,7 @@ function getIDEliminar(validandoId){
 function getNombreBien(nombre){
     var nombreC = nombre.split(" ");
     var nombresArray = new Array(2);
-    console.log("numero de valores "+nombreC.length);
+    //console.log("numero de valores "+nombreC.length);
 
     //obtener apellidos
         nombresArray[2] = nombreC[nombreC.length-1];
@@ -122,6 +156,12 @@ function obtenerDatosRiesgos()
   tr.innerHTML = info;
   tbody.appendChild(tr);
   limpiarComponentesRiesgo();
+  banderaTablaRiesgos = true;
+    
+  if(banderaTablaRiesgos){
+      console.log("Si entra a quitar atributo");
+        quitarAtributoRiesgos();
+  }
   enviarRiesgos();
 }
 
@@ -253,3 +293,37 @@ error: function(response){
     });
 }
 
+function quitarAtributoParticipantes() { 
+    
+    document.getElementById("nomPart").removeAttribute("required"); 
+    document.getElementById("gradoEstP").removeAttribute("required"); 
+    document.getElementById("areaConocimiento").removeAttribute("required"); 
+    document.getElementById("correoPart").removeAttribute("required"); 
+    document.getElementById("telPart").removeAttribute("required"); 
+    document.getElementById("instPart").removeAttribute("required"); 
+}
+
+function quitarAtributoRiesgos() { 
+    document.getElementById("tipoRiesgo").removeAttribute("required"); 
+    document.getElementById("descRiesgo").removeAttribute("required"); 
+    document.getElementById("estMitigacion").removeAttribute("required"); 
+}
+
+function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, noCelular, institucion) 
+{ 
+    var modal = document.getElementById("myModal");
+    
+    console.log(nombre+" "+gradoEstudios+" "+areaConocimiento+" "+correo+" "+noCelular+" "+institucion);
+    
+    if(gradoEstudios<0 || areaConocimiento<0 || institucion<0){
+        console.log("Entro al if....");
+        modal.style.display='block'
+    	//setTimeout('modal.classList.remove(\'hidden\')', 10);
+
+    }
+    
+    /*if(nombre==""||correo==""||noCelular=""){
+        
+    }*/
+   
+}
