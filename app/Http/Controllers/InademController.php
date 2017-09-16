@@ -25,11 +25,12 @@ use Log;
 class InademController extends Controller
 {
 
-public function insertarRiesgo(Request $request){
+    public function insertarRiesgo(Request $request){
           //modelo de la tabla Riesgo
-$retorno = '';
+
   if($request->ajax()){
      $dato =$request->riesgo;
+
            $riesgo = new Riesgos;
                  $idTec = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
       foreach($dato as $d){
@@ -51,12 +52,12 @@ $retorno = '';
          }
     else {
     // Whooops
-        $retorno = "intenta nuevamente por favor";
+        $insertados = "intenta nuevamente por favor";
             }
-         return response()->json($retorno);
+         return response()->json( $dato);
     }
 
-    public function eliminarRiesgo(Resquest $request){
+    public function eliminarRiesgo(Request $request){
        if($request->ajax()){
     $dato =$request->idRiesgo;
 
@@ -150,7 +151,7 @@ participante.fk_idTokenAppIn  = '.$idT);
 
     }
 
-public function eliminarParticipante(Request $request){
+    public function eliminarParticipante(Request $request){
 if($request->ajax()){
     $dato =$request->idParticipante;
 

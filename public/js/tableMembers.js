@@ -165,7 +165,7 @@ function limpiarComponentesRiesgo() {
 
 function enviarRiesgos(){
 
-      console.log("entrar a la funcion enviar riesgos  "+JSON.stringify(ParArreglo));
+      console.log("entrar a la funcion enviar riesgos  "+JSON.stringify(RiesArreglo));
    // var token = $("#token").val();
     $.ajax({
         url:'insertarRiesgo',
