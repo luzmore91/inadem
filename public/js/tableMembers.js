@@ -124,7 +124,7 @@ function obtenerDatosRiesgos()
     var estrategiaMitigacion = document.getElementById("estMitigacion").value;
 
     RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
-                      estrategiaMitigacion:estrategiaMitigacion ,
+                      estrategiaMitigacion:estrategiaMitigacion,
                       descripcionRiesgo:descripcion,
                       bajaLogica:1});
 
@@ -143,7 +143,7 @@ function eliminarRegistroParticipante(objP)
 
 function eliminarRegistroRiesgo(objR)
 {
-     if(objP.eliminado = 1){
+     if(objR.eliminado = 1){
      $('#miembro_'+objR.idRiesgo).remove();
      }
 }
@@ -249,7 +249,7 @@ function crearTablaRiesgos(tabla){
     var tr = document.createElement('tr');
 
     jQuery.each(tabla, function(i,val) {
-      tr.id= "riesgo_" + count_tr1;
+      tr.id= "riesgo_" +val.idRiesgo;
 
     var info="<td classs='' id='nombreRiesgo_"+ val.idRiesgo+"' name='nombreRiesgo_"+val.idRiesgo +"'>"+ val.descripcion+"</td>";
 
@@ -330,13 +330,15 @@ function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, no
 }
 
 function eliminarRiesgo(idR){
+    console.log("id del riesgo ",idR);
    $.ajax({
         url:'eliminarRiesgo',
         type: 'POST',
         dataType: 'json',
-        data:{idRiesgo:parseInt(idR)},
+        data:{idRiesgo:idR},
         success: function(success) {
             console.log("Retorno  "+success);
+              eliminarRegistroRiesgo(success);
 
       },
 error: function(response){
