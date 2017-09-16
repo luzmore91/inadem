@@ -298,15 +298,6 @@ participante.fk_idTokenAppIn  = '.$idT);
      $col->fk_idEquipoEmprendedor = $idEqEmp;
      $col->bajaLogica = 1;
 
-     //Tabla proyecto
-     $proyecto->fk_idEquipoEmprendedor=$idEqEmp;
-     $proyecto->fk_idColaboracion
-     $proyecto->fk_idPropiedadIntelectual
-     $proyecto->fk_idObjetivoProyecto
-     $proyecto->fk_idAnalisisEntorno
-     $proyecto->fk_idTRL = Input::get('madurezProy');
-     $proyecto->fk_idTecnologiaProyecto
-     $proyecto->bajaLogica = 1;
 
 
       $tecnologia->save();
@@ -315,7 +306,59 @@ participante.fk_idTokenAppIn  = '.$idT);
       $propInt->save();
       $objP->save();
       $col->save();
-      $proyecto->save();
-    return redirect()->back();
+
+      guardarProyecto();
+
 }
+
+    function public guardarProyecto(){
+
+          //Tabla proyecto
+
+       //obtener el ultimo id de la tabla colaboracion
+     $idColaboracionQuery = DB::select('SELECT colaboracion.idColaboracion FROM `colaboracion` ORDER BY  idColaboracion desc limit 1');
+     $resultQC = json_decode(json_encode($idColaboracionQuery), true);
+      foreach($resultQC as $i){
+          $idC= $i['idColaboracion'];
+      }
+     //obtener el ultimo id de la tabla propiedad intelectual
+       $idPIQuery = DB::select('SELECT propiedadintelectual.idPropiedadIntelectual FROM `propiedadintelectual` ORDER BY idPropiedadIntelectual  desc limit 1');
+     $resultQPI = json_decode(json_encode($idPIQuery), true);
+      foreach($resultQPI as $i){
+          $idPi= $i['idPropiedadIntelectual'];
+      }
+     //obtener el ultimo id de la tabla objetivo proyecto
+      $idOPQuery = DB::select('SELECT objetivoproyecto.idObjetivoProyecto FROM `objetivoproyecto` ORDER BY idObjetivoProyecto  desc limit 1');
+     $resultQOP = json_decode(json_encode($idOPQuery), true);
+      foreach($resultQOP as $i){
+          $idOp= $i['idObjetivoProyecto'];
+      }
+
+        //obtener el ultimo id de la tabla analisis del entorno
+      $idAeQuery = DB::select('SELECT analisisentorno.idAnalisisEntorno FROM `analisisentorno` ORDER BY idAnalisisEntorno  desc limit 1');
+     $resultQAE = json_decode(json_encode($idAeQuery), true);
+      foreach($resultQAE as $i){
+          $idAe= $i['idAnalisisEntorno'];
+      }
+
+     //obtener el ultimo id de la tabla tecnologia proyecto
+      $idTpQuery = DB::select('SELECT tecnologiaproyecto.idTecnologiaProyecto FROM `tecnologiaproyecto` ORDER BY idTecnologiaProyecto desc limit 1');
+     $resultQTP = json_decode(json_encode($idTpQuery), true);
+      foreach($resultQTP as $i){
+          $idTp= $i['idTecnologiaProyecto'];
+      }
+
+     $proyecto->fk_idEquipoEmprendedor=$idEqEmp;
+     $proyecto->fk_idColaboracion = $idC;
+     $proyecto->fk_idPropiedadIntelectual=$idPi;
+     $proyecto->fk_idObjetivoProyecto =$idOp;
+     $proyecto->fk_idAnalisisEntorno=$idAe;
+     $proyecto->fk_idTRL = Input::get('madurezProy');
+     $proyecto->fk_idTecnologiaProyecto=$Tp;
+     $proyecto->bajaLogica = 1;
+
+    $proyecto->save();
+    return redirect()->back();
+
+    }
 }
