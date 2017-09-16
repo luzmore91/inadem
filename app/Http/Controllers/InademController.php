@@ -298,27 +298,15 @@ participante.fk_idTokenAppIn  = '.$idT);
      $col->fk_idEquipoEmprendedor = $idEqEmp;
      $col->bajaLogica = 1;
 
-
-
-
-
      //Tabla proyecto
-     $proyecto->fk_idEquipoEmprendedor=Input::get('madurezProy');
-    /*
+     $proyecto->fk_idEquipoEmprendedor=$idEqEmp;
      $proyecto->fk_idColaboracion
      $proyecto->fk_idPropiedadIntelectual
      $proyecto->fk_idObjetivoProyecto
      $proyecto->fk_idAnalisisEntorno
-     $proyecto->fk_idTRL
+     $proyecto->fk_idTRL = Input::get('madurezProy');
      $proyecto->fk_idTecnologiaProyecto
-     $proyecto->fk_idTecnologiaProyecto
-     $proyecto->estrategiaMitigacion
-     $proyecto->descripcionRiesgo
-     $proyecto->bajaLogica
-
-
-
-*/
+     $proyecto->bajaLogica = 1;
 
 
       $tecnologia->save();
@@ -327,7 +315,7 @@ participante.fk_idTokenAppIn  = '.$idT);
       $propInt->save();
       $objP->save();
       $col->save();
-
+      $proyecto->save();
     return redirect()->back();
 }
 }
