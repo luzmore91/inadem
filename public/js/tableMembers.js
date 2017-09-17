@@ -4,6 +4,15 @@ var ParArreglo = [];
 var RiesArreglo = [];
 var banderaTablaParticipate = false;
 var banderaTablaRiesgos = false;
+var idEquipo = numeroEquipo();
+
+function numeroEquipo()
+{
+  var caracteres = "1243";
+  var contraseña = "";
+  for (i=0; i<5; i++) contraseña += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
+  return contraseña;
+}
 
 function obtenerDatosEquipo()
 {
@@ -185,7 +194,7 @@ function enviarParticipante() {
         url:'insertarParticipante',
         type: 'POST',
         dataType: 'json',
-        data:{participante:ParArreglo},
+        data:{participante:ParArreglo,equipo:parseInt(idEquipo)},
         success: function(success) {
             console.log("Sent values "+JSON.stringify(success));
             //reiniciar el arreglo

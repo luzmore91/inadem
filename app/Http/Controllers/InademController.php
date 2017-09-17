@@ -44,6 +44,7 @@ class InademController extends Controller
   if($request->ajax()){
 
     $dato =$request->participante; // This will get all the request data.
+    $dato2 =$request->equipo;
 
             $participante = new Participante;
             $equipo = new EquipoEmprendedor;
@@ -51,6 +52,7 @@ class InademController extends Controller
          //consulta a la tabla tecnologiaProyecto, el ultimo ID integrado
        $idTec = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
        $result = json_decode(json_encode($idTec), true);
+
 
        foreach($dato as $d){
                $participante->fk_idInstitucion = $d["fk_institucion"];//$request->input('fk_institucion');
@@ -91,6 +93,7 @@ class InademController extends Controller
        foreach($resultEquipo as $i){
          $equipo->fk_participante = $i['idParticipante'];
          $equipo->bajaLogica =1;
+         $equipo->numeroEquipo = $dato2;
        }
          $equipo->save();
             
@@ -354,8 +357,15 @@ participante.fk_idTokenAppIn  = '.$idT);
       foreach($resultQTP as $i){
           $idTp= $i['idTecnologiaProyecto'];
       }
+     //obtener el numero de equipo
+       $idNumEqQuery = DB::select('SELECT equipoemprendedor.numeroEquipo FROM `equipoemprendedor`WHERE equipoemprendedor.idEquipoEmprendedor = '.$idEqEmp.' ORDER BY numeroEquipo desc limit 1');
+     $resultQIDEQ = json_decode(json_encode($idNumEqQuery), true);
+      foreach($resultQIDEQ as $i){
+          $idNumEQ= $i['numeroEquipo'];
+      }
 
-     $proyecto->fk_idEquipoEmprendedor=$idEqEmp;
+     //$proyecto->fk_idEquipoEmprendedor=$idEqEmp;
+      $proyecto->fk_numeroEquipoEmprendedor = $idNumEQ;
      $proyecto->fk_idColaboracion = $idC;
      $proyecto->fk_idPropiedadIntelectual=$idPi;
      $proyecto->fk_idObjetivoProyecto =$idOp;

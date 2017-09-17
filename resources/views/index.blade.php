@@ -134,14 +134,14 @@ function generar()
 }
 
 function guardarToken(clave){
-    console.log("entrar a AJAX");
+    //console.log("entrar a AJAX");
      $.ajax({
         url:'tokenInademApp',
         type: 'POST',
         dataType: 'json',
         data:{llave:clave},
         success: function(success) {
-            console.log("Sent valores insertados "+success);
+            console.log("llave Temporal "+success);
 
 
       },
@@ -151,10 +151,12 @@ error: function(response){
     });
 }
 
-
+    //valores temporales
 
         var tokenInadem = generar();
          guardarToken(tokenInadem);
+
+
      });
                </script>
     <script type="text/javascript" src="{{ asset('/js/tableMembers.js') }}"></script>
