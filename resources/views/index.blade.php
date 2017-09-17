@@ -82,6 +82,22 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div id="ModalLoginForm2" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro</h1>
+            </div>
+            <div class="modal-body">
+              Almacenamiento incorrecto. Intenta nuevamente por favor
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
                  
                         
                     </div>
@@ -158,9 +174,26 @@ error: function(response){
 
 
      });
+
+    function openModal(Tipo){
+        if(Tipo == 1){
+             $('#ModalLoginForm').modal('show');
+        }else{
+             $('#ModalLoginFormE').modal('show');
+        }
+
+    }
                </script>
     <script type="text/javascript" src="{{ asset('/js/tableMembers.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sorttable.js') }}"></script>
-
-
+@if(!empty(Session::get('success_code')) && Session::get('success_code') == 5)
+<script>
+openModal(1);
+</script>
+@endif
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+<script>
+openModal(2);
+</script>
+@endif
 </html>

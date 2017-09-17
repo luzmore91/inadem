@@ -387,10 +387,11 @@ participante.fk_idTokenAppIn  = '.$idT);
      $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
 
      //return redirect()->back();
-    return redirect()->action(
-    'InademController@ver', ['modal' => 1]
-);
+         return redirect()->back()->with('success_code', 5);
      
+     }else{
+         return redirect()->back()->with('error_code', 5);
+
      }
 
 
