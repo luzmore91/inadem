@@ -38,7 +38,7 @@
     <div class="col-xs-12">
 
         <div class="col-xs-3"><select id="tipoRiesgo" class="form-control selectpicker" name="tipoRiesgo" data-style="btn-green">
-            <option>Seleccione una opción</option>
+            <option value="-1">Seleccione una opción</option>
             @foreach ($riesgos as $ri)
             <option value="{{$ri->idTipoRiesgo}}"> {{ $ri->descripcion }}</option>
             @endforeach
@@ -66,6 +66,7 @@
         </tr>
     </thead>
     <tbody id="contenidoTablaRiesgos" name="contenidoTablaRiesgos">
+    <input type='hidden' name='_token' value='{{csrf_token()}}' id='tokenc'>
     </tbody>
 </table>
 </div>
