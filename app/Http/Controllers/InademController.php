@@ -166,7 +166,7 @@ participante.fk_idTokenAppIn  = '.$idT);
     if($saved){
         $envio = 1;
         //eliminar participante del equipo
-         $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
+         $actualizarRiesgos = DB::select('DELETE FROM equipoemprendedor WHERE fk_idParticipante = '.$dato);
 
     }else{
         $envio = 0;
