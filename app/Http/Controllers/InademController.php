@@ -308,7 +308,7 @@ participante.fk_idTokenAppIn  = '.$idT);
       $saved5= $col->save();
 
       //Tabla proyecto
-     if($save && $save1 && $save2 && $save3 && $save4 && $save5){
+     if($saved && $saved1 && $saved2 && $saved3 && $saved4 && $saved5){
        //obtener el ultimo id de la tabla colaboracion
      $idColaboracionQuery = DB::select('SELECT colaboracion.idColaboracion FROM `colaboracion` ORDER BY  idColaboracion desc limit 1');
      $resultQC = json_decode(json_encode($idColaboracionQuery), true);
