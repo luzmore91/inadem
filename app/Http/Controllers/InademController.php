@@ -46,7 +46,7 @@ class InademController extends Controller
     $dato =$request->participante; // This will get all the request data.
 
             $participante = new Participante;
-
+            $equipo = new EquipoEmprendedor;
 
          //consulta a la tabla tecnologiaProyecto, el ultimo ID integrado
        $idTec = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
@@ -82,6 +82,18 @@ class InademController extends Controller
 
          $saved = $participante->save();
         if($saved){
+            
+            //ingresar al equipo emprendedor
+             //Tabla equipo emprendedor
+        $EquipoQuery = DB::select('select idParticipante from participante WHERE participante.fk_idTokenAppIn='.$idT);
+    
+       $resultEquipo = json_decode(json_encode($EquipoQuery), true);
+       foreach($resultEquipo as $i){
+         $equipo->fk_participante = $i['idParticipante'];
+         $equipo->bajaLogica =1;
+       }
+       $equipo->save();
+            
             //consultar los valores insertados.
             $participanteQuery = DB::select('select participante.idParticipante,participante.nombre,participante.apellidoPaterno,participante.apellidoMaterno,participante.correoElectronico,participante.numeroMovil,
 tipogradoestudios.nivel,areaconocimiento.descripcion,institucion.nombreInstitucion from participante INNER JOIN tipogradoestudios
@@ -94,6 +106,8 @@ WHERE
 participante.fk_idTokenAppIn  = '.$idT);
             $insertados = $participanteQuery;
          }
+      
+      
     else {
     // Whooops
         $insertados = "intenta nuevamente por favor";
@@ -151,6 +165,9 @@ participante.fk_idTokenAppIn  = '.$idT);
 
     if($saved){
         $envio = 1;
+        //eliminar participante del equipo
+         $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
+
     }else{
         $envio = 0;
     }
@@ -228,7 +245,7 @@ participante.fk_idTokenAppIn  = '.$idT);
      $anEnt = new AnalisisEntorno;
      $objP= new ObjetivoProyecto;
      $col = new Colaboracion;
-     $equipo = new EquipoEmprendedor;
+
 
 
      /*TOKEN DE LA SESION DEL FORMULARIO */
@@ -237,7 +254,8 @@ participante.fk_idTokenAppIn  = '.$idT);
       foreach($result as $i){
           $idToken = $i['idToken'];
       }
-
+    
+          
     /* Tabla tecnologia  */
     $tecnologia->titulo = Input::get('titulo');
     $tecnologia->tituloComercial = Input::get('tituloComercial');
@@ -271,44 +289,39 @@ participante.fk_idTokenAppIn  = '.$idT);
      $objP->otraDescripcion=Input::get('otro_ObjetivoProyecto');
      $objP->bajaLogica=1;
 
-    //Tabla equipo emprendedor
-     $EquipoQuery = DB::select('select idParticipante from participante WHERE participante.fk_idTokenAppIn='.$idToken);
-     $resultEquipo = json_decode(json_encode($EquipoQuery), true);
-      foreach($resultEquipo as $i){
-         $equipo->fk_participante = $i['idParticipante'];
-         $equipo->bajaLogica = 1;
-      }
-
-
+   
     //Tabla colaboracion
      //obtener el id del ultimo equipo emprendedor que se registro
      $fkEquipoQuery = DB::select('select idEquipoEmprendedor from equipoemprendedor ORDER BY idEquipoEmprendedor DESC LIMIT 1 ');
      $resultIdEq = json_decode(json_encode($fkEquipoQuery), true);
-      foreach($resultIdEq as $i){
-          $idEqEmp = $i['idEquipoEmprendedor'];
-      }
+      
      //obtener la primera escuela registrada de los participantes del equipo emprendedor
      $fkEqInstQuery = DB::select('SELECT participante.fk_idInstitucion FROM `participante` WHERE participante.fk_idTokenAppIn ='.$idToken.' ORDER BY  participante.fk_idInstitucion desc limit 1');
      $resultInP = json_decode(json_encode($fkEqInstQuery), true);
       foreach($resultInP as $i){
-          $idIPrimerInst= $i['fk_idInstitucion'];
-      }
-     $col->fk_idInstitucion=$idIPrimerInst;
+          foreach($resultIdEq as $k){
+          $idEqEmp = $k['idEquipoEmprendedor'];
+               $idIPrimerInst= $i['fk_idInstitucion'];
+               $col->fk_idInstitucion=$idIPrimerInst;
      $col->descripcion = Input::get('desIES');
      $col->fk_idEquipoEmprendedor = $idEqEmp;
      $col->bajaLogica = 1;
 
-
+      }
+         
+      }
+  
+    
+    
 
       $saved=  $tecnologia->save();
       $saved1= $anEnt->save();
-      $saved2= $equipo->save();
       $saved3= $propInt->save();
       $saved4= $objP->save();
       $saved5= $col->save();
 
       //Tabla proyecto
-     if($saved && $saved1 && $saved2 && $saved3 && $saved4 && $saved5){
+     if($saved && $saved1  && $saved3 && $saved4 && $saved5){
        //obtener el ultimo id de la tabla colaboracion
      $idColaboracionQuery = DB::select('SELECT colaboracion.idColaboracion FROM `colaboracion` ORDER BY  idColaboracion desc limit 1');
      $resultQC = json_decode(json_encode($idColaboracionQuery), true);
@@ -363,7 +376,11 @@ participante.fk_idTokenAppIn  = '.$idT);
      ///actualizar tabla riesgos para saber a que proyecto pertenecen
      $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
 
-     return redirect()->back();
+     //return redirect()->back();
+    return redirect()->action(
+    'InademController@ver', ['modal' => 1]
+);
+     
      }
 
 
