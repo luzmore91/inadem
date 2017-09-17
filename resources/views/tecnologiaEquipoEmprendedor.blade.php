@@ -32,8 +32,8 @@
 
             <div class="col-xs-12" style="padding-top: 20px;">
                 	<div class="col-xs-2"><label for="name">Institución:</label></div>
-                	<div class="col-xs-4"><select id="intitucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
-                        <option>Seleccione una opción</option>
+                	<div class="col-xs-4"><select id="institucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
+                        <option value="-1">Seleccione una opción</option>
                   		@foreach ($institucion as $int)
                         <option value="{{$int->idInstitucion}}"> {{ $int->nombreInstitucion }}</option>
                         @endforeach
@@ -44,7 +44,7 @@
             <div class="col-xs-12" style="padding-top: 20px;">
                 	<div class="col-xs-2"><label for="name">Tipo de invención:</label></div>
                 	<div class="col-xs-4"><select required id="tipoInvension" class="form-control selectpicker" data-style="btn-green" name="tipoInv">
-                        <option>Seleccione una opción</option>
+                        <option value="-1">Seleccione una opción</option>
                   		@foreach ($inv as $in)
                         <option value="{{$in->idTipoInvencion}}"> {{ $in->descripcion }}</option>
                         @endforeach

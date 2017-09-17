@@ -19,6 +19,23 @@
 
         {!! Form::open(array('action' => 'InademController@insertar')) !!}
 
+            <!--Inicio Modal-->
+ <div class="modal" id="myModal"  role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal-dialog" style="left:0;">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" onclick="cerrarModal();" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">¡Aviso!</h4>
+              </div>
+              <div id="setTexto" class="modal-body">
+              </div>
+              <div class="modal-footer">
+              </div>
+         </div>
+    </div>
+</div>   
+       <!--Fin Modal-->  
+        
 
             <!--Tecnologia o Proyecto y Equipo Emprendedor o Inventor-->
             <div class="container">
@@ -44,7 +61,7 @@
 
 
       <!--- data-toggle="modal" data-target="#ModalLoginForm" -->
-        <button  type="submit" class="btn btn-success btn-lg" style="left: 80%;position: relative;" >
+        <button  type="submit" class="btn btn-success btn-lg" onclick="validaSelects();" style="left: 80%;position: relative;" >
           <span class="glyphicon glyphicon-ok"></span> Aceptar
         </button>
 
@@ -65,23 +82,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">¡Aviso!</h4>
-              </div>
-              <div class="modal-body">
-                Lightbox ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>                        
+                 
                         
                     </div>
 

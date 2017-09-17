@@ -23,7 +23,7 @@ function obtenerDatosEquipo()
     var institucion = comboInstitucion.options[comboInstitucion.selectedIndex].text;
 
     
-    validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
+    var bandera=validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
     
     
     var tbodyPart = document.getElementById("cuerpoTabla");
@@ -50,27 +50,6 @@ function obtenerDatosEquipo()
                      bajaLogica:1
                     });
 
-    trPart.id= "miembro_" + count_tr;
-    
-    var infoPart = "<td classs='' id='nombreParticipante_"+ count_tr +"' name='nombreParticipante_"+ count_tr +"'>"+ nombreMiembro+"</td>";
-
-	infoPart += "<td classs='' id='gradoEstudioParticipante_"+ count_tr +"' name='gradoEstudioParticipante_"+ count_tr +"'>"+ gradoEstudio+"</td>";
-  
-    infoPart += "<td classs='' id='areaConocimientoParticipante_"+ count_tr +"' name='areaConocimientoParticipante_"+ count_tr +"'>"+ areaConocimiento+"</td>";
-    
-    infoPart += "<td classs='' id='correoParticipante_"+ count_tr +"' name='correoParticipante_"+ count_tr +"'>"+ correo+"&nbsp&nbsp"+"</td>";
-    
-    infoPart += "<td classs='' id='telefonoMovilParticipante_"+ count_tr +"' name='telefonoMovilParticipante_"+ count_tr +"'>"+ telefonoMovil+"</td>";
-    
-    infoPart += "<td classs='' id='institucionParticipante_"+ count_tr +"' name='institucionParticipante_"+ count_tr +"'>"+ institucion+"</td>";
-    
-	infoPart += "<td classs='' id='botonParticipante_"+ count_tr +"' name='botonParticipante_"+ count_tr +"'>"
-            +"<button type='submit' class='btn btn-red' onclick='eliminarParticipante("+trPart.id+")'>"
-            +"<span class='glyphicon glyphicon-remove'></span>"
-            +"</button></td>";
-    
-  rPart.innerHTML = infoPart;
-  tbodyPart.appendChild(trPart);
   limpiarComponentesParticipate();
   banderaTablaParticipate = true;
     
@@ -78,7 +57,8 @@ function obtenerDatosEquipo()
       console.log("Si entra a quitar atributo");
         quitarAtributoParticipantes();
   }
-enviarParticipante();
+ if(bandera)    
+ enviarParticipante();
 
 }
 
@@ -122,6 +102,10 @@ function obtenerDatosRiesgos()
     var descripcion = document.getElementById("descRiesgo").value;
 
     var estrategiaMitigacion = document.getElementById("estMitigacion").value;
+    
+    var insertarRiesgos =  validaRiesgos(comboTipoRiesgo.value, descripcion, estrategiaMitigacion);
+    
+    console.log("obtenerDatosRiesgos "+insertarRiesgos);
 
     RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
                       estrategiaMitigacion:estrategiaMitigacion,
@@ -129,8 +113,16 @@ function obtenerDatosRiesgos()
                       bajaLogica:1});
 
 
+  
+  limpiarComponentesRiesgo();
+  banderaTablaRiesgos = true;
 
-  enviarRiesgos();
+  if(banderaTablaRiesgos){
+      console.log("Si entra a quitar atributo");
+        quitarAtributoRiesgos();
+  }
+    if(insertarRiesgos)
+      enviarRiesgos();
 }
 
 
@@ -144,7 +136,7 @@ function eliminarRegistroParticipante(objP)
 function eliminarRegistroRiesgo(objR)
 {
      if(objR.eliminado = 1){
-     $('#miembro_'+objR.idRiesgo).remove();
+     $('#riesgo_'+objR.idRiesgo).remove();
      }
 }
 
@@ -232,7 +224,7 @@ function crearTablaParticipante(tabla){
     infoPart += "<td classs='' id='institucionParticipante_"+ val.idParticipante+"' name='institucionParticipante_"+ val.idParticipante +"'>"+ val.nombreInstitucion+"</td>";
 
 	infoPart += "<td classs='' id='botonParticipante_"+ val.idParticipante +"' name='botonParticipante_"+ val.idParticipante +"'>"
-            +"<button type='submit' class='btn btn-red' onclick='eliminarParticipante("+val.idParticipante+")'>"
+            +"<button type='button' class='btn btn-red' onclick='eliminarParticipante("+val.idParticipante+")'>"
             +"<span class='glyphicon glyphicon-remove'></span>"
             +"</button></td>";
 
@@ -243,7 +235,6 @@ function crearTablaParticipante(tabla){
 }
 
 function crearTablaRiesgos(tabla){
-
 
     var tbody = document.getElementById("contenidoTablaRiesgos");
     var tr = document.createElement('tr');
@@ -257,7 +248,7 @@ function crearTablaRiesgos(tabla){
     info+="<td classs='' id='estrategiaMitigacion_"+ val.idRiesgo+"' name='estrategiaMitigacion_"+ val.idRiesgo+"'>"+ val.estrategiaMitigacion+"</td>";
 
 	info += "<td classs='' id='botonRiesgo_"+val.idRiesgo +"' name='botonRiesgo_"+ val.idRiesgo +"'>"
-            +"<button type='submit' class='btn btn-red' onclick='eliminarRiesgo("+val.idRiesgo+")'>"
+            +"<button type='button' class='btn btn-red' onclick='eliminarRiesgo("+val.idRiesgo+")'>"
             +"<span class='glyphicon glyphicon-remove'></span>"
             +"</button></td>";
 
@@ -265,14 +256,6 @@ function crearTablaRiesgos(tabla){
   tbody.appendChild(tr);
 
     });
-
-  limpiarComponentesRiesgo();
-  banderaTablaRiesgos = true;
-
-  if(banderaTablaRiesgos){
-      console.log("Si entra a quitar atributo");
-        quitarAtributoRiesgos();
-  }
 
 }
 function eliminarParticipante(idP){
@@ -294,6 +277,25 @@ error: function(response){
     });
 }
 
+function eliminarRiesgo(idR){
+    console.log("id del riesgo ",idR);
+   $.ajax({
+        url:'eliminarRiesgo',
+        type: 'POST',
+        dataType: 'json',
+        data:{idRiesgo:idR},
+        success: function(success) {
+            console.log("Retorno  "+success);
+              eliminarRegistroRiesgo(success);
+
+      },
+error: function(response){
+    console.log('Error Ajax');
+    }
+    });
+
+}
+
 function quitarAtributoParticipantes() { 
     
     document.getElementById("nomPart").removeAttribute("required"); 
@@ -313,37 +315,87 @@ function quitarAtributoRiesgos() {
 function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, noCelular, institucion) 
 { 
     var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");
+    var validaPartci = true;
     
-    console.log(nombre+" "+gradoEstudios+" "+areaConocimiento+" "+correo+" "+noCelular+" "+institucion);
+    
+    //console.log(nombre+" "+gradoEstudios+" "+areaConocimiento+" "+correo+" "+noCelular+" "+institucion);
     
     if(gradoEstudios<0 || areaConocimiento<0 || institucion<0){
-        console.log("Entro al if....");
-        modal.style.display='block'
-    	//setTimeout('modal.classList.remove(\'hidden\')', 10);
-
+        validaPartci=false;
+        //console.log("Entro al if....");
+        divTexto.innerHTML = "¡Seleccione una opción valida!";
+        modal.style.display='block';
     }
     
-    /*if(nombre==""||correo==""||noCelular=""){
-        
-    }*/
-   
-}
-
-function eliminarRiesgo(idR){
-    console.log("id del riesgo ",idR);
-   $.ajax({
-        url:'eliminarRiesgo',
-        type: 'POST',
-        dataType: 'json',
-        data:{idRiesgo:idR},
-        success: function(success) {
-            console.log("Retorno  "+success);
-              eliminarRegistroRiesgo(success);
-
-      },
-error: function(response){
-    console.log('Error Ajax');
+    if(nombre == null || nombre.length == 0 || correo == null || correo.length == 0|| noCelular == null || noCelular.length==0){
+      validaPartci=false;    
+      divTexto.innerHTML = "¡Verifique la información ingresada!";
+      modal.style.display='block';
     }
-    });
-
+    
+    return validaPartci;
 }
+
+function validaRiesgos(tipoRiesgo, descripcion, estrategiaMitigacion) 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");
+    var validaRiesgo = true;
+    
+    
+    //console.log(tipoRiesgo+" "+descripcion+" "+estrategiaMitigacion);
+    
+    if(tipoRiesgo<0){
+        //console.log("selects " + validaRiesgo);
+        
+        validaRiesgo=false;
+        divTexto.innerHTML = "¡Seleccione una opción valida!";
+        modal.style.display='block';
+    }
+    
+    
+    if(descripcion == null || descripcion.length == 0 || estrategiaMitigacion == null || estrategiaMitigacion.length == 0 ){
+    //console.log("inputs " + validaRiesgo);
+
+      validaRiesgo=false;    
+      divTexto.innerHTML = "¡Verifique la información ingresada!";
+      modal.style.display='block';
+    }
+    
+    console.log(validaRiesgo);
+    return validaRiesgo;
+}
+
+function validaSelects() 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");
+    
+    var institucion = document.getElementById("institucion").value;
+    var tipoInvension = document.getElementById("tipoInvension").value;
+    
+    var trl = document.getElementById("madurezProy").value;
+    var sectorEstrategico = document.getElementById("sectorEst").value;
+    var estadoActual = document.getElementById("estadoAct").value;
+    var tipoProteccion = document.getElementById("tipoProt").value;
+    var objetivoProyeecto = document.getElementById("perProy").value;
+
+    console.log(institucion+" "+tipoInvension+" "+trl+" "+sectorEstrategico+" "+estadoActual+" "+tipoProteccion+" "+objetivoProyeecto);
+    
+    if(institucion<0 || tipoInvension<0 || trl<0 || sectorEstrategico<0 || estadoActual<0 || tipoProteccion<0 || objetivoProyeecto<0){
+        console.log("Entra al if ");
+        
+        divTexto.innerHTML = "¡Seleccione una opción valida!";
+        modal.style.display='block';
+    }
+    
+}
+
+
+function cerrarModal(){
+        var modal = document.getElementById("myModal");
+        modal.style.display='none';
+}
+
+
