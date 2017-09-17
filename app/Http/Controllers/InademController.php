@@ -252,7 +252,7 @@ participante.fk_idTokenAppIn  = '.$idT);
 
      //Tabla propiedad intelectual
       $propInt->fk_idTipoRegistro =  Input::get("estadoAct");
-      $propInt->kf_idTipoProteccion =  Input::get("tipoProt");
+      $propInt->fk_idTipoProteccion = Input::get("tipoProt");
       $propInt->numeroRegistro = '';
       $propInt->bajaLogica =1;
 
@@ -288,7 +288,7 @@ participante.fk_idTokenAppIn  = '.$idT);
           $idEqEmp = $i['idEquipoEmprendedor'];
       }
      //obtener la primera escuela registrada de los participantes del equipo emprendedor
-     $fkEqInstQuery = DB::select('SELECT participante.fk_idInstitucion FROM `participante` WHERE participante.fk_idTokenAppIn ='.$idToken.' ORDER BY  fk_idInstitucion desc limit 1');
+     $fkEqInstQuery = DB::select('SELECT participante.fk_idInstitucion FROM `participante` WHERE participante.fk_idTokenAppIn ='.$idToken.' ORDER BY  participante.fk_idInstitucion desc limit 1');
      $resultInP = json_decode(json_encode($fkEqInstQuery), true);
       foreach($resultInP as $i){
           $idIPrimerInst= $i['fk_idInstitucion'];
@@ -300,15 +300,15 @@ participante.fk_idTokenAppIn  = '.$idT);
 
 
 
-      $tecnologia->save();
-      $anEnt->save();
-      $equipo->save();
-      $propInt->save();
-      $objP->save();
-      $col->save();
+      $saved=  $tecnologia->save();
+      $saved1= $anEnt->save();
+      $saved2= $equipo->save();
+      $saved3= $propInt->save();
+      $saved4= $objP->save();
+      $saved5= $col->save();
 
       //Tabla proyecto
-
+     if($save && $save1 && $save2 && $save3 && $save4 && $save5){
        //obtener el ultimo id de la tabla colaboracion
      $idColaboracionQuery = DB::select('SELECT colaboracion.idColaboracion FROM `colaboracion` ORDER BY  idColaboracion desc limit 1');
      $resultQC = json_decode(json_encode($idColaboracionQuery), true);
@@ -352,7 +352,20 @@ participante.fk_idTokenAppIn  = '.$idT);
      $proyecto->bajaLogica = 1;
 
     $proyecto->save();
-    return redirect()->back();
+
+     //obtener el id de proyecto
+    $idProyectoQuery = DB::select('select idProyecto from proyecto order by idProyecto desc limit 1');
+     $resultIdProy = json_decode(json_encode($idProyectoQuery), true);
+     foreach($resultIdProy as $i){
+          $idProy= $i['idProyecto'];
+      }
+
+     ///actualizar tabla riesgos para saber a que proyecto pertenecen
+     $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
+
+     return redirect()->back();
+     }
+
 
     }
 }
