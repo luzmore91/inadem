@@ -92,7 +92,7 @@ class InademController extends Controller
          $equipo->fk_participante = $i['idParticipante'];
          $equipo->bajaLogica =1;
        }
-       $equipo->save();
+         $equipo->save();
             
             //consultar los valores insertados.
             $participanteQuery = DB::select('select participante.idParticipante,participante.nombre,participante.apellidoPaterno,participante.apellidoMaterno,participante.correoElectronico,participante.numeroMovil,
