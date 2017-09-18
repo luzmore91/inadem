@@ -113,7 +113,7 @@ participante.fk_idTokenAppIn  = '.$idT);
       
     else {
     // Whooops
-        $insertados = "intenta nuevamente por favor";
+        $insertados = 0;
             }
          return response()->json($insertados);
 
@@ -154,7 +154,7 @@ participante.fk_idTokenAppIn  = '.$idT);
          }
     else {
     // Whooops
-        $insertados = "intenta nuevamente por favor";
+        $insertados = 0;
             }
          return response()->json($insertados);
     }
