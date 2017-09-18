@@ -74,6 +74,13 @@
 </div>
 
 </div>
+<div class="col-xs-12" style="padding-top:20px">
+    <div class="col-xs-2"><label>Numero de registro</label></div>
+<div class="col-xs-3">
+ 	 <input class="form-control" type="text" name="numeroRegistro" placeholder="numero de registro de propiedad intelectual"/>
+</div>
+
+</div>
      <div class="col-xs-12 espacioTitulosContenido">
     <div class="col-xs-5"><h2>5. Lo que persigue el proyecto/tecnología es</h2></div>
     <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
