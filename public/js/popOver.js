@@ -1,7 +1,9 @@
-///  pop over
+
 	$(function () {
+       ///  pop over
 		$("[data-toggle='popover']").popover({ trigger: "hover" });
 
+        ///valida el select otro
         $("select[name=perProy]").change(function(){
 
             valor = $(this).val();
