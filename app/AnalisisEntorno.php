@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class AnalisisEntorno extends Model
 {
         //tabla a utilizar
-    protected $table = 'analisisEntorno';
+    public $table = 'analisisentorno';
     public $timestamps = false;
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Institucion extends Model
 {
     //tabla a utilizar
-    protected $table = 'institucion';
+    public $table = 'institucion';
     public $timestamps = false;
 
     public function tecnologia()
