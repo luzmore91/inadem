@@ -17,7 +17,14 @@
             @include('header')
         </div>
 
+
         {!! Form::open(array('action' => 'InademController@insertar')) !!}
+
+
+<div class="alert alert-danger fade out" id="bsalert">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <div id="contenidoAlerta"></div>
+</div>
 
             <!--Inicio Modal-->
  <div class="modal" id="myModal"  role="dialog" aria-labelledby="myModalLabel">
@@ -61,10 +68,41 @@
 
 
       <!--- data-toggle="modal" data-target="#ModalLoginForm" -->
-        <button  type="submit" class="btn btn-success btn-lg" onclick="validaSelects();" style="left: 80%;position: relative;" >
+        <button  type="button" class="btn btn-success btn-lg" onclick="validaTexto();" style="left: 80%;position: relative;" >
           <span class="glyphicon glyphicon-ok"></span> Aceptar
         </button>
 
+                    </div>
+
+                    <div class="col-xs-6">
+
+       <button type="reset" class="btn btn-danger btn-lg">
+          <span class="glyphicon glyphicon-remove"></span> Cancelar
+        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+<!-- Modal HTML Markup -->
+<div id="ModalConfirmacionForm" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro</h1>
+            </div>
+            <div class="modal-body">
+               Realmente esta seguro de guardar esta información
+            </div>
+             <div class="modal-footer">
+         <button  type="submit" class="btn btn-success btn-lg">
+          <span class="glyphicon glyphicon-ok"></span> Aceptar
+        </button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- Modal HTML Markup -->
 <div id="ModalLoginForm" class="modal fade">
@@ -116,17 +154,7 @@
 </div><!-- /.modal -->
                  
                         
-                    </div>
 
-                    <div class="col-xs-6">
-
-       <button class="btn btn-danger btn-lg">
-          <span class="glyphicon glyphicon-remove"></span> Cancelar
-        </button>
-
-                    </div>
-                </div>
-            </div>
 
         {!! Form::close() !!}
 
@@ -191,18 +219,8 @@ error: function(response){
 
      });
 
-    function openModal(Tipo){
-        if(Tipo == 1){
-             $('#ModalLoginForm').modal('show');
-        }else{
-             $('#ModalLoginFormE').modal('show');
-        }
-
-    }
-    function mostrarModalError(){
-     $('#ModalLoginForm').modal('show');
-     }
-               </script>
+   </script>
+    <script type="text/javascript" src="{{ asset('/js/ajaxValidacion.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/tableMembers.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sorttable.js') }}"></script>
 @if(!empty(Session::get('success_code')) && Session::get('success_code') == 5)
@@ -215,4 +233,6 @@ openModal(1);
 openModal(2);
 </script>
 @endif
+
+
 </html>
