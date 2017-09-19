@@ -77,7 +77,7 @@
 <div class="col-xs-12" style="padding-top:20px">
     <div class="col-xs-2"><label>Numero de registro</label></div>
 <div class="col-xs-3">
- 	 <input class="form-control" type="text" name="numeroRegistro" placeholder="numero de registro de propiedad intelectual"/>
+ 	 <input class="form-control" type="text" id="numeroRegistro" name="numeroRegistro" placeholder="numero de registro de propiedad intelectual"/>
 </div>
 
 </div>
@@ -105,7 +105,7 @@
 <div id="otroBloque" style="display:none">
     <div  class="col-xs-3"><label>En caso de seleccionar la opción "Otro", describir en el recuadro anexo.</label> </div>
       <div  class="col-xs-4">
- 	 <input class="form-control" type="text" name="otro_ObjetivoProyecto"   placeholder="¿Qué persigue el proyecto o tecnologia?"/>
+ 	 <input class="form-control" type="text" id="otro_ObjetivoProyecto" name="otro_ObjetivoProyecto"   placeholder="¿Qué persigue el proyecto o tecnologia?"/>
     </div>
 
     </div>
