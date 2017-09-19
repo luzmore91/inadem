@@ -12,13 +12,13 @@
     	<label style="font-style:italic">Indique los recursos humanos, tecnológicos y financieros con los que cuenta actualmente para que la tecnología/proyecto avance.</label>
 </div>
 <div class="col-xs-12 espacioTitulosContenido">
-    <textarea style="resize: vertical" class="form-control" name="recursosHumanos" rows="3" placeholder="RECURSOS HUMANOS:" required resize="disabled"></textarea>
+    <textarea style="resize: vertical" class="form-control" name="recursosHumanos" id="recursosHumanos" rows="3" placeholder="RECURSOS HUMANOS:" required resize="disabled"></textarea>
     </div>
 <div class="col-xs-12 espacioTitulosContenido">
-  <textarea style="resize: vertical" class="form-control" rows="3" name="recursosTec" placeholder="RECURSOS TECNOLÓGICOS:" required></textarea>
+  <textarea style="resize: vertical" class="form-control" rows="3" name="recursosTec" id="recursosTec" placeholder="RECURSOS TECNOLÓGICOS:" required></textarea>
    </div>
     <div class="col-xs-12 espacioTitulosContenido">
-		<textarea style="resize: vertical" class="form-control" rows="3" name="recursosFin" placeholder="RECURSOS FINANCIEROS:" required></textarea>
+		<textarea style="resize: vertical" class="form-control" rows="3" name="recursosFin" id="recursosFin" placeholder="RECURSOS FINANCIEROS:" required></textarea>
          </div>
 
 
@@ -33,7 +33,7 @@
 <label style="font-style:italic">Indique el/los mercado(s) a los que va dirigida su tecnología y el/los uso(s) que se darán en éste(os).</label>
     </div>
    <div class="col-xs-12 espacioTitulosContenido">
-		<textarea style="resize: vertical" class="form-control" name="usoApp" rows="2" placeholder="USOS/APLICACIONES:" required></textarea>
+		<textarea style="resize: vertical" class="form-control" name="usoApp" id="usoApp" rows="2" placeholder="USOS/APLICACIONES:" required></textarea>
   </div>
     <div class="espacioTitulosContenido">
         <div class="col-xs-2"><h2>11.Viabilidad</h2></div>
@@ -42,10 +42,10 @@
             </button></div>
     </div>
         <div class="col-xs-12 ">
-    	<label style="font-style:italic">Indique si para la la tecnología/proyecto se ha validado la viabilidad técnica y financiera, y la existencia de prospectos interesados en la misma.</label>
+    	<label style="font-style:italic">Indique si para la tecnología/proyecto se ha validado la viabilidad técnica y financiera, y la existencia de prospectos interesados en la misma.</label>
     </div>
    <div class="col-xs-12">
-    <textarea style="resize: vertical" class="form-control" rows="2" name="viabilidad" placeholder="VIABILIDAD:" required></textarea>
+    <textarea style="resize: vertical" class="form-control" rows="2" id="viabilidad" name="viabilidad" placeholder="VIABILIDAD:" required></textarea>
    </div>
     <div class="espacioTitulosContenido">
         <div class="col-xs-2"> <h2>12.Beneficios  </h2> </div>
@@ -58,7 +58,7 @@
    </div>
 <div class="col-xs-12 espacioTitulosContenido">
 
-    <textarea style="resize: vertical" class="form-control" rows="2" name="beneficios" placeholder="BENEFICIOS:" required></textarea>
+    <textarea style="resize: vertical" class="form-control" rows="2"id="beneficios" name="beneficios" placeholder="BENEFICIOS:" required></textarea>
             </div>
 <br>
 
