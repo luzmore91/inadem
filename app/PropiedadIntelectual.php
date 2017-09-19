@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PropiedadIntelectual extends Model
 {
     // tabla a utilizar
-    protected $table = 'propiedadIntelectual';
+    public $table = 'propiedadintelectual';
     public $timestamps = false;
 
 }

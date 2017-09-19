@@ -83,6 +83,22 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div id="ModalError" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro</h1>
+            </div>
+            <div class="modal-body">
+              Intente nuevamente por favor
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div id="ModalLoginForm2" class="modal fade">
     <div class="modal-dialog" role="alertdialog" style="left:0%">
         <div class="modal-content">
@@ -183,6 +199,9 @@ error: function(response){
         }
 
     }
+    function mostrarModalError(){
+     $('#ModalLoginForm').modal('show');
+     }
                </script>
     <script type="text/javascript" src="{{ asset('/js/tableMembers.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sorttable.js') }}"></script>

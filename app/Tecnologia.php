@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Tecnologia extends Model
 {
     //tabla a utilizar
-    protected $table = 'tecnologiaProyecto';
+    public $table = 'tecnologiaProyecto';
 
-    protected $primaryKey = 'idTecnologiaProyecto';
+    public $primaryKey = 'idTecnologiaProyecto';
 
     public $timestamps = false;
 

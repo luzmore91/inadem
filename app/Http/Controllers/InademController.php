@@ -95,8 +95,8 @@ class InademController extends Controller
          $equipo->bajaLogica =1;
          $equipo->numeroEquipo = $dato2;
        }
-         $equipo->save();
-            
+       $savedEq = $equipo->save();
+       if($savedEq){
             //consultar los valores insertados.
             $participanteQuery = DB::select('select participante.idParticipante,participante.nombre,participante.apellidoPaterno,participante.apellidoMaterno,participante.correoElectronico,participante.numeroMovil,
 tipogradoestudios.nivel,areaconocimiento.descripcion,institucion.nombreInstitucion from participante INNER JOIN tipogradoestudios
@@ -108,17 +108,16 @@ ON areaconocimiento.idAreaConocimiento=participante.fk_idAreaConocimientos
 WHERE
 participante.fk_idTokenAppIn  = '.$idT);
             $insertados = $participanteQuery;
-         }
-      
-      
-    else {
+       }else{
+           $insertados = 0;
+       }
+  }else {
     // Whooops
-        $insertados = "intenta nuevamente por favor";
+        $insertados = 0;
             }
          return response()->json($insertados);
 
-
-        }
+     }
 
     }
     public function insertarRiesgo(Request $request){
@@ -154,7 +153,7 @@ participante.fk_idTokenAppIn  = '.$idT);
          }
     else {
     // Whooops
-        $insertados = "intenta nuevamente por favor";
+        $insertados = 0;
             }
          return response()->json($insertados);
     }
@@ -274,7 +273,7 @@ participante.fk_idTokenAppIn  = '.$idT);
      //Tabla propiedad intelectual
       $propInt->fk_idTipoRegistro =  Input::get("estadoAct");
       $propInt->fk_idTipoProteccion = Input::get("tipoProt");
-      $propInt->numeroRegistro = '';
+      $propInt->numeroRegistro = Input::get("numeroRegistro");
       $propInt->bajaLogica =1;
 
      //Tabla analisisEntorno
@@ -292,7 +291,8 @@ participante.fk_idTokenAppIn  = '.$idT);
      $objP->otraDescripcion=Input::get('otro_ObjetivoProyecto');
      $objP->bajaLogica=1;
 
-   
+
+
     //Tabla colaboracion
      //obtener el id del ultimo equipo emprendedor que se registro
      $fkEquipoQuery = DB::select('select idEquipoEmprendedor from equipoemprendedor ORDER BY idEquipoEmprendedor DESC LIMIT 1 ');
@@ -313,9 +313,6 @@ participante.fk_idTokenAppIn  = '.$idT);
       }
          
       }
-  
-    
-    
 
       $saved=  $tecnologia->save();
       $saved1= $anEnt->save();
@@ -374,9 +371,9 @@ participante.fk_idTokenAppIn  = '.$idT);
      $proyecto->fk_idTecnologiaProyecto=$idTp;
      $proyecto->bajaLogica = 1;
 
-    $proyecto->save();
-
-     //obtener el id de proyecto
+     $savedProyecto = $proyecto->save();
+     if($savedProyecto){
+              //obtener el id de proyecto
     $idProyectoQuery = DB::select('select idProyecto from proyecto order by idProyecto desc limit 1');
      $resultIdProy = json_decode(json_encode($idProyectoQuery), true);
      foreach($resultIdProy as $i){
@@ -385,9 +382,11 @@ participante.fk_idTokenAppIn  = '.$idT);
 
      ///actualizar tabla riesgos para saber a que proyecto pertenecen
      $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
-
-     //return redirect()->back();
+      //return redirect()->back();
          return redirect()->back()->with('success_code', 5);
+     }
+
+
      
      }else{
          return redirect()->back()->with('error_code', 5);
