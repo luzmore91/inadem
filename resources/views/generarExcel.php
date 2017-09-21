@@ -5,7 +5,7 @@ $mes = date("m");
 $identificador = rand(1, 999);
 
 
-Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identificador.'', function($excel) {
+Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'-ID:'.$identificador.'', function($excel) {
 
         $excel->sheet('Proyectos INADEM 2017', function($sheet) {
 
@@ -150,7 +150,7 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
                 );
             }
 
-          
+
              $sheet->fromArray($data, null, 'A2', false, false);
         });
 
