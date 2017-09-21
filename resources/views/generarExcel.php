@@ -1,8 +1,13 @@
 <?php
 
-Excel::create('Proyectos INADEM 2017', function($excel) {
+$dia = date("d");
+$mes = date("m");
+$identificador = rand(1, 999);
 
-        $excel->sheet('Sheet 1', function($sheet) {
+
+Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identificador.'', function($excel) {
+
+        $excel->sheet('Proyectos INADEM 2017', function($sheet) {
 
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
@@ -16,14 +21,12 @@ Excel::create('Proyectos INADEM 2017', function($excel) {
 	    $cell->setValue('Titulo Comercial');
 
 	});	
-
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Problematica');
 
 	});	
-
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
@@ -36,14 +39,12 @@ Excel::create('Proyectos INADEM 2017', function($excel) {
 	    $cell->setValue('Institucion');
 
 	});	
-
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Descripcion de la invencion');
 
 	});	
-
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
@@ -56,31 +57,25 @@ Excel::create('Proyectos INADEM 2017', function($excel) {
 	    $cell->setValue('Sector');
 
 	});	
-
         $sheet->cell('I1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Propiedad Intelectual');
-
 	});	
-
         $sheet->cell('J1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Objetivo');
-
 	});
         $sheet->cell('K1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Colaboracion');
-
 	});
         $sheet->cell('L1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Analisis del Entorno');
-
 	});
         $sheet->cell('M1', function($cell) {
 	    // manipulate the cell
@@ -92,7 +87,6 @@ Excel::create('Proyectos INADEM 2017', function($excel) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Recursos Tecnologicos');
-
 	});
         $sheet->cell('O1', function($cell) {
 	    // manipulate the cell
@@ -104,19 +98,16 @@ Excel::create('Proyectos INADEM 2017', function($excel) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Uso/Aplicacion');
-
 	});
         $sheet->cell('Q1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Viabilidad');
-
 	});
         $sheet->cell('R1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Beneficios');
-
 	});
 
 
@@ -160,6 +151,18 @@ Excel::create('Proyectos INADEM 2017', function($excel) {
             }
              $sheet->fromArray($data, null, 'A2', false, false);
         });
+$excel->sheet('Equipos Emprendedores', function($sheet) {
+
+        // Sheet manipulation
+
+    });
+$excel->sheet('Riesgos', function($sheet) {
+
+        // Sheet manipulation
+
+    });
+
+
     })->export('xls');
 
 ?>
