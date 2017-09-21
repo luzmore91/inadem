@@ -149,18 +149,21 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
   
                 );
             }
+
+          
              $sheet->fromArray($data, null, 'A2', false, false);
         });
-$excel->sheet('Equipos Emprendedores', function($sheet) {
 
-        // Sheet manipulation
+			$excel->sheet('Equipos Emprendedores', function($sheet) {
 
-    });
-$excel->sheet('Riesgos', function($sheet) {
+			        // Sheet manipulation
 
-        // Sheet manipulation
+			    });
+			$excel->sheet('Riesgos', function($sheet) {
 
-    });
+			        // Sheet manipulation
+
+			    });
 
 
     })->export('xls');
