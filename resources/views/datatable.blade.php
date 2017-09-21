@@ -3,7 +3,7 @@
 
 
     <head>
-         <title>Tecnologico de mexico</title>
+         <title>Convocatoria INADEM</title>
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">
@@ -14,14 +14,14 @@
          <link href="{{ asset('/css/ie.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
-        <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
-        <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
-
-        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <!--link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"-->
+        <link href="{{ asset('/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <script src="{{ asset('/js/datatable/jquery.js') }}"></script>
+         <script type="text/javascript" src="{{asset('/js/bootstrap.js')}}"></script>
+        <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
 
         <!-- datatable español -->
-        <script src="//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"></script>
+        <script src="{{ asset('/json/Spanish.json') }}"></script>
 
         <!-- Confirmacion de eliminacion de registros -->
         <script type="text/javascript" src="{{ URL::asset('js/confEliminar.js') }}"></script>
@@ -39,7 +39,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Institución</th>
-                        <th>Tipo</th>
+                        <th>Tipo Invencion</th>
                         <th>Actualizar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -48,18 +48,18 @@
                     @foreach ($proyectos as $proyecto)
                     <tr>
                         <td>{{ $proyecto->titulo }}</td>
-                        <td>{{ $proyecto->fk_idInstitucion }}</td>
-                        <td>{{ $proyecto->fk_idTipoInvencion }}</td>
-                        <td align="center">
+                        <td>{{ $proyecto->nombreInstitucion }}</td>
+                        <td>{{ $proyecto->descripcion }}</td>
+                        <td center="center">
 
-                        {{ Form::open(array('action' => array('AdminController@editar', $proyecto->idTecnologiaProyecto), 'method' => 'get')) }}
+                        {{ Form::open(array('action' => array('InademController@editar', $proyecto->idProyecto), 'method' => 'get')) }}
                             {{ Form::submit('Editar', ['class' => 'btn btn-primary']) }}
                             {{ Form::close() }}
                             </td>
-                        <td align="center">
+                        <td center="center">
                         <a href="#" onclick="eliminarProyecto()">
-                        {{ Form::open(array('action' => array('AdminController@eliminar', $proyecto->idTecnologiaProyecto))) }}
-                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                        {{ Form::open(array('action' => array('AdminController@eliminar', $proyecto->idProyecto))) }}
+                            {{ Form::submit('Eliminar', ['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         </a>
 
@@ -71,8 +71,74 @@
         </div>
 
 
+        <!-- Modal HTML Markup -->
+<div id="ModalEliminadoConf1" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro Eliminado</h1>
+            </div>
+            <div class="modal-body">
+               ¿Esta seguro de eliminar el proyecto?
+            </div>
+             <div class="modal-footer">
+        <button id="AceptarEliminar" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-        <script type="text/javascript">
+<div id="ModalDeleteConf1" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Eliminar registro</h1>
+            </div>
+            <div class="modal-body">
+               Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="ModalDeleteConf1" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Eliminar registro</h1>
+            </div>
+            <div class="modal-body">
+               Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+@if(!empty(Session::get('delete_code')) && Session::get('delete_code') == 5)
+<script>
+           $('#ModalEliminadoConf1').modal('show');
+</script>
+@endif
+@if(!empty(Session::get('nodelete_code')) && Session::get('nodelete_code') == 5)
+<script>
+           $('#ModalDeleteConf1').modal('show');
+</script>
+@endif
+@if(!empty(Session::get('noEdit_code')) && Session::get('noEdit_code') === 7)
+<script>
+           $('#ModalEditarConf1').modal('show');
+</script>
+@endif
+
+             <script type="text/javascript">
 
             $(document).ready(function() {
                 oTable = $('#users').DataTable({
@@ -82,6 +148,7 @@
                     //Obtener datos para llenar la tabla
 
                 });
+
             });
 
         </script>
@@ -94,4 +161,8 @@
             <div class="container">
             @include('footer')
         </div>
+
+
+
+
 </html>

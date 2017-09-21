@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div id="middleHeader3" class="col-xs-4">
-                <div id="logo"><img src="images/logos/Logo-TecNM-2017.png" width="200" height="100" alt="Plataforma de las Capacidades Científicas y Tecnológicas" style="top: -30px;
+                <div id="logo"><img src="images/logos/LogoTecNM.png" width="200" height="100" alt="Plataforma de las Capacidades Científicas y Tecnológicas" style="top: -30px;
     position: relative;"> </div>
             </div>
             <!--div id="middleHeader4" class="col-xs-2">
@@ -49,45 +49,6 @@
          <!-- middleHeader ends -->
 
 
-         <!-- headerBottom starts -->
-         <div id="bottomHeader" class="row">
-         	<div class="col-xs-9">
-                <div id="menu">
-                    <!---ul class="sf-menu">
-                        <li><a href="#">Oferta Educativa</a>
-                            <ul>
-                                <li><a href="#">Submenú 01</a></li>
-                                <li><a href="#">Submenú 02</a></li>
-                                <li><a href="#">Submenú 03</a></li>
-                                <li><a href="#">Submenú 04</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Soluciones Tecnológicas TNM</a>
-                            <ul>
-                                <li><a href="#">Submenú 01</a></li>
-                                <li><a href="#">Submenú 02</a></li>
-                                <li><a href="#">Submenú 03</a></li>
-                                <li><a href="#">Submenú 04</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Necesidades Tecnológicas</a>
-                            <ul>
-                                <li><a href="#">Submenú 01</a></li>
-                                <li><a href="#">Submenú 02</a></li>
-                                <li><a href="#">Submenú 03</a></li>
-                                <li><a href="#">Submenú 04</a></li>
-                            </ul>
-                        </li>
-                    </ul-->
-                </div>
-            </div>
-            <div class="col-xs-3">
-            	<div id="user">
-                	<a href="#"><span class="glyphicon glyphicon-log-in"></span>Registrarse</a><a href="admin"><span class="glyphicon glyphicon-user"></span>Ingresar</a>
-                </div>
-            </div>
-         </div>
-         <!-- headerBottom ends -->
 
 
     </div>

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Datatables;
 use DB;
-use App\Tecnologia;
+use App\Proyecto;
 
 class AdminController extends Controller
 {
@@ -16,29 +16,40 @@ class AdminController extends Controller
     {
         //$proyectos = DB::table('tecnologiaproyecto')->select('titulo, descripcion');
         //$proyectos = DB::select('select * from tecnologiaproyecto');
-        $proyectos = Tecnologia::all();
+        $proyectos = DB::select('select proy.idProyecto,tp.titulo, inst.nombreInstitucion,ti.descripcion
+from proyecto as proy INNER JOIN tecnologiaproyecto as tp ON proy.fk_idTecnologiaProyecto = tp.idTecnologiaProyecto
+ INNER JOIN institucion as inst ON tp.fk_idInstitucion=inst.idInstitucion
+INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion'); //Tecnologia::all();
         return view('datatable', ['proyectos'=>$proyectos]);
     }
 
     public function editar($id){
-        $proyecto = Tecnologia::find($id);
-        if($proyecto == null){
-            return "El proyecto no existe";
+        $proyecto = Proyecto::find($id);
+        if($proyecto){
+           return view('detalleProyecto', ["proyecto"=>$proyecto]);
+        }else{
+            return redirect()->back()->with('nodelete_code', 5);
         }
-        return view('detalleProyecto', ["proyecto"=>$proyecto]);
+
     }
 
-    public function Actualizar(Request $request){
+    public function actualizarProyecto(Request $request){
         //actualizar
+        if($request->ajax()){
 
-        //redirigir a AdminController@Index
+        }
     }
 
     public function eliminar($id){
         //eliminar
-        $proyecto = Tecnologia::find($id);
-        $proyecto->delete();
-         return "Acabo de eliminar ".$id;
+        $proyecto = Proyecto::find($id);
+        $deleted = $proyecto->delete();
+        if($deleted){
+            return redirect()->back()->with('delete_code', 5);
+        }else{
+            return redirect()->back()->with('nodelete_code', 5);
+        }
+
         //redirigir a AdminController@Index
     }
 }
