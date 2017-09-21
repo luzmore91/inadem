@@ -50,5 +50,13 @@ Route::get('datatable', ['uses'=>'PostController@datatable']);
 Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);
 
 
-
+//Reporte en Excel
+//Enrutamiento del botón.
+Route::get('excel', function(){
+    return view('excel');
+});
+//Enrutamiento de la generación.
+Route::get('generarExcel', function(){
+    return view('generarExcel');
+});
 

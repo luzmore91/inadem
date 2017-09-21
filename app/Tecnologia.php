@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tecnologia extends Model
 {
     //tabla a utilizar
-    public $table = 'tecnologiaProyecto';
+    public $table = 'tecnologiaproyecto';
 
     public $primaryKey = 'idTecnologiaProyecto';
 

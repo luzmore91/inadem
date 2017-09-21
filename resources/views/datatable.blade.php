@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-holaa luzzzzzzzzzzz
-        <title>Laravel 5 - Implementing datatables tutorial using yajra package</title>
+
 
     <head>
          <title>Tecnologico de mexico</title>
@@ -86,6 +85,11 @@ holaa luzzzzzzzzzzz
             });
 
         </script>
+
+            <div class="container">
+            @include('excel')
+        </div>
+
     </body>
             <div class="container">
             @include('footer')

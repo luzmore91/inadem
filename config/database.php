@@ -38,8 +38,8 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
         ],
-
-     /*   'mysql' => [
+/*
+        'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'servicios.cenidet.edu.mx'), //server: servicios.cenidet.edu.mx   local : 127.0.0.1
             'port' => env('DB_PORT', '3306'),
@@ -54,9 +54,10 @@ return [
             'engine' => null,
         ],
 */
+
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'), //server: servicios.cenidet.edu.mx   local : 127.0.0.1
+            'host' => env('DB_HOST', '127.0.0.1:8080'), //server: servicios.cenidet.edu.mx   local : 127.0.0.1
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'inadem'), //db_server: inadem  db_local: INADEM
             'username' => env('DB_USERNAME', 'root'), //user_server: tecminadem user_loca: root
