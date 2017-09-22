@@ -83,8 +83,8 @@
       <div class="col-xs-12">
           <div class="col-xs-2"><input type="text" class="form-control" required id="nomPart" placeholder="" name="nomPart"/></div>
 
-          <div class="col-xs-2"><select id="gradoEstP" required class="form-control selectpicker" data-style="btn-green" name="gradoEstP">         
-              <option value="-1">Seleccione una opción</option>
+          <div class="col-xs-2"><select id="gradoEstP" required class="form-control selectpicker" data-style="btn-green" name="gradoEstP">
+              <option value="-1" id="raiz">Seleccione una opción</option>
               @foreach ($gradoEstudios as $grado)
               <option value="{{$grado->idGradoEstudios}}"> {{ $grado->nivel }}</option>
               @endforeach

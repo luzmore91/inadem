@@ -74,13 +74,6 @@
 </div>
 
 </div>
-<div class="col-xs-12" style="padding-top:20px">
-    <div class="col-xs-2"><label>Numero de registro</label></div>
-<div class="col-xs-3">
- 	 <input class="form-control" type="text" id="numeroRegistro" name="numeroRegistro" placeholder="numero de registro de propiedad intelectual"/>
-</div>
-
-</div>
      <div class="col-xs-12 espacioTitulosContenido">
     <div class="col-xs-5"><h2>5. Lo que persigue el proyecto/tecnología es</h2></div>
     <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
@@ -102,15 +95,10 @@
                 	</select>
 </div>
 
-<div id="otroBloque" style="display:none">
-    <div  class="col-xs-3"><label>En caso de seleccionar la opción "Otro", describir en el recuadro anexo.</label> </div>
-      <div  class="col-xs-4">
+        <div class="col-xs-3"><label>En caso de seleccionar la opción "Otro", describir en el recuadro anexo.</label> </div>
+<div class="col-xs-4">
  	 <input class="form-control" type="text" id="otro_ObjetivoProyecto" name="otro_ObjetivoProyecto"   placeholder="¿Qué persigue el proyecto o tecnologia?"/>
-    </div>
-
-    </div>
-
-
+</div>
 
 </div>
 

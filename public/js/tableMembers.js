@@ -9,14 +9,16 @@ var idEquipo = numeroEquipo();
 function numeroEquipo()
 {
   var caracteres = "1243";
-  var contraseña = "";
-  for (i=0; i<5; i++) contraseña += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
-  return contraseña;
+  var contrasena = "";
+  for (i=0; i<5; i++) contrasena += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
+  return contrasena;
 }
 
 function obtenerDatosEquipo()
 {
     var nombreMiembro = document.getElementById("nomPart").value;
+
+    //validaNombreParticipante(nombreMiembro);
 
     var comboGradoEstudio = document.getElementById("gradoEstP");
     var gradoEstudio = comboGradoEstudio.options[comboGradoEstudio.selectedIndex].text;
@@ -150,17 +152,26 @@ function eliminarRegistroRiesgo(objR)
 }
 
 
-function limpiarComponentesParticipate() {
+function limpiarComponentesParticipate() {    
     document.getElementById("nomPart").value="";
     document.getElementById("correoPart").value="";
-    document.getElementById("telPart").value="";
-
+    document.getElementById("telPart").value="";    
+    
+    $('#gradoEstP').val('-1');
+    $('#areaConocimiento').val('-1');    
+    $('#instPart').val('-1');
+    
+    $('.selectpicker').selectpicker('refresh');    
 }
 
 function limpiarComponentesRiesgo() {
     document.getElementById("descRiesgo").value="";
-    document.getElementById("estMitigacion").value="";
-
+    document.getElementById("estMitigacion").value="";   
+    document.getElementById("tipoRiesgo").value="-1";
+    
+    $('#tipoRiesgo').val('-1');    
+    
+    $('.selectpicker').selectpicker('refresh');
 }
 
 
@@ -176,8 +187,11 @@ function enviarRiesgos(){
         success: function(success) {
             console.log("Sent values "+success);
             RiesArreglo = [];
-            crearTablaRiesgos(success);
-
+            if(success != 0){
+                crearTablaRiesgos(success);
+            }else{
+                mostrarModalError();
+            }
       },
 error: function(response){
     console.log('Error'+JSON.stringify(response));
@@ -194,12 +208,17 @@ function enviarParticipante() {
         url:'insertarParticipante',
         type: 'POST',
         dataType: 'json',
+        data:{participante:ParArreglo},	
         data:{participante:ParArreglo,equipo:parseInt(idEquipo)},
         success: function(success) {
             console.log("Sent values "+JSON.stringify(success));
             //reiniciar el arreglo
             ParArreglo = [];
-            crearTablaParticipante(success);
+            if(success != 0){
+                crearTablaParticipante(success);
+            }else{
+                mostrarModalError();
+            }
 
       },
 error: function(response){
@@ -207,7 +226,7 @@ error: function(response){
      ParArreglo = [];
     }
     });
-   event.preventDefault();
+   //event.preventDefault();
 }
 
 
@@ -321,6 +340,21 @@ function quitarAtributoRiesgos() {
     document.getElementById("estMitigacion").removeAttribute("required"); 
 }
 
+/*function validaNombreParticipante(nombre) 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");
+    
+    var array = nombre.split(' ');
+
+    console.log("longitud: "+array.length);
+        
+    if(array.length<3){
+        divTexto.innerHTML = "¡Verifique el nombre del participante!";
+        modal.style.display='block';
+    }
+}*/
+
 function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, noCelular, institucion) 
 { 
     var modal = document.getElementById("myModal");
@@ -328,7 +362,7 @@ function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, no
     var validaPartci = true;
     
     
-    //console.log(nombre+" "+gradoEstudios+" "+areaConocimiento+" "+correo+" "+noCelular+" "+institucion);
+    console.log(nombre+" "+gradoEstudios+" "+areaConocimiento+" "+correo+" "+noCelular+" "+institucion);
     
     if(gradoEstudios<0 || areaConocimiento<0 || institucion<0){
         validaPartci=false;
@@ -343,7 +377,70 @@ function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, no
       modal.style.display='block';
     }
     
+    if(!validaNombreParticipante(nombre))
+          validaPartci=false;  
+    
+     if(!validaCorreoParticipante(correo))
+          validaPartci=false;  
+    
+     if(!validaCelularParticipante(noCelular))
+          validaPartci=false;  
+
+    
     return validaPartci;
+}
+
+
+function validaNombreParticipante(nombreParticipante) 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");       
+    validaNombre = true;
+    
+    var tamanoNombre = nombreParticipante.split(' ');
+    
+    /*^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$*/
+/*^[a-zA-Z\s]*$*/
+    
+    if(!(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(nombreParticipante)) || tamanoNombre.length<3){
+        //console.log("Entra al if ");
+        
+        divTexto.innerHTML = "¡Nombre incorrecto, por favor verifiquelo!";
+        modal.style.display='block';
+        validaNombre = false;
+    }  
+    return validaNombre;
+}
+
+function validaCorreoParticipante(correoParticipante) 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");       
+    validaCorreo = true;
+    
+    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(correoParticipante))){
+        //console.log("Entra al if ");
+        
+        divTexto.innerHTML = "¡Correo electronico incorrecto, por favor verifiquelo!";
+        modal.style.display='block';
+        validaCorreo = false;
+    }   
+    return validaCorreo;
+}
+
+function validaCelularParticipante(celularParticipante) 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");       
+    validarCelular = true;    
+    if(!(/^\d{12}$/.test(celularParticipante))){
+        //console.log("Entra al if ");
+        
+        divTexto.innerHTML = "¡telefono incorrecto, por favor verifiquelo!";
+        modal.style.display='block';
+        validarCelular = false;
+    } 
+       return validarCelular;
 }
 
 function validaRiesgos(tipoRiesgo, descripcion, estrategiaMitigacion) 
@@ -397,10 +494,53 @@ function validaSelects()
         
         divTexto.innerHTML = "¡Seleccione una opción valida!";
         modal.style.display='block';
-    }
-    
+    }   
 }
 
+function validaTexto() 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");
+       
+    var titulo = document.getElementById("titulo").value;
+    var tituloComercial = document.getElementById("tituloComercial").value;
+    var problemaResolver = document.getElementById("problematica").value;
+    var descripcionProyecto = document.getElementById("descripcion").value;
+    var ies = document.getElementById("desIES").value;
+    var descripcionRiesgos = document.getElementById("descRiesgo").value;
+    var estrategiaMitigacion = document.getElementById("estMitigacion").value;
+    var analisisEntorno = document.getElementById("analisisEnt").value;
+    var rh = document.getElementById("recursosHumanos").value;
+    var rt = document.getElementById("recursosTec|").value;
+    var rf = document.getElementById("recursosFin").value;
+    var usosAplicacion = document.getElementById("usoApp").value;
+    var viabilidad = document.getElementById("viabilidad").value;
+    var beneficios = document.getElementById("beneficios").value;
+
+    //console.log(institucion+" "+tipoInvension+" "+trl+" "+sectorEstrategico+" "+estadoActual+" "+tipoProteccion+" "+objetivoProyeecto);
+    
+    /*if(institucion<0 || tipoInvension<0 || trl<0 || sectorEstrategico<0 || estadoActual<0 || tipoProteccion<0 || objetivoProyeecto<0){
+        console.log("Entra al if ");
+        
+        divTexto.innerHTML = "¡Seleccione una opción valida!";
+        modal.style.display='block';
+    }   */
+}
+
+function validaNumeroRegistro(numeroRegistro) 
+{ 
+    var modal = document.getElementById("myModal");
+    var divTexto = document.getElementById("setTexto");      
+    /*Duda*/
+    /*var titulo = document.getElementById("titulo").value;*/
+    
+    if(!(/[^0-9A-Za-z]/.test(numeroRegistro))){
+        //console.log("Entra al if ");
+        
+        divTexto.innerHTML = "¡numerode registro incorrecto, por favor verifiquelo!";
+        modal.style.display='block';
+    }  
+}
 
 function cerrarModal(){
         var modal = document.getElementById("myModal");
