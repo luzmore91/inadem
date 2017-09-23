@@ -55,7 +55,7 @@
     <div class="col-xs-12" style="padding-top: 20px;"></div>
 
    <div class="espacioTitulosContenido">
-    <div class="col-xs-4"><h2>1. Equipo emprendedor / inventor</h2></div>
+    <div class="col-xs-4"><h2>1. Equipo emprendedor</h2></div>
        <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Captura la información solicitada del equipo que esta participando en el proyecto o tecnologia">
