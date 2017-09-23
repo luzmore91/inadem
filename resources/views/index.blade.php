@@ -68,7 +68,7 @@
 
 
       <!--- data-toggle="modal" data-target="#ModalLoginForm" -->
-        <button  type="button" class="btn btn-success btn-lg" onclick="validaTexto();" style="left: 80%;position: relative;" >
+        <button  type="button" class="btn btn-success btn-lg" onclick="validaSelects();" style="left: 80%;position: relative;" >
           <span class="glyphicon glyphicon-ok"></span> Aceptar
         </button>
 
