@@ -37,9 +37,9 @@
   </div>
     <div class="espacioTitulosContenido">
         <div class="col-xs-2"><h2>11.Viabilidad</h2></div>
-        <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Descripción de la factibilidad de la realización de este proyecto desde los puntos de vista técnico y financiero, además si ya existen partes interesadas en este proyecto también indicarlo (Empresas, Empresarios, etc...) " data-original-title="Viabilidad.">
+        <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Descripción de la factibilidad de la realización de este proyecto desde los puntos de vista técnico y financiero, además si ya existen partes interesadas en este proyecto también indicarlo (Empresas, Empresarios, etc...) " data-original-title="Viabilidad.">
             <span class="glyphicon glyphicon-question-sign"></span>
-            </button></div>
+            </button></div-->
     </div>
         <div class="col-xs-12 ">
     	<label style="font-style:italic">Indique si para la tecnología/proyecto se ha validado la viabilidad técnica y financiera, y la existencia de prospectos interesados en la misma.</label>
@@ -49,9 +49,9 @@
    </div>
     <div class="espacioTitulosContenido">
         <div class="col-xs-2"> <h2>12.Beneficios  </h2> </div>
-        <div class="col-xs-1"> <button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Para el proyecto/tecnología indique la cuantificación de los beneficios en términos de rendimiento, físicos, costos, ambientales y ciclo de vida del producto de acuerdo al mercado identificado." data-original-title="Beneficios.">
+        <!--div class="col-xs-1"> <button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Para el proyecto/tecnología indique la cuantificación de los beneficios en términos de rendimiento, físicos, costos, ambientales y ciclo de vida del producto de acuerdo al mercado identificado." data-original-title="Beneficios.">
             <span class="glyphicon glyphicon-question-sign"></span>
-        </button></div>
+        </button></div-->
 
         <div class="col-xs-12">
     	<label style="font-style:italic">Para el proyecto/tecnología indique la cuantificación de los beneficios en términos de rendimiento, físicos, costos, ambientales y ciclo de vida del producto de acuerdo al mercado identificado.</label>
