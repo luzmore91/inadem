@@ -1,7 +1,7 @@
 <!-- Bloque cero y uno -->
   <div class="row">
    <div class="espacioTitulosContenido">
-    <div class="col-xs-3"><h2>0. Tecnología / proyecto / prototipo</h2></div>
+    <div class="col-xs-4"><h2>0. Tecnología / proyecto / prototipo</h2></div>
      <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Captura la información solicitada del proyecto o tecnologia que estas desarrollando">
