@@ -1,11 +1,11 @@
 <div class="row">
 <div class="col-xs-13 espacioTitulosContenido">
 <div class="col-xs-4"><h2>6. Colaboración con otras IES.</h2></div>
-<div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+<!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Realizar descripción de Institución de Educación Superior y el tipo de colaboración de proyecto.">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
 </div>
 <div class="col-xs-12">
 <label style="font-style:italic">Describa las IES y el tipo de colaboración que el proyecto tiene con éstas.</label> </div>
@@ -15,11 +15,11 @@
 
 <div class="col-xs-13 espacioTitulosContenido">
 <div class="col-xs-2"><h2>7. Riesgos.</h2></div>
-<div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+<!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Describa los riesgos asociados con su proyecto y sus estrategias de mitigación.">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
 </div>
 <div class="col-xs-12">
 <label style="font-style:italic">Describa los riesgos asociados con su proyecto/tecnología, y sus estrategias de mitigación.</label></div>
@@ -73,11 +73,11 @@
 
 <div class="col-xs-13 espacioTitulosContenido">
 <div class="col-xs-3"><h2>8. Análisis del entorno.</h2></div>
-<div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+<!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Indique el tamaño de la industria a la que va dirigida su proyecto">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
 </div>
 
 <div class="col-xs-12">

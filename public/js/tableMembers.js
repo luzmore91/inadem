@@ -208,7 +208,6 @@ function enviarParticipante() {
         url:'insertarParticipante',
         type: 'POST',
         dataType: 'json',
-        data:{participante:ParArreglo},	
         data:{participante:ParArreglo,equipo:parseInt(idEquipo)},
         success: function(success) {
             console.log("Sent values "+JSON.stringify(success));
@@ -477,6 +476,8 @@ function validaSelects()
 { 
     var modal = document.getElementById("myModal");
     var divTexto = document.getElementById("setTexto");
+    var validaEnvio = true;
+    
     
     var institucion = document.getElementById("institucion").value;
     var tipoInvension = document.getElementById("tipoInvension").value;
@@ -489,50 +490,198 @@ function validaSelects()
 
     console.log(institucion+" "+tipoInvension+" "+trl+" "+sectorEstrategico+" "+estadoActual+" "+tipoProteccion+" "+objetivoProyeecto);
     
-    if(institucion<0 || tipoInvension<0 || trl<0 || sectorEstrategico<0 || estadoActual<0 || tipoProteccion<0 || objetivoProyeecto<0){
-        console.log("Entra al if ");
+    if(institucion<0){
         
-        divTexto.innerHTML = "¡Seleccione una opción valida!";
+        divTexto.innerHTML = "¡Seleccione una institución por favor!";
         modal.style.display='block';
-    }   
+        validaEnvio = false;
+    } 
+    
+    if(tipoInvension<0){
+        
+        divTexto.innerHTML = "¡Seleccione un tipo invensión por favor!";
+        modal.style.display='block';
+        validaEnvio = false;
+
+    } 
+    
+    if(trl<0){
+        
+        divTexto.innerHTML = "¡Seleccione un TRL por favor!";
+        modal.style.display='block';
+        validaEnvio = false;
+
+    } 
+   
+    if(sectorEstrategico<0){
+        
+        divTexto.innerHTML = "¡Seleccione un sector estrategico por favor!";
+        modal.style.display='block';
+        validaEnvio = false;
+
+    } 
+    
+    if(estadoActual<0){
+        
+        divTexto.innerHTML = "¡Seleccione un estado actual por favor!";
+        modal.style.display='block';
+        validaEnvio = false;
+
+    } 
+    
+    if(tipoProteccion<0){
+        
+        divTexto.innerHTML = "¡Seleccione un tipo de protección por favor!";
+        modal.style.display='block';
+        validaEnvio = false;
+
+    } 
+    
+    if(objetivoProyeecto<0){
+        
+        divTexto.innerHTML = "¡Seleccione un objetivo de proyecto por favor!";
+        modal.style.display='block';
+        validaEnvio = false;
+
+    } 
+    
+    if(validaComponentes(objetivoProyeecto)){
+        if(validaEnvio)
+        $('#ModalConfirmacionForm').modal('show');
+        //modalEnvio.style.display='block';
+    }
+
+    
 }
 
-function validaTexto() 
+function validaComponentes(objetivoProyeecto) 
 { 
     var modal = document.getElementById("myModal");
     var divTexto = document.getElementById("setTexto");
+    var modalEnvio = document.getElementById("ModalConfirmacionForm");
+    var validaEnvio = true;
+   // var objetivoProyeecto = document.getElementById("perProy").value;
+    
+    console.log("Valor de Otro: "+objetivoProyeecto);
+
+    if(objetivoProyeecto==5){
+        var otroObjetivoProyecto = document.getElementById("otro_ObjetivoProyecto").value;
+        
+        if(otroObjetivoProyecto == null || otroObjetivoProyecto.length == 0)
+         {
+             divTexto.innerHTML = "¡Objetivo de proyecto incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         } 
+
+    }
        
     var titulo = document.getElementById("titulo").value;
     var tituloComercial = document.getElementById("tituloComercial").value;
     var problemaResolver = document.getElementById("problematica").value;
     var descripcionProyecto = document.getElementById("descripcion").value;
     var ies = document.getElementById("desIES").value;
-    var descripcionRiesgos = document.getElementById("descRiesgo").value;
-    var estrategiaMitigacion = document.getElementById("estMitigacion").value;
     var analisisEntorno = document.getElementById("analisisEnt").value;
     var rh = document.getElementById("recursosHumanos").value;
-    var rt = document.getElementById("recursosTec|").value;
+    var rt = document.getElementById("recursosTec").value;
     var rf = document.getElementById("recursosFin").value;
     var usosAplicacion = document.getElementById("usoApp").value;
     var viabilidad = document.getElementById("viabilidad").value;
     var beneficios = document.getElementById("beneficios").value;
+    var numeroRegistro = document.getElementById("numeroRegistro").value;
+
 
     //console.log(institucion+" "+tipoInvension+" "+trl+" "+sectorEstrategico+" "+estadoActual+" "+tipoProteccion+" "+objetivoProyeecto);
     
-    /*if(institucion<0 || tipoInvension<0 || trl<0 || sectorEstrategico<0 || estadoActual<0 || tipoProteccion<0 || objetivoProyeecto<0){
-        console.log("Entra al if ");
-        
-        divTexto.innerHTML = "¡Seleccione una opción valida!";
-        modal.style.display='block';
-    }   */
+     if(titulo == null || titulo.length == 0)
+         {
+             divTexto.innerHTML = "¡Titulo incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }  
+    if(tituloComercial == null || tituloComercial.length == 0)
+         {
+             divTexto.innerHTML = "¡Titulo comercial incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(problemaResolver == null || problemaResolver.length == 0)
+         {
+             divTexto.innerHTML = "¡Problema a resolver, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(descripcionProyecto == null || descripcionProyecto.length == 0)
+         {
+             divTexto.innerHTML = "¡Descripción de poryecto incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(ies == null || ies.length == 0)
+         {
+             divTexto.innerHTML = "¡IES incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(analisisEntorno == null || analisisEntorno.length == 0)
+         {
+             divTexto.innerHTML = "¡Analisis de entrono incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(rh == null || rh.length == 0)
+         {
+             divTexto.innerHTML = "¡Recursos humanos incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(rt == null || rt.length == 0)
+         {
+             divTexto.innerHTML = "¡Recursos tecnologicos incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(rf == null || rf.length == 0)
+         {
+             divTexto.innerHTML = "¡Recursos financieros incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }  
+    if(usosAplicacion == null || usosAplicacion.length == 0)
+         {
+             divTexto.innerHTML = "¡Usos/Aplicaciones incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(viabilidad == null || viabilidad.length == 0)
+         {
+             divTexto.innerHTML = "¡Viabilidad incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(beneficios == null || beneficios.length == 0)
+         {
+             divTexto.innerHTML = "¡Beneficios incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         }
+    if(numeroRegistro == null || numeroRegistro.length == 0 || !(/^[0-9a-zA-Z]+$/.test(numeroRegistro)))
+         {
+             divTexto.innerHTML = "¡número de registro incorrecto, por favor verifiquelo!";
+             modal.style.display='block';
+             validaEnvio=false;
+         } 
+    
+return validaEnvio;
+    
 }
 
-function validaNumeroRegistro(numeroRegistro) 
+/*function validaNumeroRegistro(numeroRegistro) 
 { 
     var modal = document.getElementById("myModal");
     var divTexto = document.getElementById("setTexto");      
-    /*Duda*/
-    /*var titulo = document.getElementById("titulo").value;*/
+    
+    var titulo = document.getElementById("titulo").value;
     
     if(!(/[^0-9A-Za-z]/.test(numeroRegistro))){
         //console.log("Entra al if ");
@@ -540,7 +689,7 @@ function validaNumeroRegistro(numeroRegistro)
         divTexto.innerHTML = "¡numerode registro incorrecto, por favor verifiquelo!";
         modal.style.display='block';
     }  
-}
+}*/
 
 function cerrarModal(){
         var modal = document.getElementById("myModal");
