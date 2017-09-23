@@ -1,7 +1,7 @@
 <div class="row" style="padding-top:20px;padding-bottom:20px" >
 
 <div class="col-xs-12 espacioTitulosContenido">
-    <div class="col-xs-7"><h2>2. Estado de desarrollo/madurez del proyecto/tecnología (TRL)</h2></div>
+    <div class="col-xs-7"><h2>2. Estado de desarrollo/madurez de tecnología/proyecto/prototipo (TRL)</h2></div>
    <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Seleccionar el nivel de madurez del proyecto o tecnologia que se esta capturando">
