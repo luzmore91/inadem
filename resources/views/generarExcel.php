@@ -4,7 +4,6 @@ $dia = date("d");
 $mes = date("m");
 $identificador = rand(1, 999);
 
-
 Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identificador.'', function($excel) {
 
         $excel->sheet('Proyectos INADEM 2017', function($sheet) {
@@ -42,126 +41,205 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Descripcion de la invencion');
+	    $cell->setValue('Madurez Proyecto');
 
 	});	
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Estado de desarrollo');
+	    $cell->setValue('Sector');
 
 	});
     $sheet->cell('H1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Sector');
+	    $cell->setValue('Propiedad Intelectual');
 
 	});	
         $sheet->cell('I1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Propiedad Intelectual');
+	    $cell->setValue('Objetivo Proyecto');
 	});	
         $sheet->cell('J1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Objetivo');
+	    $cell->setValue('Analisis Entorno');
 	});
         $sheet->cell('K1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Colaboracion');
+	    $cell->setValue('Recursos Humanos');
 	});
         $sheet->cell('L1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Analisis del Entorno');
-	});
-        $sheet->cell('M1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Recursos Humanos');
-
-	});
-        $sheet->cell('N1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
 	    $cell->setValue('Recursos Tecnologicos');
 	});
-        $sheet->cell('O1', function($cell) {
+        $sheet->cell('M1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Recursos Financieros');
 
 	});
-        $sheet->cell('P1', function($cell) {
+        $sheet->cell('N1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Uso/Aplicacion');
+	    $cell->setValue('Usos/Aplicacion');
 	});
-        $sheet->cell('Q1', function($cell) {
+        $sheet->cell('O1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Viabilidad');
+
 	});
-        $sheet->cell('R1', function($cell) {
+        $sheet->cell('P1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Beneficios');
 	});
 
 
+/*
+/////////////////////////////////////////////
+Aqui va el query que va a llenar el excel con
+los proyectos existentes, este query aun se 
+encuentra I-N-C-O-M-P-L-E-T-O, va a ser necesario 
+terminar de hacerlo para que se muestre toda
+la información completa en el Excel
+/////////////////////////////////////////////
+*/
             $products=DB::table('proyecto')
+            
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
             ->join("institucion","tecnologiaproyecto.fk_idInstitucion","=","institucion.idInstitucion")
-            ->join("tipoinvencion","tecnologiaproyecto.fk_idTipoInvencion","=","tipoinvencion.idTipoInvencion")
             ->join("trl","proyecto.fk_idTRL","=","trl.idTRL")
             ->join("tiposector","tecnologiaproyecto.fk_idSector","=","tiposector.idSector")
-            ->join("tipopropiedadintelectual","proyecto.fk_idPropiedadIntelectual","=","tipopropiedadintelectual.idTipoPropiedadIntelectual")
+            ->join("propiedadintelectual","proyecto.fk_idPropiedadIntelectual","=","propiedadintelectual.idPropiedadIntelectual")
+            ->join("tipopropiedadintelectual","propiedadintelectual.fk_idTipoRegistro","=","tipopropiedadintelectual.idTipoPropiedadIntelectual")
             ->join("objetivoproyecto","proyecto.fk_idObjetivoProyecto","=","objetivoproyecto.idObjetivoProyecto")
             ->join("tipoobjetivoproyecto","objetivoproyecto.fk_idTipoObjetivoProyecto","=","tipoobjetivoproyecto.idtipoObjetivoProyecto")
-            ->join("colaboracion","proyecto.fk_idColaboracion","=","colaboracion.idColaboracion")
             ->join("analisisentorno","proyecto.fk_idAnalisisEntorno","=","analisisentorno.idAnalisisEntorno")
-            //->join("securities","securities.id","=","log_patrols.id_securities")
-            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","tipoinvencion.descripcion AS descripcionInvencion","trl.descripcion as estadoDesarrollo","tiposector.descripcion AS sector","tipopropiedadintelectual.descripcion as propiedad_Intelectual","tipoobjetivoproyecto.descripcion as Objetivo","colaboracion.descripcion AS colaboracion","analisisentorno.descripcionAnalisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","usoAplicacion","viabilidad", "beneficios")
+            
+            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","trl.descripcion as madurezProyecto","tiposector.descripcion AS tipoSector","tipopropiedadintelectual.descripcion AS propiedadIntelectual","tipoobjetivoproyecto.descripcion AS objetivoProyecto","analisisentorno.descripcionAnalisisEntorno AS analisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","analisisentorno.usoAplicacion","analisisentorno.viabilidad","analisisentorno.beneficios")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
-                 	
-                    $product->titulo,
-                    $product->tituloComercial,
-                    $product->problematica,
-                    $product->descripcion,
-                    $product->nombreInstitucion,
-                    $product->descripcionInvencion,
-                    $product->estadoDesarrollo,
-                    $product->sector,
-                    $product->propiedad_Intelectual,
-                    $product->Objetivo,
-                    $product->colaboracion,
-                    $product->descripcionAnalisisEntorno,
-                    $product->recursosHumanos,
-                    $product->recursosTecnologicos,
-                    $product->recursosFinancieros,
-                    $product->usoAplicacion,
-                    $product->viabilidad,
-                    $product->beneficios,
-  
+
+                 	$product->titulo,
+                 	$product->tituloComercial,
+                 	$product->problematica,
+                 	$product->descripcion,
+                 	$product->nombreInstitucion,
+                 	$product->madurezProyecto,
+                 	$product->tipoSector,
+                 	$product->propiedadIntelectual,
+                 	$product->objetivoProyecto,
+                 	$product->analisisEntorno,
+                 	$product->recursosHumanos,
+                 	$product->recursosTecnologicos,
+                 	$product->recursosFinancieros,
+                 	$product->usoAplicacion,
+                 	$product->viabilidad,
+                 	$product->beneficios,
                 );
             }
+
              $sheet->fromArray($data, null, 'A2', false, false);
+        
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         });
 $excel->sheet('Equipos Emprendedores', function($sheet) {
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // En esta hoja se llena la informacion de los equipos emprendedores, este query me lo regalo la joven Luz Arely <3.
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // Sheet manipulation
+        $sheet->cell('A1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Numero de control');
 
+	});	
+        $sheet->cell('B1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Email');
+
+	});	
+        $sheet->cell('C1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Nombre');
+
+	});	
+        $sheet->cell('D1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Apellido paterno');
+
+	});
+    $sheet->cell('E1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Apellido materno');
+
+	});	
+        $sheet->cell('F1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Celular');
+
+	});	
+        $sheet->cell('G1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Fecha Nacimiento');
+
+	});
+    $sheet->cell('H1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Curp');
+
+	});	
+        $sheet->cell('I1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Genero');
+	});	
+        $sheet->cell('J1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Telefono fijo');
+	});
+        
+            $products=DB::table('equipoemprendedor')
+            ->join("participante","equipoemprendedor.fk_participante","=","participante.idParticipante")
+            
+            ->select("*")
+            ->get();
+                foreach($products as $product) {
+                 $data[] = array(
+
+                 	$product->numeroControl,
+                 	$product->correoElectronico,
+                 	$product->nombre,
+                 	$product->apellidoPaterno,
+                 	$product->apellidoMaterno,
+                 	$product->numeroMovil,
+                 	$product->fechaNacimiento,
+                 	$product->curp,
+                 	$product->genero,
+                 	$product->telefonoFijo,
+                 	
+                );
+            }
+
+             $sheet->fromArray($data, null, 'A2', false, false);	
+		
     });
-$excel->sheet('Riesgos', function($sheet) {
-
-        // Sheet manipulation
-
-    });
-
 
     })->export('xls');
 
