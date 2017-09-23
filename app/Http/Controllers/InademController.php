@@ -159,6 +159,8 @@ participante.fk_idTokenAppIn  = '.$idT);
     }
 
     }
+
+
     public function eliminarParticipante(Request $request){
     if($request->ajax()){
     $dato =$request->idParticipante;
@@ -169,11 +171,22 @@ participante.fk_idTokenAppIn  = '.$idT);
         $envio = 1;
         //eliminar participante del equipo
          $actualizarRiesgos = DB::select('DELETE FROM equipoemprendedor WHERE fk_idParticipante = '.$dato);
-
     }else{
         $envio = 0;
     }
-    return response()->json(['eliminado'=>$envio,'idParticipante'=>$dato]);
+      $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+           $resultToken = json_decode(json_encode($token), true);
+         foreach($resultToken as $i){
+          $tk = $i['idToken'];
+      }
+
+    //saber el numero de registro que existen
+         $numeroRegistros = DB::select('SELECT COUNT(*) FROM participante WHERE fk_idTokenAppIn='.$tk);
+          $rowsNum = json_decode(json_encode($numeroRegistros), true);
+       foreach($rowsNum as $i){
+            $rowNumber = $i["COUNT(*)"];
+       }
+    return response()->json(['eliminado'=>$envio,'idParticipante'=>$dato,'numeroRows'=>$rowNumber]);
 }
     }
     public function eliminarRiesgo(Request $request){
@@ -187,7 +200,20 @@ participante.fk_idTokenAppIn  = '.$idT);
     }else{
         $envio = 0;
     }
-    return response()->json(['eliminado'=>$envio,'idRiesgo'=>$dato]);
+           $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+           $resultToken = json_decode(json_encode($token), true);
+         foreach($resultToken as $i){
+          $tk = $i['idToken'];
+      }
+
+    //saber el numero de registro que existen
+         $numeroRegistros = DB::select('SELECT COUNT(*) FROM riesgo WHERE fk_idTokenAppIn='.$tk);
+          $rowsNum = json_decode(json_encode($numeroRegistros), true);
+       foreach($rowsNum as $i){
+            $rowNumber = $i["COUNT(*)"];
+       }
+
+    return response()->json(['eliminado'=>$envio,'idRiesgo'=>$dato,'numeroRows'=>$rowNumber]);
 }
     }
 

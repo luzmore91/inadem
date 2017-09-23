@@ -141,13 +141,27 @@ function eliminarRegistroParticipante(objP)
 {
      if(objP.eliminado = 1){
      $('#miembro_'+objP.idParticipante).remove();
+
+     if(objP.numeroRows <= 0){
+          $('#contenedorTablaP').css('display', 'none');
+     }else{
+            $('#contenedorTablaP').css('display', 'block');
      }
+
+         }
 }
 
 function eliminarRegistroRiesgo(objR)
 {
      if(objR.eliminado = 1){
      $('#riesgo_'+objR.idRiesgo).remove();
+
+         if(objR.numeroRows <= 0){
+          $('#contenedorTablaR').css('display', 'none');
+     }else{
+            $('#contenedorTablaR').css('display', 'block');
+     }
+
      }
 }
 
