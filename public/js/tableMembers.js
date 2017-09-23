@@ -208,7 +208,6 @@ function enviarParticipante() {
         url:'insertarParticipante',
         type: 'POST',
         dataType: 'json',
-        data:{participante:ParArreglo},	
         data:{participante:ParArreglo,equipo:parseInt(idEquipo)},
         success: function(success) {
             console.log("Sent values "+JSON.stringify(success));
