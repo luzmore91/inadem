@@ -1,17 +1,21 @@
 <div class="row">
-<div class="col-xs-13 espacioTitulosContenido">
-<div class="col-xs-4"><h2>6. Colaboración con otras IES.</h2></div>
-<!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
-              data-container="body" data-toggle="popover" data-placement="right"
-              data-content="Realizar descripción de Institución de Educación Superior y el tipo de colaboración de proyecto.">
-              <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div-->
-</div>
-<div class="col-xs-12">
-<label style="font-style:italic">Describa las IES y el tipo de colaboración que el proyecto tiene con éstas.</label> </div>
+<div class="espacioTitulosContenido">
+        <div class="col-xs-2"> <h2>6.Beneficios  </h2> </div>
+        <!--div class="col-xs-1"> <button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Para el proyecto/tecnología indique la cuantificación de los beneficios en términos de rendimiento, físicos, costos, ambientales y ciclo de vida del producto de acuerdo al mercado identificado." data-original-title="Beneficios.">
+            <span class="glyphicon glyphicon-question-sign"></span>
+        </button></div-->
 
-<div class="col-xs-12">
-<textarea id="desIES" name="desIES" style="resize: vertical" class="form-control" rows="6" placeholder= "Descripción de Institución de Educación Superior" title="Descripción IES y tipo de colaboración" required></textarea></div> 
+        <div class="col-xs-12">
+    	<label style="font-style:italic">Para el proyecto/tecnología indique la cuantificación de los beneficios en términos de rendimiento, físicos, costos, ambientales y ciclo de vida del producto de acuerdo al mercado identificado.</label>
+   </div>
+<div class="col-xs-12 espacioTitulosContenido">
+
+    <textarea name="beneficios" id="beneficios" style="resize: vertical" class="form-control" rows="2"  placeholder="BENEFICIOS:" required></textarea>
+            </div>
+        <br>
+    </div>
+
+
 
 <div class="col-xs-13 espacioTitulosContenido">
 <div class="col-xs-2"><h2>7. Riesgos.</h2></div>
