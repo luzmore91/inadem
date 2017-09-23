@@ -32,7 +32,7 @@
 
             <div class="col-xs-12" style="padding-top: 20px;">
                 	<div class="col-xs-2"><label for="name">Institución:</label></div>
-                	<div class="col-xs-4"><select id="institucion" required class="form-control selectpicker" data-live-search="true" data-style="btn-green" name="instEq">
+                	<div class="col-xs-4"><select id="institucion" required class="form-control selectpicker" data-size="5" data-live-search="true" data-style="btn-green" name="instEq">
                         <option value="-1">Seleccione una opción</option>
                   		@foreach ($institucion as $int)
                         <option value="{{$int->idInstitucion}}"> {{ $int->nombreInstitucion }}</option>
@@ -103,7 +103,7 @@
           <div class="col-xs-2"><input type="tel" required class="form-control" id="telPart" placeholder="" name="telPart"/>
           </div>
 
-          <div class="col-xs-2"><select id="instPart" required class="form-control selectpicker" data-style="btn-green" data-live-search="true" name="instPart">
+          <div class="col-xs-2"><select id="instPart" required class="form-control selectpicker" data-style="btn-green" data-size="5" data-live-search="true" name="instPart">
              <option value="-1">Seleccione una opción</option>
               @foreach ($institucion as $ti)
               <option value="{{$ti->idInstitucion}}"> {{ $ti->nombreInstitucion }}</option>
