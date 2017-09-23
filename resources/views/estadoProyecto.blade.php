@@ -2,11 +2,11 @@
 
 <div class="col-xs-12 espacioTitulosContenido">
     <div class="col-xs-7"><h2>2. Estado de desarrollo/madurez del proyecto/tecnología (TRL)</h2></div>
-   <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+   <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Seleccionar el nivel de madurez del proyecto o tecnologia que se esta capturando">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
     </div>
 
 <div class="col-xs-12">
@@ -23,11 +23,11 @@
 
     <div class="col-xs-12 espacioTitulosContenido">
     <div class="col-xs-3"><h2>3. Sector estratégico</h2></div>
-    <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+    <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Seleccionar el sector estrategico al que pertenece el proyecto o tecnologia que se esta capturando">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
     </div>
 
            <div class="col-xs-12">
@@ -44,11 +44,11 @@
     </div>
      <div class="col-xs-12 espacioTitulosContenido">
     <div class="col-xs-3"><h2>4. Propiedad Intelectual</h2></div>
-    <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+    <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Seleccionar la categoria de propiedad intelectual que pertenece el proyecto o tecnologia que se esta capturando">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
     </div>
 
 <div class="col-xs-12" style="padding-top:20px">
@@ -85,11 +85,11 @@
     
      <div class="col-xs-12 espacioTitulosContenido">
     <div class="col-xs-5"><h2>5. Lo que persigue el proyecto/tecnología es</h2></div>
-    <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+    <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
               data-container="body" data-toggle="popover" data-placement="right"
               data-content="Seleccionar la opción mas adecuada sobre el objetivo que persigue el proyecto o tecnologia que se esta capturando">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div>
+           </button></div-->
     </div>
 
 <div class="col-xs-12" style="padding-top:20px">

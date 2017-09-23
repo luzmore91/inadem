@@ -2,11 +2,11 @@
 <div class="row">
     <div class="espacioTitulosContenido">
     <div class="col-xs-3"> <h2>9. Recursos.</h2></div>
-    <div class="col-xs-1">
+    <!--div class="col-xs-1">
         <button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="En esta sección se debe realizar una descripción de los recursos; 'Humanos, Tecnológicos y Financieros', utilizar en todo momento una redacción clara, concisa y completamente entendible.  " data-original-title="Recursos.">
             <span class="glyphicon glyphicon-question-sign"></span>
         </button>
-    </div>
+    </div-->
 </div>
     <div class="col-xs-12">
     	<label style="font-style:italic">Indique los recursos humanos, tecnológicos y financieros con los que cuenta actualmente para que la tecnología/proyecto avance.</label>
@@ -25,9 +25,9 @@
 
 <div class="espacioTitulosContenido">
     <div class="col-xs-3"><h2>10.Usos/Aplicaciones</h2></div>
-    <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Aqui se debe describir el tipo de público (usualmente personas) a cual va dirigido el proyecto/tecnología, y además indicar para que va a ser útil.  " data-original-title="Usos y/o Aplicaciones.">
+    <!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="" data-container="body" data-toggle="popover" data-placement="right" data-content="Aqui se debe describir el tipo de público (usualmente personas) a cual va dirigido el proyecto/tecnología, y además indicar para que va a ser útil.  " data-original-title="Usos y/o Aplicaciones.">
         <span class="glyphicon glyphicon-question-sign"></span>
-    </button></div>
+    </button></div-->
 </div>
 <div class="col-xs-12">
 <label style="font-style:italic">Indique el/los mercado(s) a los que va dirigida su tecnología y el/los uso(s) que se darán en éste(os).</label>
