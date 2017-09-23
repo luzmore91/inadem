@@ -75,12 +75,12 @@
 
 </div>
     
-<div class="col-xs-12" style="padding-top:20px">
+<!--div class="col-xs-12" style="padding-top:20px">
 <div class="col-xs-2"><label>Numero de registro</label></div>
 	<div class="col-xs-3">
 	<input class="form-control" type="text" id="numeroRegistro" name="numeroRegistro" placeholder="numero de registro de propiedad intelectual"/>
 </div>
-</div>    
+</div-->
     
     
      <div class="col-xs-12 espacioTitulosContenido">
