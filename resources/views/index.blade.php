@@ -17,6 +17,12 @@
             @include('header')
         </div>
 
+<!--
+  mensaje de introduccion-->
+        <div class="container">
+            @include('introduccion')
+        </div>
+
 
         {!! Form::open(array('action' => 'InademController@insertar')) !!}
 
@@ -41,6 +47,7 @@
          </div>
     </div>
 </div>   
+
        <!--Fin Modal-->  
         
 
