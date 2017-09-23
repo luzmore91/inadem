@@ -273,7 +273,7 @@ participante.fk_idTokenAppIn  = '.$idT);
      //Tabla propiedad intelectual
       $propInt->fk_idTipoRegistro =  Input::get("estadoAct");
       $propInt->fk_idTipoProteccion = Input::get("tipoProt");
-      $propInt->numeroRegistro = Input::get("numeroRegistro");
+      $propInt->numeroRegistro = "";//Input::get("numeroRegistro");
       $propInt->bajaLogica =1;
 
      //Tabla analisisEntorno
