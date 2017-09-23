@@ -64,6 +64,7 @@
     </div>
 
       <!-- Tabla para agregar usuarios-->
+      <!---mostrar si hay datos en la tabla -->
       <div class="col-xs-12">
 
           <div class="col-xs-2"><label for="Nombre" >Nombre</label></div>
@@ -115,13 +116,13 @@
 
       <div class="col-xs-12 text-right">
         <button type="button" class="btn btn-green popAyuda" title="Ayuda" onclick="obtenerDatosEquipo();" style="margin-top: 10px; margin-right: 15px;"  data-container="body" data-toggle="popover" data-placement="bottom"
-              data-content="Insertar nuevo Emprendedor/Inventor">
+              data-content="Insertar nuevo Riesgo">
              <span class="glyphicon glyphicon-plus"></span>
         </button>
       </div>
 
 
-      <div class="col-xs-12" style="padding-top: 20px;">
+      <div class="col-xs-12" id="contenedorTablaP" style="display:none;padding-top: 20px;">
         <table id="altaEquipo" class="table table--bordered table-hover sortable">
             <thead>
                 <tr>

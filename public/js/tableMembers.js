@@ -231,6 +231,9 @@ error: function(response){
 
 function crearTablaParticipante(tabla){
 
+    if(tabla != null){
+         $('#contenedorTablaP').css('display', 'block');
+    }
     var tbodyPart = document.getElementById("cuerpoTabla");
     var trPart = document.createElement('tr');
 
@@ -262,6 +265,10 @@ function crearTablaParticipante(tabla){
 }
 
 function crearTablaRiesgos(tabla){
+
+     if(tabla != null){
+         $('#contenedorTablaR').css('display', 'block');
+    }
 
     var tbody = document.getElementById("contenidoTablaRiesgos");
     var tr = document.createElement('tr');

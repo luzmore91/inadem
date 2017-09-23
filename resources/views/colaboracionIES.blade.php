@@ -60,7 +60,7 @@
         </button>
     </div>
 
-<div class="col-xs-12">
+<div class="col-xs-12" id="contenedorTablaR" style="display:none;padding-top: 20px;">
 <table id="altaRiesgo" class="table table-striped table-hover sortable">
     <thead>
         <tr>
