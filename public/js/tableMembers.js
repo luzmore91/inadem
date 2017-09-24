@@ -360,21 +360,6 @@ function quitarAtributoRiesgos() {
     document.getElementById("estMitigacion").removeAttribute("required"); 
 }
 
-/*function validaNombreParticipante(nombre) 
-{ 
-    var modal = document.getElementById("myModal");
-    var divTexto = document.getElementById("setTexto");
-    
-    var array = nombre.split(' ');
-
-    console.log("longitud: "+array.length);
-        
-    if(array.length<3){
-        divTexto.innerHTML = "¡Verifique el nombre del participante!";
-        modal.style.display='block';
-    }
-}*/
-
 function validaParticipantes(nombre, gradoEstudios, areaConocimiento, correo, noCelular, institucion) 
 { 
     var modal = document.getElementById("myModal");
@@ -418,9 +403,6 @@ function validaNombreParticipante(nombreParticipante)
     validaNombre = true;
     
     var tamanoNombre = nombreParticipante.split(' ');
-    
-    /*^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$*/
-/*^[a-zA-Z\s]*$*/
     
     if(!(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(nombreParticipante)) || tamanoNombre.length<3){
         //console.log("Entra al if ");
@@ -609,7 +591,7 @@ function validaComponentes(objetivoProyeecto)
     var usosAplicacion = document.getElementById("usoApp").value;
     var viabilidad = document.getElementById("viabilidad").value;
     var beneficios = document.getElementById("beneficios").value;
-    var numeroRegistro = document.getElementById("numeroRegistro").value;
+    //var numeroRegistro = document.getElementById("numeroRegistro").value;
 
 
     //console.log(institucion+" "+tipoInvension+" "+trl+" "+sectorEstrategico+" "+estadoActual+" "+tipoProteccion+" "+objetivoProyeecto);
@@ -686,12 +668,12 @@ function validaComponentes(objetivoProyeecto)
              modal.style.display='block';
              validaEnvio=false;
          }
-    if(numeroRegistro == null || numeroRegistro.length == 0 || !(/^[0-9a-zA-Z]+$/.test(numeroRegistro)))
+    /*if(numeroRegistro == null || numeroRegistro.length == 0 || !(/^[0-9a-zA-Z]+$/.test(numeroRegistro)))
          {
              divTexto.innerHTML = "¡número de registro incorrecto, por favor verifiquelo!";
              modal.style.display='block';
              validaEnvio=false;
-         } 
+         }*/ 
     
 return validaEnvio;
     

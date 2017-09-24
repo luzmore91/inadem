@@ -103,12 +103,12 @@
                                           @endforeach
                 	</select>
 </div>
-
+ 
 
 <div id="otroBloque" style="display:none">
     <div  class="col-xs-3"><label>En caso de seleccionar la opción "Otro", describir en el recuadro anexo.</label> </div>
       <div  class="col-xs-4">
-      <input class="form-control" type="text" name="otro_ObjetivoProyecto"   placeholder="¿Qué persigue el proyecto o tecnologia?"/>
+      <input class="form-control" type="text" id="otro_ObjetivoProyecto" name="otro_ObjetivoProyecto"   placeholder="¿Qué persigue el proyecto o tecnologia?"/>
 </div>
     </div>
 
