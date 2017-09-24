@@ -59,7 +59,7 @@
                         <td center="center">
                         <a href="#" onclick="eliminarProyecto()">
                         {{ Form::open(array('action' => array('AdminController@eliminar', $proyecto->idTecnologiaProyecto))) }}
-                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                            {{ Form::submit('Eliminar', ['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         </a>
 
