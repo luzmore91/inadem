@@ -18,6 +18,14 @@ use App\EquipoEmprendedor;
 use App\Participante;
 use App\Riesgos;
 use App\TokenIna;
+use App\TipoInvencion;
+use App\TipoGradoEstudios;
+use App\AreaConocimiento;
+use App\Trl;
+use App\TipoSector;
+use App\TipoPropiedadIntelectual;
+use App\TipoObjetivoProyecto;
+use App\TipoProteccion;
 use Log;
 
 
@@ -247,6 +255,7 @@ participante.fk_idTokenAppIn  = '.$idT);
      $anEnt = new AnalisisEntorno;
      $objP= new ObjetivoProyecto;
      $col = new Colaboracion;
+     $riesgo = new Riesgos;
 
 
 
@@ -392,7 +401,26 @@ participante.fk_idTokenAppIn  = '.$idT);
          return redirect()->back()->with('error_code', 5);
 
      }
+   }
+     
+public function editar($id){
+    //Se obtiene el proyecto con el id
+    $proyecto = Tecnologia::find($id);
+    $instituciones = Institucion::all();
+    $invenciones = TipoInvencion::all();
+    $participantes = Participante::all();
+    $gradosEstudios = TipoGradoEstudios::all();
+    $areasconocimiento = AreaConocimiento::all();
+    $trls = Trl::all();
+    $sectores = TipoSector::all();
+    $propiedadIntelectual = TipoPropiedadIntelectual::all();
+    $objetivosProyecto = TipoObjetivoProyecto::all();
+    $tiposProteccion = TipoProteccion::all();
 
+    if($proyecto == null){
+        return "El proyecto no existe";
+    }
+    return view('editar', ["proyecto"=>$proyecto, "instituciones"=>$instituciones, "invenciones"=>$invenciones, "participantes"=>$participantes, "gradosestudios"=>$gradosEstudios, "areasconocimiento"=>$areasconocimiento, "trls"=>$trls, "sectores"=>$sectores, "propiedadIntelectual"=>$propiedadIntelectual, "objetivosProyecto"=>$objetivosProyecto, "tiposProteccion"=>$tiposProteccion]); 
+}
 
     }
-}

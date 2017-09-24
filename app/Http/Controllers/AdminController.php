@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         //$proyectos = DB::table('tecnologiaproyecto')->select('titulo, descripcion');
         //$proyectos = DB::select('select * from tecnologiaproyecto');
-        $proyectos = Tecnologia::all();
+        $proyectos = DB::select('select tp.idTecnologiaProyecto,tp.titulo, inst.nombreInstitucion,ti.descripcion from tecnologiaproyecto as tp INNER JOIN institucion as inst ON tp.fk_idInstitucion=inst.idInstitucion INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion'); //Tecnologia::all();
         return view('datatable', ['proyectos'=>$proyectos]);
     }
 
