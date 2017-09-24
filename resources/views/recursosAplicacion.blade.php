@@ -12,13 +12,13 @@
     	<label style="font-style:italic">Indique los recursos humanos, tecnológicos y financieros con los que cuenta actualmente para que la tecnología/proyecto avance.</label>
 </div>
 <div class="col-xs-12 espacioTitulosContenido">
-    <textarea name="recursosHumanos" id="recursosHumanos" style="resize: vertical" class="form-control" rows="3" placeholder="RECURSOS HUMANOS:" required resize="disabled"></textarea>
+    <textarea name="recursosHumanos" id="recursosHumanos" style="resize: vertical" class="form-control" rows="10" placeholder="RECURSOS HUMANOS:" required resize="disabled"></textarea><!--tenia 3 en rows-->
     </div>
 <div class="col-xs-12 espacioTitulosContenido">
-  <textarea name="recursosTec" id="recursosTec" style="resize: vertical" class="form-control" rows="3"  placeholder="RECURSOS TECNOLÓGICOS:" required></textarea>
+  <textarea name="recursosTec" id="recursosTec" style="resize: vertical" class="form-control" rows="10"  placeholder="RECURSOS TECNOLÓGICOS:" required></textarea><!--tenia 3 en rows-->
    </div>
     <div class="col-xs-12 espacioTitulosContenido">
-		<textarea name="recursosFin" id="recursosFin" style="resize: vertical" class="form-control" rows="3"  placeholder="RECURSOS FINANCIEROS:" required></textarea>
+		<textarea name="recursosFin" id="recursosFin" style="resize: vertical" class="form-control" rows="10"  placeholder="RECURSOS FINANCIEROS:" required></textarea><!--tenia 3 en rows-->
          </div>
 
 
@@ -33,7 +33,7 @@
 <label style="font-style:italic">Indique el/los mercado(s) a los que va dirigida su tecnología y el/los uso(s) que se darán en éste(os).</label>
     </div>
    <div class="col-xs-12 espacioTitulosContenido">
-		<textarea name="usoApp" id="usoApp" style="resize: vertical" class="form-control"  rows="2" placeholder="USOS/APLICACIONES:" required></textarea>
+		<textarea name="usoApp" id="usoApp" style="resize: vertical" class="form-control"  rows="10" placeholder="USOS/APLICACIONES:" required></textarea><!--tenia 2 en rows-->
   </div>
     <div class="espacioTitulosContenido">
         <div class="col-xs-2"><h2>11.Viabilidad</h2></div>
@@ -45,7 +45,7 @@
     	<label style="font-style:italic">Indique si para la tecnología/proyecto se ha validado la viabilidad técnica y financiera, y la existencia de prospectos interesados en la misma.</label>
     </div>
    <div class="col-xs-12">
-    <textarea name="viabilidad" id="viabilidad" style="resize: vertical" class="form-control" rows="2" placeholder="VIABILIDAD:" required></textarea>
+    <textarea name="viabilidad" id="viabilidad" style="resize: vertical" class="form-control" rows="10" placeholder="VIABILIDAD:" required></textarea><!--tenia 2 en rows-->
    </div>
     <div class="espacioTitulosContenido">
 <div class="col-xs-4"><h2>12. Colaboración con otras IES.</h2></div>
@@ -59,5 +59,5 @@
 <label style="font-style:italic">Describa las IES y el tipo de colaboración que el proyecto tiene con éstas.</label> </div>
 
 <div class="col-xs-12">
-<textarea id="desIES" name="desIES" style="resize: vertical" class="form-control" rows="6" placeholder= "Descripción de Institución de Educación Superior" title="Descripción IES y tipo de colaboración" required></textarea></div>
+<textarea id="desIES" name="desIES" style="resize: vertical" class="form-control" rows="10" placeholder= "Descripción de Institución de Educación Superior" title="Descripción IES y tipo de colaboración" required></textarea></div><!--tenia 6 en rows-->
 </div>

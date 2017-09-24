@@ -10,7 +10,7 @@
    </div>
 <div class="col-xs-12 espacioTitulosContenido">
 
-    <textarea name="beneficios" id="beneficios" style="resize: vertical" class="form-control" rows="2"  placeholder="BENEFICIOS:" required></textarea>
+    <textarea name="beneficios" id="beneficios" style="resize: vertical" class="form-control" rows="10"  placeholder="BENEFICIOS:" required></textarea><!--tenia 2 en rows-->
             </div>
         <br>
     </div>
@@ -61,7 +61,7 @@
     </div>
 
 <div class="col-xs-12" id="contenedorTablaR" style="display:none;padding-top: 20px;">
-<table id="altaRiesgo" class="table table-striped table-hover sortable">
+<table id="altaRiesgo" class="table table--bordered table-hover sortable">
     <thead>
         <tr>
             <th><center>Tipo de riesgo</center></th>
@@ -87,5 +87,5 @@
 
 <div class="col-xs-12">
 <label style="font-style:italic">Indique el tamaño de la industria a la que va dirigida su tecnología/proyecto, la industria que le proveería sus insumos, clientes/consumidores de su tecnología/proyecto, las tecnologías/proyectos competidores y sus ofertas, y sus factores de demanda.</label>
-<textarea name="analisisEnt" id="analisisEnt" style="resize: vertical" class="form-control" rows="6" placeholder= "Indique el tamaño de la industria a la que va dirigida su tecnología" title="Indique el tamaño de la industria" name="analisisEnt" required></textarea>
+<textarea name="analisisEnt" id="analisisEnt" style="resize: vertical" class="form-control" rows="10" placeholder= "Indique el tamaño de la industria a la que va dirigida su tecnología" title="Indique el tamaño de la industria" name="analisisEnt" required></textarea><!--tenia 6 en rows-->
 </div></div>

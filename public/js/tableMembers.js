@@ -453,10 +453,10 @@ function validaCelularParticipante(celularParticipante)
     var modal = document.getElementById("myModal");
     var divTexto = document.getElementById("setTexto");       
     validarCelular = true;    
-    if(!(/^\d{12}$/.test(celularParticipante))){
+    if(!(/^\d{10}$/.test(celularParticipante))){
         //console.log("Entra al if ");
         
-        divTexto.innerHTML = "¡telefono incorrecto, por favor verifiquelo!";
+        divTexto.innerHTML = "¡telefono incorrecto, por favor verifiquelo deben de ser 10 digitos!";
         modal.style.display='block';
         validarCelular = false;
     } 

@@ -21,7 +21,7 @@
               	</div>
             	<!-- Input problematica -->
               	<div class="col-xs-12" style="padding-top: 20px;">
-                	<div class="col-xs-2"><label for="problematica">Problematica a resolver:</label></div>
+                	<div class="col-xs-2"><label for="problematica">Problemática a resolver:</label></div>
                 	<div class="col-xs-10"><textarea style="resize: vertical" class="form-control" required id="problematica" placeholder="Problematica que resolvera" name="problematica" rows="10"></textarea></div>
               	</div>
                 <!-- Input descripcion -->
@@ -73,7 +73,7 @@
 
           <div class="col-xs-2"><label for="areaConocimiento" >Área de conocimiento</label></div>
 
-          <div class="col-xs-2"><label for="correo" >Correo electronico</label></div>
+          <div class="col-xs-2"><label for="correo" >Correo electrónico</label></div>
 
           <div class="col-xs-2"><label for="noCelular" >Número celular personal</label></div>
 
@@ -129,7 +129,7 @@
                     <th>Nombre</th>
                     <th>Último grado de estudios</th>
                     <th>Área de conocimiento</th>
-                    <th>Correo electronico</th>
+                    <th>Correo electrónico</th>
                     <th>Número celular personal</th>
                     <th>Institución</th>
                     <th>Eliminar</th>
