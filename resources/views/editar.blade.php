@@ -26,7 +26,7 @@
         <div class="container">
             @include('modificar')
         </div>
-</body>
+
 
     <div align="center">
         <input class="btn btn-primary" type="submit" value="ACTUALIZAR">
@@ -38,5 +38,5 @@
         <div class="container">
             @include('footer')
         </div>
-
+</body>
 </html>

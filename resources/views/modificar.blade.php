@@ -15,18 +15,24 @@
                 <tbody>
 
                     <tr>
-                        <td contenteditable='true'>Elemento1</td>
-                        <td contenteditable='true'>Elemento2</td>
-                        <td contenteditable='true'>Elemento3</td>
-                        <td contenteditable='true'>Elemento4</td>
+                        <td contenteditable='true'>{{ $proyecto->titulo }}</td>
+                        <td contenteditable='true'>{{ $proyecto->tituloComercial}}</td>
+                        <td contenteditable='true'>{{ $proyecto->problematica}}</td>
+                        <td contenteditable='true'>{{ $proyecto->descripcion}}</td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
-                            </select>
+                            <select id="intitucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
+                            <option>Seleccione una opción</option>
+                            @foreach ($instituciones as $institucion)
+                            <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$proyecto->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
+                            @endforeach
+                        </select>
                         </td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select required id="tipoInvension" class="form-control selectpicker" data-style="btn-green" name="tipoInv">
+                                <option>Seleccione una opción</option>
+                                @foreach ($invenciones as $invencion)
+                                <option value="{{$invencion->idTipoInvencion}}" {{$invencion->idTipoInvencion==$proyecto->fk_idTipoInvencion? 'selected="selected"': '' }}> {{ $invencion->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
                     </tr>
@@ -46,26 +52,42 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($participantes as $participante)
                     <tr>
-                        <td contenteditable='true'>Elemento1</td>
+                        <td contenteditable='true'>{{ $participante->nombre }}</td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="gradoestudios" required class="form-control selectpicker" data-style="btn-green" name="Grado">
+                                <option>Seleccione una opción</option>
+                                @if($participantes == null)
+                                @foreach ($gradosestudios as $gradoestudio)
+                                <option value="{{$gradoestudio->idGradoEstudios}}">{{ $gradoestudio->nivel }}</option>
+                                @endforeach
+                                @else
+                                @foreach ($gradosestudios as $gradoestudio)
+                                <option value="{{$gradoestudio->idGradoEstudios}}" {{ $gradoestudio->idGradoEstudios==$participante->fk_idGradoEstudios? 'selected="selected"': '' }}>{{ $gradoestudio->nivel }}</option>
+                                @endforeach
+                                @endif
                             </select>
                         </td>
                         <td>
                             <select>
-                              <option value="volvo">Cargar catálogo</option>
+                                @foreach ($areasconocimiento as $areaconocimiento)
+                                <option value="{{$areaconocimiento->idAreaConocimiento}}" {{ $areaconocimiento->idAreaConocimiento==$participante->fk_idAreaConocimientos? 'selected="selected"': '' }}>{{ $areaconocimiento->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
-                        <td contenteditable='true'>Elemento4</td>
-                        <td contenteditable='true'>Elemento5</td>
+                        <td contenteditable='true'>{{ $participante->correoElectronico }}</td>
+                        <td contenteditable='true'>{{ $participante->numeroMovil }}</td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="intitucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
+                                <option>Seleccione una opción</option>
+                                @foreach ($instituciones as $institucion)
+                                <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$participante->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
+                                @endforeach
                             </select>
                         </td>
                     </tr>
+                     @endforeach
                 </tbody>
             </table>
 <br>
@@ -83,28 +105,43 @@
                 <tbody>
                     <tr>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="tlr" required class="form-control selectpicker" data-style="btn-green" name="tlr">
+                                <option>Seleccione una opción</option>
+                                @foreach ($trls as $trl)
+                                <option value="{{$trl->idTRL}}"> {{ $trl->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="sector" required class="form-control selectpicker" data-style="btn-green" name="sector">
+                                <option>Seleccione una opción</option>
+                                @foreach ($sectores as $sector)
+                                <option value="{{$sector->idSector}}"> {{ $sector->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="propiedadIntelectual" required class="form-control selectpicker" data-style="btn-green" name="propiedadIntelectual">
+                                <option>Seleccione una opción</option>
+                                @foreach ($propiedadIntelectual as $propIntelectual)
+                                <option value="{{$propIntelectual->tipopropiedadintelectual}}"> {{ $propIntelectual->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="objetivoProyecto" required class="form-control selectpicker" data-style="btn-green" name="objetivoProyecto">
+                                <option>Seleccione una opción</option>
+                                @foreach ($objetivosProyecto as $objetivoProyecto)
+                                <option value="{{$objetivoProyecto->idObjetivoProyecto}}"> {{ $objetivoProyecto->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td>
-                            <select>
-                              <option value="volvo">Cargar catálogo</option>
+                            <select id="tipoProteccion" required class="form-control selectpicker" data-style="btn-green" name="tipoProteccion">
+                                <option>Seleccione una opción</option>
+                                @foreach ($tiposProteccion as $tipoProteccion)
+                                <option value="{{$tipoProteccion->idTipoProteccion}}"> {{ $tipoProteccion->descripcion }}</option>
+                                @endforeach
                             </select>
                         </td>
                     </tr>

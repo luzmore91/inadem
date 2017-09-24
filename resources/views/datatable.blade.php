@@ -39,7 +39,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Institución</th>
-                        <th>Tipo</th>
+                        <th>Tipo Invencion</th>
                         <th>Actualizar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -48,15 +48,15 @@
                     @foreach ($proyectos as $proyecto)
                     <tr>
                         <td>{{ $proyecto->titulo }}</td>
-                        <td>{{ $proyecto->fk_idInstitucion }}</td>
-                        <td>{{ $proyecto->fk_idTipoInvencion }}</td>
-                        <td align="center">
+                        <td>{{ $proyecto->nombreInstitucion }}</td>
+                        <td>{{ $proyecto->descripcion }}</td>
+                        <td center="center">
 
-                        {{ Form::open(array('action' => array('AdminController@editar', $proyecto->idTecnologiaProyecto), 'method' => 'get')) }}
+                        {{ Form::open(array('action' => array('InademController@editar', $proyecto->idTecnologiaProyecto), 'method' => 'get')) }}
                             {{ Form::submit('Editar', ['class' => 'btn btn-primary']) }}
                             {{ Form::close() }}
                             </td>
-                        <td align="center">
+                        <td center="center">
                         <a href="#" onclick="eliminarProyecto()">
                         {{ Form::open(array('action' => array('AdminController@eliminar', $proyecto->idTecnologiaProyecto))) }}
                             {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
