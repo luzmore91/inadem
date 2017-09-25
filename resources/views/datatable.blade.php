@@ -3,7 +3,7 @@
 
 
     <head>
-         <title>Tecnologico de mexico</title>
+         <title>Convocatoria INADEM</title>
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">
@@ -14,7 +14,7 @@
          <link href="{{ asset('/css/ie.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+        <!--link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"-->
         <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
         <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
 
