@@ -1,6 +1,6 @@
-<div id="user">
+<!--div id="user">
 	<a href="admin"><span class="glyphicon glyphicon-user"></span>Ingresar</a>
-</div>
+</div-->
 
 <div id="content" class="row">
 <h1>Introducción</h1>
