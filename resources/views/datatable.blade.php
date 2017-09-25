@@ -15,13 +15,13 @@
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" type="text/css">
 
         <!--link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"-->
-        <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
-        <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+        <link href="{{ asset('/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <script src="{{ asset('/js/jquery.js') }}"></script>
 
-        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
 
         <!-- datatable español -->
-        <script src="//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"></script>
+        <script src="{{ asset('/json/Spanish.json') }}"></script>
 
         <!-- Confirmacion de eliminacion de registros -->
         <script type="text/javascript" src="{{ URL::asset('js/confEliminar.js') }}"></script>
