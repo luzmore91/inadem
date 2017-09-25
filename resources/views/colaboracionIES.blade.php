@@ -55,7 +55,7 @@
 
     <div class="col-xs-12 text-right">
         <button type="button" class="btn btn-green popAyuda"  title="Ayuda" onclick="obtenerDatosRiesgos();" style="margin-top: 10px; margin-right: 15px;"data-container="body" data-toggle="popover" data-placement="bottom"
-              data-content="Insertar nuevo Emprendedor/Inventor">
+              data-content="Insertar nuevo Riesgo">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
     </div>

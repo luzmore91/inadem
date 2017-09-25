@@ -116,7 +116,7 @@
 
       <div class="col-xs-12 text-right">
         <button type="button" class="btn btn-green popAyuda" title="Ayuda" onclick="obtenerDatosEquipo();" style="margin-top: 10px; margin-right: 15px;"  data-container="body" data-toggle="popover" data-placement="bottom"
-              data-content="Insertar nuevo Riesgo">
+              data-content="Insertar nuevo Emprendedor/Inventor">
              <span class="glyphicon glyphicon-plus"></span>
         </button>
       </div>
