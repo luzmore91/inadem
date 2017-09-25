@@ -37,8 +37,13 @@ class AdminController extends Controller
     public function eliminar($id){
         //eliminar
         $proyecto = Tecnologia::find($id);
-        $proyecto->delete();
-         return "Acabo de eliminar ".$id;
+        $deleted = $proyecto->delete();
+        if($deleted){
+            return redirect()->back()->with('delete_code', 5);
+        }else{
+            return redirect()->back()->with('nodelete_code', 5);
+        }
+
         //redirigir a AdminController@Index
     }
 }

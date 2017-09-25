@@ -16,9 +16,10 @@
 
         <!--link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"-->
         <link href="{{ asset('/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-        <script src="{{ asset('/js/jquery.js') }}"></script>
+        <script src="{{ asset('/js/datatable/jquery.js') }}"></script>
 
         <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{asset('/js/bootstrap.js')}}"></script>
 
         <!-- datatable español -->
         <script src="{{ asset('/json/Spanish.json') }}"></script>
@@ -71,8 +72,51 @@
         </div>
 
 
+        <!-- Modal HTML Markup -->
+<div id="ModalEliminadoConf" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro Eliminado</h1>
+            </div>
+            <div class="modal-body">
+               Se ha eliminado con exito el registro seleccionado.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-        <script type="text/javascript">
+<div id="ModalDeleteConf" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Eliminar registro</h1>
+            </div>
+            <div class="modal-body">
+               Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+@if(!empty(Session::get('delete_code')) && Session::get('delete_code') == 5)
+<script>
+           $('#ModalEliminadoConf').modal('show');
+</script>
+@endif
+@if(!empty(Session::get('nodelete_code')) && Session::get('nodelete_code') == 5)
+<script>
+           $('#ModalDeleteConf').modal('show');
+</script>
+@endif
+             <script type="text/javascript">
 
             $(document).ready(function() {
                 oTable = $('#users').DataTable({
@@ -82,6 +126,7 @@
                     //Obtener datos para llenar la tabla
 
                 });
+
             });
 
         </script>
@@ -94,4 +139,8 @@
             <div class="container">
             @include('footer')
         </div>
+
+
+
+
 </html>
