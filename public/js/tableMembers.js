@@ -5,6 +5,7 @@ var RiesArreglo = [];
 var banderaTablaParticipate = false;
 var banderaTablaRiesgos = false;
 var idEquipo = numeroEquipo();
+var tokenInadem = localStorage.getItem("tokenAppInadem");
 
 function numeroEquipo()
 {
@@ -197,7 +198,7 @@ function enviarRiesgos(){
         url:'insertarRiesgo',
         type: 'POST',
         dataType: 'json',
-        data:{riesgo:RiesArreglo},
+        data:{riesgo:RiesArreglo,tokenInadem:localStorage.getItem("tokenAppInadem").toString()},
         success: function(success) {
             console.log("Sent values "+success);
             RiesArreglo = [];
@@ -216,13 +217,13 @@ error: function(response){
 
 function enviarParticipante() {
 
-    console.log("entrar a la funcion enviar participante "+JSON.stringify(ParArreglo));
+    console.log("entrar a la funcion enviar participante "+localStorage.getItem("tokenAppInadem") );
    // var token = $("#token").val();
     $.ajax({
         url:'insertarParticipante',
         type: 'POST',
         dataType: 'json',
-        data:{participante:ParArreglo,equipo:parseInt(idEquipo)},
+        data:{participante:ParArreglo,equipo:parseInt(idEquipo),tokenInadem:localStorage.getItem("tokenAppInadem").toString()},
         success: function(success) {
             console.log("Sent values "+JSON.stringify(success));
             //reiniciar el arreglo

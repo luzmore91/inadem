@@ -53,12 +53,14 @@ class InademController extends Controller
 
     $dato =$request->participante; // This will get all the request data.
     $dato2 =$request->equipo;
+    $tokenValue = $request->tokenInadem;
 
             $participante = new Participante;
             $equipo = new EquipoEmprendedor;
 
+
          //consulta a la tabla tecnologiaProyecto, el ultimo ID integrado
-       $idTec = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+       $idTec = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
        $result = json_decode(json_encode($idTec), true);
 
 
@@ -133,9 +135,10 @@ participante.fk_idTokenAppIn  = '.$idT);
 
   if($request->ajax()){
      $dato = $request->riesgo;
+     $tokenValue = $request->tokenAppInadem;
 
            $riesgo = new Riesgos;
-           $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+           $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
            $result = json_decode(json_encode($token), true);
       foreach($dato as $d){
 

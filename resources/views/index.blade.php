@@ -221,8 +221,9 @@ error: function(response){
     //valores temporales
 
         var tokenInadem = generar();
-         guardarToken(tokenInadem);
-
+        guardarToken(tokenInadem);
+  //almacenarlo en localstorage
+        localStorage.setItem("tokenAppInadem", tokenInadem);
 
      });
 
