@@ -44,7 +44,16 @@ function obtenerDatosEquipo()
 
     var nom = getNombreBien(nombreMiembro);
 
-    ParArreglo.push({fk_institucion:parseInt(comboInstitucion.options[comboInstitucion.selectedIndex].value),
+
+  limpiarComponentesParticipate();
+  banderaTablaParticipate = true;
+
+  if(banderaTablaParticipate){
+      console.log("Si entra a quitar atributo");
+        quitarAtributoParticipantes();
+  }
+ if(bandera)
+   ParArreglo.push({fk_institucion:parseInt(comboInstitucion.options[comboInstitucion.selectedIndex].value),
                      fk_idGradoEstudios:parseInt(comboGradoEstudio.options[comboGradoEstudio.selectedIndex].value),
                      fk_idAreaConocimientos:parseInt(comboAreaConocimiento.options[comboAreaConocimiento.selectedIndex].value),
                      //fk_direccion:NULL,
@@ -61,15 +70,6 @@ function obtenerDatosEquipo()
                      correoInstitucional:correo,
                      bajaLogica:1
                     });
-
-  limpiarComponentesParticipate();
-  banderaTablaParticipate = true;
-    
-  if(banderaTablaParticipate){
-      console.log("Si entra a quitar atributo");
-        quitarAtributoParticipantes();
-  }
- if(bandera)    
  enviarParticipante();
 
 }
@@ -119,12 +119,6 @@ function obtenerDatosRiesgos()
     
     console.log("obtenerDatosRiesgos "+insertarRiesgos);
 
-    RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
-                      estrategiaMitigacion:estrategiaMitigacion,
-                      descripcionRiesgo:descripcion,
-                      bajaLogica:1});
-
-
   
   limpiarComponentesRiesgo();
   banderaTablaRiesgos = true;
@@ -134,6 +128,11 @@ function obtenerDatosRiesgos()
         quitarAtributoRiesgos();
   }
     if(insertarRiesgos)
+         RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
+                      estrategiaMitigacion:estrategiaMitigacion,
+                      descripcionRiesgo:descripcion,
+                      bajaLogica:1});
+
       enviarRiesgos();
 }
 
