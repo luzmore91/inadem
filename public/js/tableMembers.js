@@ -306,9 +306,13 @@ function crearTablaRiesgos(tabla){
     });
 
 }
+
 function eliminarParticipante(idP){
+$("#ModalDeleteConf").modal("show");
  console.log("vamos a eliminar a "+idP);
-    $.ajax({
+
+$("#AceptarEliminar").click(function(){
+              $.ajax({
         url:'eliminarParticipante',
         type: 'POST',
         dataType: 'json',
@@ -323,10 +327,15 @@ error: function(response){
     console.log('Error Ajax');
     }
     });
+        });
+
+
 }
 
 function eliminarRiesgo(idR){
+    $("#ModalDeleteConf").modal("show");
     console.log("id del riesgo ",idR);
+$("#AceptarEliminar").click(function(){
    $.ajax({
         url:'eliminarRiesgo',
         type: 'POST',
@@ -342,6 +351,7 @@ error: function(response){
     }
     });
 
+   });
 }
 
 function quitarAtributoParticipantes() { 

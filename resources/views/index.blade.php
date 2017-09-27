@@ -184,9 +184,10 @@
                 <h1 class="modal-title">Eliminar registro</h1>
             </div>
             <div class="modal-body">
-               Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
+              ¿Realmente desea eliminar el registro?
             </div>
              <div class="modal-footer">
+         <button id="AceptarEliminar" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
         </div><!-- /.modal-content -->
