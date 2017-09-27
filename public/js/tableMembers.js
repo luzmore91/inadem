@@ -1,5 +1,3 @@
-var count_tr = 0;
-var count_tr1 = 0;
 var ParArreglo = [];
 var RiesArreglo = [];
 var banderaTablaParticipate = false;
@@ -34,15 +32,9 @@ function obtenerDatosEquipo()
     var comboInstitucion = document.getElementById("instPart");
     var institucion = comboInstitucion.options[comboInstitucion.selectedIndex].text;
 
-     var nom = getNombreBien(nombreMiembro);
+    var nom = getNombreBien(nombreMiembro);
 
-    var bandera=validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
-    
-    
-    /*var tbodyPart = document.getElementById("cuerpoTabla");
-    var trPart = document.createElement('tr');
-    count_tr++;*/
-
+    var insertaParticipantes=validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
 
    ParArreglo.push({fk_institucion:parseInt(comboInstitucion.options[comboInstitucion.selectedIndex].value),
                      fk_idGradoEstudios:parseInt(comboGradoEstudio.options[comboGradoEstudio.selectedIndex].value),
@@ -63,16 +55,18 @@ function obtenerDatosEquipo()
                     });
 
 
- if(bandera){
+ if(insertaParticipantes){
     limpiarComponentesParticipate();
      banderaTablaParticipate = true;
 
     if(banderaTablaParticipate){
-      console.log("Si entra a quitar atributo");
+      //console.log("Si entra a quitar atributo");
       quitarAtributoParticipantes();
     }
      enviarParticipante();
  }
+
+
 
 }
 
@@ -119,23 +113,23 @@ function obtenerDatosRiesgos()
     
     var insertarRiesgos =  validaRiesgos(comboTipoRiesgo.value, descripcion, estrategiaMitigacion);
     
-    console.log("obtenerDatosRiesgos "+insertarRiesgos);
+    //console.log("obtenerDatosRiesgos "+insertarRiesgos);
 
-  
-  limpiarComponentesRiesgo();
-  banderaTablaRiesgos = true;
-
-  if(banderaTablaRiesgos){
-      console.log("Si entra a quitar atributo");
-        quitarAtributoRiesgos();
-  }
-    if(insertarRiesgos)
-         RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
+    RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
                       estrategiaMitigacion:estrategiaMitigacion,
                       descripcionRiesgo:descripcion,
                       bajaLogica:1});
 
-      enviarRiesgos();
+  if(insertarRiesgos){
+      limpiarComponentesRiesgo();
+      banderaTablaRiesgos = true;
+
+    if(banderaTablaRiesgos){
+        //console.log("Si entra a quitar atributo");
+        quitarAtributoRiesgos();
+    }
+    enviarRiesgos();
+  }
 }
 
 
