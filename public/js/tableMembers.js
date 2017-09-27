@@ -235,7 +235,7 @@ function enviarParticipante() {
 
       },
 error: function(response){
-    console.log('Error'+JSON.stringify(response));
+     $("#ModalEliminadoCancel").modal("show");
      ParArreglo = [];
     }
     });
@@ -316,7 +316,7 @@ $("#AceptarEliminar").click(function(){
         url:'eliminarParticipante',
         type: 'POST',
         dataType: 'json',
-        data:{idParticipante:parseInt(idP)},
+        data:{idParticipante:parseInt(idP),tokenInadem:localStorage.getItem("tokenAppInadem").toString()},
         success: function(success) {
             console.log("Retorno  "+success);
             eliminarRegistroParticipante(success);
@@ -324,7 +324,7 @@ $("#AceptarEliminar").click(function(){
 
       },
 error: function(response){
-    console.log('Error Ajax');
+     $("#ModalEliminadoCancel").modal("show");
     }
     });
         });
@@ -340,7 +340,7 @@ $("#AceptarEliminar").click(function(){
         url:'eliminarRiesgo',
         type: 'POST',
         dataType: 'json',
-        data:{idRiesgo:idR},
+        data:{idRiesgo:idR,tokenInadem:localStorage.getItem("tokenAppInadem").toString()},
         success: function(success) {
             console.log("Retorno  "+success);
               eliminarRegistroRiesgo(success);

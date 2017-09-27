@@ -177,6 +177,22 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+        <div id="ModalEliminadoCancel" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro Eliminado</h1>
+            </div>
+            <div class="modal-body">
+              No se puede eliminar el registro seleccionado, intente nuevamente por favor.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div id="ModalDeleteConf" class="modal fade">
     <div class="modal-dialog" role="alertdialog" style="left:0%">
         <div class="modal-content">

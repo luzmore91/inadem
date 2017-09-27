@@ -175,17 +175,25 @@ participante.fk_idTokenAppIn  = '.$idT);
     public function eliminarParticipante(Request $request){
     if($request->ajax()){
     $dato =$request->idParticipante;
+    $tokenValue = $request->tokenInadem;
 
     $saved = DB::select("DELETE FROM participante WHERE idParticipante = ".$dato);
+    $consultarIdEM = DB::select("SELECT equipoemprendedor.idEquipoEmprendedor FROM `equipoemprendedor` WHERE equipoemprendedor.fk_participante = ".$dato);
+         $idEq = json_decode(json_encode($consultarIdEM), true);
+         foreach($idEq as $i){
+          $idEQ = $i['idEquipoEmprendedor'];
+         }
+       //eliminar participante del equipo
+          $actualizarEquipoEmp = DB::select('DELETE FROM equipoemprendedor WHERE equipoemprendedor.idEquipoEmprendedor = '.$idEQ);
 
     if($saved){
         $envio = 1;
-        //eliminar participante del equipo
-         $actualizarRiesgos = DB::select('DELETE FROM equipoemprendedor WHERE fk_participante = '.$dato);
+
     }else{
+
         $envio = 0;
     }
-      $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+      $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
            $resultToken = json_decode(json_encode($token), true);
          foreach($resultToken as $i){
           $tk = $i['idToken'];
@@ -203,6 +211,7 @@ participante.fk_idTokenAppIn  = '.$idT);
     public function eliminarRiesgo(Request $request){
        if($request->ajax()){
     $dato =$request->idRiesgo;
+    $tokenValue  = $request->tokenInadem;
 
     $saved = DB::select("DELETE FROM riesgo WHERE idRiesgo = ".$dato);
 
@@ -211,7 +220,7 @@ participante.fk_idTokenAppIn  = '.$idT);
     }else{
         $envio = 0;
     }
-           $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+           $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
            $resultToken = json_decode(json_encode($token), true);
          foreach($resultToken as $i){
           $tk = $i['idToken'];
