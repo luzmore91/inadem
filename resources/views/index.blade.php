@@ -161,6 +161,39 @@
 </div><!-- /.modal -->
                  
                         
+<div id="ModalEliminadoConf" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro Eliminado</h1>
+            </div>
+            <div class="modal-body">
+               Se ha eliminado con exito el registro seleccionado.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="ModalDeleteConf" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Eliminar registro</h1>
+            </div>
+            <div class="modal-body">
+               Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 
         {!! Form::close() !!}

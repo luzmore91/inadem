@@ -136,6 +136,9 @@ function obtenerDatosRiesgos()
 function eliminarRegistroParticipante(objP)
 {
      if(objP.eliminado = 1){
+
+           $('#ModalEliminadoConf').modal('show');
+
      $('#miembro_'+objP.idParticipante).remove();
 
      if(objP.numeroRows <= 0){
@@ -151,6 +154,7 @@ function eliminarRegistroRiesgo(objR)
 {
      if(objR.eliminado = 1){
      $('#riesgo_'+objR.idRiesgo).remove();
+          $('#ModalEliminadoConf').modal('show');
 
          if(objR.numeroRows <= 0){
           $('#contenedorTablaR').css('display', 'none');
