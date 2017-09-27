@@ -204,6 +204,7 @@
             </div>
              <div class="modal-footer">
          <button id="AceptarEliminar" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+         <button id="AceptarEliminar2" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
         </div><!-- /.modal-content -->
