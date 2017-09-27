@@ -310,8 +310,8 @@ function crearTablaRiesgos(tabla){
 function eliminarParticipante(idP){
 $("#ModalDeleteConf").modal("show");
  console.log("vamos a eliminar a "+idP);
-$("#AceptarEliminar2").css("display","none");
-$("#AceptarEliminar").css("display","block");
+$("#AceptarEliminar2").css("visibility","hidden");
+$("#AceptarEliminar").css({"visibility":"visible","position":"absolute"});
 $("#AceptarEliminar").click(function(){
               $.ajax({
         url:'eliminarParticipante',
@@ -336,8 +336,8 @@ error: function(response){
 function eliminarRiesgo(idR){
     $("#ModalDeleteConf").modal("show");
     console.log("id del riesgo ",idR);
-$("#AceptarEliminar").css("display","none");
-$("#AceptarEliminar2").css("display","block");
+    $("#AceptarEliminar").css({"visibility":"hidden","position":"relative"});
+$("#AceptarEliminar2").css("visibility","visible");
 $("#AceptarEliminar2").click(function(){
    $.ajax({
         url:'eliminarRiesgo',
