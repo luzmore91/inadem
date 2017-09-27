@@ -34,7 +34,8 @@ function obtenerDatosEquipo()
     var comboInstitucion = document.getElementById("instPart");
     var institucion = comboInstitucion.options[comboInstitucion.selectedIndex].text;
 
-    
+     var nom = getNombreBien(nombreMiembro);
+
     var bandera=validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
     
     
@@ -42,17 +43,7 @@ function obtenerDatosEquipo()
     var trPart = document.createElement('tr');
     count_tr++;*/
 
-    var nom = getNombreBien(nombreMiembro);
 
-
-  limpiarComponentesParticipate();
-  banderaTablaParticipate = true;
-
-  if(banderaTablaParticipate){
-      console.log("Si entra a quitar atributo");
-        quitarAtributoParticipantes();
-  }
- if(bandera){
    ParArreglo.push({fk_institucion:parseInt(comboInstitucion.options[comboInstitucion.selectedIndex].value),
                      fk_idGradoEstudios:parseInt(comboGradoEstudio.options[comboGradoEstudio.selectedIndex].value),
                      fk_idAreaConocimientos:parseInt(comboAreaConocimiento.options[comboAreaConocimiento.selectedIndex].value),
@@ -70,6 +61,16 @@ function obtenerDatosEquipo()
                      correoInstitucional:correo,
                      bajaLogica:1
                     });
+
+
+ if(bandera){
+    limpiarComponentesParticipate();
+     banderaTablaParticipate = true;
+
+    if(banderaTablaParticipate){
+      console.log("Si entra a quitar atributo");
+      quitarAtributoParticipantes();
+    }
      enviarParticipante();
  }
 
