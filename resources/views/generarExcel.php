@@ -106,7 +106,7 @@ Aqui va el query que va a llenar el excel con
 los proyectos existentes, este query aun se 
 encuentra I-N-C-O-M-P-L-E-T-O, va a ser necesario 
 terminar de hacerlo para que se muestre toda
-la información completa en el Excel
+la información completa en el Excel...
 /////////////////////////////////////////////
 */
             $products=DB::table('proyecto')
@@ -159,19 +159,19 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Numero de control');
+	    $cell->setValue('Proyecto');
 
 	});	
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Email');
+	    $cell->setValue('Titulo Comercia Proyecto');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre');
+	    $cell->setValue('Integrantes: Nombre');
 
 	});	
         $sheet->cell('D1', function($cell) {
@@ -189,57 +189,92 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Celular');
+	    $cell->setValue('Correo electronico');
 
 	});	
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Fecha Nacimiento');
-
-	});
-    $sheet->cell('H1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Curp');
+	    $cell->setValue('Celular');
 
 	});	
-        $sheet->cell('I1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Genero');
-	});	
-        $sheet->cell('J1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Telefono fijo');
-	});
-        
             $products=DB::table('equipoemprendedor')
-            ->join("participante","equipoemprendedor.fk_participante","=","participante.idParticipante")
             
-            ->select("*")
+            ->join("participante","equipoemprendedor.fk_participante","=","participante.idParticipante")
+            ->join("proyecto","equipoemprendedor.numeroEquipo","=","proyecto.fk_numeroEquipoEmprendedor")
+            ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
+            
+            ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
 
-                 	$product->numeroControl,
-                 	$product->correoElectronico,
+                 	$product->tituloProyecto,
+                 	$product->tituloComercial,
                  	$product->nombre,
                  	$product->apellidoPaterno,
                  	$product->apellidoMaterno,
+                 	$product->correoElectronico,
                  	$product->numeroMovil,
-                 	$product->fechaNacimiento,
-                 	$product->curp,
-                 	$product->genero,
-                 	$product->telefonoFijo,
                  	
-                );
+                 	);
             }
 
-             $sheet->fromArray($data, null, 'A2', false, false);	
-		
+             $sheet->fromArray($data, null, 'A2', false, false);
+
     });
+
+
+    $excel->sheet('Riesgos', function($sheet) {
+
+        // Sheet manipulation
+        $sheet->cell('A1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Proyecto');
+
+	});	
+        $sheet->cell('B1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Titulo Comercial');
+
+	});	
+        $sheet->cell('C1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Estrategia de Mitigación');
+
+	});	
+        $sheet->cell('D1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Descripción del Riesgo');
+
+	});	
+            $products=DB::table('riesgo')
+            
+            ->join("tiporiesgo","riesgo.fk_idTipoRiesgo","=","tiporiesgo.idTipoRiesgo")
+            ->join("proyecto","riesgo.fk_idProyecto","=","proyecto.idProyecto")
+            ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
+            
+            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo")
+            ->get();
+                foreach($products as $product) {
+                 $data[] = array(
+
+                 	$product->titulo,
+                 	$product->tituloComercial,
+                 	$product->estrategiaMitigacion,
+                 	$product->descripcionRiesgo,
+                 	
+                 	);
+            }
+
+             $sheet->fromArray($data, null, 'A2', false, false);
+
+    });
+
 
     })->export('xls');
 
