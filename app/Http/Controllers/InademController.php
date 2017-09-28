@@ -134,12 +134,9 @@ participante.fk_idTokenAppIn  = '.$idT);
           //modelo de la tabla Riesgo
 
   if($request->ajax()){
+     $riesgo = new Riesgos;
      $dato = $request->riesgo;
-     $tokenValue = $request->tokenAppInadem;
-
-           $riesgo = new Riesgos;
-           $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
-           $result = json_decode(json_encode($token), true);
+     $tokenValue = $request->tokenInadem;
       foreach($dato as $d){
 
                $riesgo->fk_idTipoRiesgo = $d["fk_idTipoRiesgo"];//$request->input('fk_institucion');
@@ -149,17 +146,20 @@ participante.fk_idTokenAppIn  = '.$idT);
 
 
       }
-       foreach($result as $i){
-         $riesgo->fk_idTokenAppIn = $i['idToken'];
 
-          $idT = $i['idToken'];
+      $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
+
+      $result = json_decode(json_encode($token), true);
+      foreach($result as $i){
+      $riesgo->fk_idTokenAppIn = $i['idToken'];
+      $idTokenResult = $i['idToken'];
       }
 
        $saved = $riesgo->save();
 
     if($saved){
     //consultar los valores insertados
-      $insertados = DB::select('select riesgo.idRiesgo,riesgo.descripcionRiesgo, riesgo.estrategiaMitigacion,tiporiesgo.descripcion from riesgo INNER JOIN tiporiesgo on tiporiesgo.idTipoRiesgo = riesgo.fk_idTipoRiesgo INNER JOIN tokeninadem ON riesgo.fk_idTokenAppIn = tokeninadem.idToken where riesgo.fk_idTokenAppIn ='.$idT);
+      $insertados = DB::select('select riesgo.idRiesgo,riesgo.descripcionRiesgo, riesgo.estrategiaMitigacion,tiporiesgo.descripcion from riesgo INNER JOIN tiporiesgo on tiporiesgo.idTipoRiesgo = riesgo.fk_idTipoRiesgo INNER JOIN tokeninadem ON riesgo.fk_idTokenAppIn = tokeninadem.idToken where riesgo.fk_idTokenAppIn ='.$idTokenResult);
 
          }
     else {
@@ -175,17 +175,25 @@ participante.fk_idTokenAppIn  = '.$idT);
     public function eliminarParticipante(Request $request){
     if($request->ajax()){
     $dato =$request->idParticipante;
+    $tokenValue = $request->tokenInadem;
 
     $saved = DB::select("DELETE FROM participante WHERE idParticipante = ".$dato);
+    $consultarIdEM = DB::select("SELECT equipoemprendedor.idEquipoEmprendedor FROM `equipoemprendedor` WHERE equipoemprendedor.fk_participante = ".$dato);
+         $idEq = json_decode(json_encode($consultarIdEM), true);
+         foreach($idEq as $i){
+          $idEQ = $i['idEquipoEmprendedor'];
+         }
+       //eliminar participante del equipo
+          $actualizarEquipoEmp = DB::select('DELETE FROM equipoemprendedor WHERE equipoemprendedor.idEquipoEmprendedor = '.$idEQ);
 
     if($saved){
         $envio = 1;
-        //eliminar participante del equipo
-         $actualizarRiesgos = DB::select('DELETE FROM equipoemprendedor WHERE fk_idParticipante = '.$dato);
+
     }else{
+
         $envio = 0;
     }
-      $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+      $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
            $resultToken = json_decode(json_encode($token), true);
          foreach($resultToken as $i){
           $tk = $i['idToken'];
@@ -203,6 +211,7 @@ participante.fk_idTokenAppIn  = '.$idT);
     public function eliminarRiesgo(Request $request){
        if($request->ajax()){
     $dato =$request->idRiesgo;
+    $tokenValue  = $request->tokenInadem;
 
     $saved = DB::select("DELETE FROM riesgo WHERE idRiesgo = ".$dato);
 
@@ -211,7 +220,7 @@ participante.fk_idTokenAppIn  = '.$idT);
     }else{
         $envio = 0;
     }
-           $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
+           $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
            $resultToken = json_decode(json_encode($token), true);
          foreach($resultToken as $i){
           $tk = $i['idToken'];

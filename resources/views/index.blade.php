@@ -161,6 +161,57 @@
 </div><!-- /.modal -->
                  
                         
+<div id="ModalEliminadoConf" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro Eliminado</h1>
+            </div>
+            <div class="modal-body">
+               Se ha eliminado con exito el registro seleccionado.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+        <div id="ModalEliminadoCancel" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Registro Eliminado</h1>
+            </div>
+            <div class="modal-body">
+              No se puede eliminar el registro seleccionado, intente nuevamente por favor.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="ModalDeleteConf" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Eliminar registro</h1>
+            </div>
+            <div class="modal-body">
+              ¿Realmente desea eliminar el registro?
+            </div>
+             <div class="modal-footer">
+         <button id="AceptarEliminar" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+         <button id="AceptarEliminar2" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 
         {!! Form::close() !!}

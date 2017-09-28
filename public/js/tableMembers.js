@@ -1,5 +1,3 @@
-var count_tr = 0;
-var count_tr1 = 0;
 var ParArreglo = [];
 var RiesArreglo = [];
 var banderaTablaParticipate = false;
@@ -34,17 +32,11 @@ function obtenerDatosEquipo()
     var comboInstitucion = document.getElementById("instPart");
     var institucion = comboInstitucion.options[comboInstitucion.selectedIndex].text;
 
-    
-    var bandera=validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
-    
-    
-    var tbodyPart = document.getElementById("cuerpoTabla");
-    var trPart = document.createElement('tr');
-    count_tr++;
-
     var nom = getNombreBien(nombreMiembro);
 
-    ParArreglo.push({fk_institucion:parseInt(comboInstitucion.options[comboInstitucion.selectedIndex].value),
+    var insertaParticipantes=validaParticipantes(nombreMiembro, comboGradoEstudio.value, comboAreaConocimiento.value, correo, telefonoMovil, comboInstitucion.value);
+
+   ParArreglo.push({fk_institucion:parseInt(comboInstitucion.options[comboInstitucion.selectedIndex].value),
                      fk_idGradoEstudios:parseInt(comboGradoEstudio.options[comboGradoEstudio.selectedIndex].value),
                      fk_idAreaConocimientos:parseInt(comboAreaConocimiento.options[comboAreaConocimiento.selectedIndex].value),
                      //fk_direccion:NULL,
@@ -62,15 +54,19 @@ function obtenerDatosEquipo()
                      bajaLogica:1
                     });
 
-  limpiarComponentesParticipate();
-  banderaTablaParticipate = true;
-    
-  if(banderaTablaParticipate){
-      console.log("Si entra a quitar atributo");
-        quitarAtributoParticipantes();
-  }
- if(bandera)    
- enviarParticipante();
+
+ if(insertaParticipantes){
+    limpiarComponentesParticipate();
+     banderaTablaParticipate = true;
+
+    if(banderaTablaParticipate){
+      //console.log("Si entra a quitar atributo");
+      quitarAtributoParticipantes();
+    }
+     enviarParticipante();
+ }
+
+
 
 }
 
@@ -117,30 +113,32 @@ function obtenerDatosRiesgos()
     
     var insertarRiesgos =  validaRiesgos(comboTipoRiesgo.value, descripcion, estrategiaMitigacion);
     
-    console.log("obtenerDatosRiesgos "+insertarRiesgos);
+    //console.log("obtenerDatosRiesgos "+insertarRiesgos);
 
     RiesArreglo.push({fk_idTipoRiesgo:parseInt(comboTipoRiesgo.options[comboTipoRiesgo.selectedIndex].value),
                       estrategiaMitigacion:estrategiaMitigacion,
                       descripcionRiesgo:descripcion,
                       bajaLogica:1});
 
+  if(insertarRiesgos){
+      limpiarComponentesRiesgo();
+      banderaTablaRiesgos = true;
 
-  
-  limpiarComponentesRiesgo();
-  banderaTablaRiesgos = true;
-
-  if(banderaTablaRiesgos){
-      console.log("Si entra a quitar atributo");
+    if(banderaTablaRiesgos){
+        //console.log("Si entra a quitar atributo");
         quitarAtributoRiesgos();
+    }
+    enviarRiesgos();
   }
-    if(insertarRiesgos)
-      enviarRiesgos();
 }
 
 
 function eliminarRegistroParticipante(objP)
 {
      if(objP.eliminado = 1){
+
+           $('#ModalEliminadoConf').modal('show');
+
      $('#miembro_'+objP.idParticipante).remove();
 
      if(objP.numeroRows <= 0){
@@ -156,6 +154,7 @@ function eliminarRegistroRiesgo(objR)
 {
      if(objR.eliminado = 1){
      $('#riesgo_'+objR.idRiesgo).remove();
+          $('#ModalEliminadoConf').modal('show');
 
          if(objR.numeroRows <= 0){
           $('#contenedorTablaR').css('display', 'none');
@@ -236,7 +235,7 @@ function enviarParticipante() {
 
       },
 error: function(response){
-    console.log('Error'+JSON.stringify(response));
+     $("#ModalEliminadoCancel").modal("show");
      ParArreglo = [];
     }
     });
@@ -307,13 +306,18 @@ function crearTablaRiesgos(tabla){
     });
 
 }
+
 function eliminarParticipante(idP){
+$("#ModalDeleteConf").modal("show");
  console.log("vamos a eliminar a "+idP);
-    $.ajax({
+$("#AceptarEliminar2").css("visibility","hidden");
+$("#AceptarEliminar").css({"visibility":"visible","position":"absolute"});
+$("#AceptarEliminar").click(function(){
+              $.ajax({
         url:'eliminarParticipante',
         type: 'POST',
         dataType: 'json',
-        data:{idParticipante:parseInt(idP)},
+        data:{idParticipante:parseInt(idP),tokenInadem:localStorage.getItem("tokenAppInadem").toString()},
         success: function(success) {
             console.log("Retorno  "+success);
             eliminarRegistroParticipante(success);
@@ -321,18 +325,25 @@ function eliminarParticipante(idP){
 
       },
 error: function(response){
-    console.log('Error Ajax');
+     $("#ModalEliminadoCancel").modal("show");
     }
     });
+        });
+
+
 }
 
 function eliminarRiesgo(idR){
+    $("#ModalDeleteConf").modal("show");
     console.log("id del riesgo ",idR);
+    $("#AceptarEliminar").css({"visibility":"hidden","position":"relative"});
+$("#AceptarEliminar2").css("visibility","visible");
+$("#AceptarEliminar2").click(function(){
    $.ajax({
         url:'eliminarRiesgo',
         type: 'POST',
         dataType: 'json',
-        data:{idRiesgo:idR},
+        data:{idRiesgo:idR,tokenInadem:localStorage.getItem("tokenAppInadem").toString()},
         success: function(success) {
             console.log("Retorno  "+success);
               eliminarRegistroRiesgo(success);
@@ -343,6 +354,7 @@ error: function(response){
     }
     });
 
+   });
 }
 
 function quitarAtributoParticipantes() { 
