@@ -8,6 +8,6 @@ class Proyecto extends Model
 {
     ////tabla a utilizar
     public $table = 'proyecto';
-
+    public $primaryKey = 'idProyecto';
     public $timestamps = false;
 }

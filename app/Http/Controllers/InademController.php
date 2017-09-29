@@ -445,9 +445,9 @@ class InademController extends Controller
   public function editar($id){
 
   //Se obtiene el proyecto con el id
-  $sql = "select * from tecnologiaproyecto inner join proyecto on tecnologiaproyecto.idTecnologiaProyecto = proyecto.fk_idTecnologiaProyecto and tecnologiaproyecto.idTecnologiaProyecto = ".$id;
+  $sql = "select * from proyecto INNER join tecnologiaproyecto on proyecto.fk_idTecnologiaProyecto  = tecnologiaproyecto.idTecnologiaProyecto where proyecto.idProyecto = ".$id;
   $proyecto = DB::select($sql);
-  if($proyecto != null){
+  if($proyecto){
     $instituciones = Institucion::all();
     $invenciones = TipoInvencion::all();
     $participantes = DB::table('equipoemprendedor')->join('participante', 'equipoemprendedor.fk_participante','=','participante.idParticipante')->select('participante.*')->where('equipoemprendedor.numeroEquipo', '=', $proyecto[0]->fk_numeroEquipoEmprendedor)->get();
@@ -480,7 +480,9 @@ class InademController extends Controller
     return view('editar', ["proyecto"=>$proyecto, "instituciones"=>$instituciones, "invenciones"=>$invenciones, "participantes"=>$participantes, "gradosestudios"=>$gradosEstudios, "areasconocimiento"=>$areasconocimiento, "trls"=>$trls, "sectores"=>$sectores,"propiedadIntelectual"=>$propiedadIntelectual, "objetivosProyecto"=>$objetivosProyecto, "tiposProteccion"=>$tiposProteccion, "analisisentorno"=>$analisisentorno, "colaboracion"=>$colaboracion,"riesgos"=>$riesgos, "tiporiesgos"=>$tiporiesgos]); 
 
   }else{
-   return "El proyecto no existe";
+
+    return redirect()->back()->with('noEdit_code', 5);
+
   }
 
   }
