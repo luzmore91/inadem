@@ -15,15 +15,15 @@
                 <tbody>
 
                     <tr>
-                        <td contenteditable='true'>{{ $proyecto->titulo }}</td>
-                        <td contenteditable='true'>{{ $proyecto->tituloComercial}}</td>
-                        <td contenteditable='true'>{{ $proyecto->problematica}}</td>
-                        <td contenteditable='true'>{{ $proyecto->descripcion}}</td>
+                        <td contenteditable='true'>{{ $proyecto[0]->titulo }}</td>
+                        <td contenteditable='true'>{{ $proyecto[0]->tituloComercial}}</td>
+                        <td contenteditable='true'>{{ $proyecto[0]->problematica}}</td>
+                        <td contenteditable='true'>{{ $proyecto[0]->descripcion}}</td>
                         <td>
                             <select id="intitucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
                             <option>Seleccione una opción</option>
                             @foreach ($instituciones as $institucion)
-                            <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$proyecto->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
+                            <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$proyecto[0]->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
                             @endforeach
                         </select>
                         </td>
@@ -31,7 +31,7 @@
                             <select required id="tipoInvension" class="form-control selectpicker" data-style="btn-green" name="tipoInv">
                                 <option>Seleccione una opción</option>
                                 @foreach ($invenciones as $invencion)
-                                <option value="{{$invencion->idTipoInvencion}}" {{$invencion->idTipoInvencion==$proyecto->fk_idTipoInvencion? 'selected="selected"': '' }}> {{ $invencion->descripcion }}</option>
+                                <option value="{{$invencion->idTipoInvencion}}" {{$invencion->idTipoInvencion==$proyecto[0]->fk_idTipoInvencion? 'selected="selected"': '' }}> {{ $invencion->descripcion }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -105,8 +105,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <select id="tlr" required class="form-control selectpicker" data-style="btn-green" name="tlr">
-                                <option>Seleccione una opción</option>
+                            <select>
                                 @foreach ($trls as $trl)
                                 <option value="{{$trl->idTRL}}"> {{ $trl->descripcion }}</option>
                                 @endforeach
@@ -116,24 +115,26 @@
                             <select id="sector" required class="form-control selectpicker" data-style="btn-green" name="sector">
                                 <option>Seleccione una opción</option>
                                 @foreach ($sectores as $sector)
-                                <option value="{{$sector->idSector}}"> {{ $sector->descripcion }}</option>
+                                <option value="{{$sector->idSector}}" {{$sector->idSector==$proyecto[0]->fk_idSector? 'selected="selected"': '' }}> {{ $sector->descripcion }}</option>
                                 @endforeach
+
+                            
+                            </select>
+
+                            
+                        </td>
+                        <td>
+                            <select>
+                                @foreach ($propiedadIntelectual as $propiedadintelectual)
+                                <option value="{{$propiedadintelectual->idPropiedadIntelectual}}" {{ $propiedadintelectual->idPropiedadIntelectual==$proyecto[0]->fk_idPropiedadIntelectual? 'selected="selected"': '' }}>{{ $propiedadintelectual->descripcion }}</option>
+                                 @endforeach
                             </select>
                         </td>
                         <td>
-                            <select id="propiedadIntelectual" required class="form-control selectpicker" data-style="btn-green" name="propiedadIntelectual">
-                                <option>Seleccione una opción</option>
-                                @foreach ($propiedadIntelectual as $propIntelectual)
-                                <option value="{{$propIntelectual->tipopropiedadintelectual}}"> {{ $propIntelectual->descripcion }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <select id="objetivoProyecto" required class="form-control selectpicker" data-style="btn-green" name="objetivoProyecto">
-                                <option>Seleccione una opción</option>
-                                @foreach ($objetivosProyecto as $objetivoProyecto)
-                                <option value="{{$objetivoProyecto->idObjetivoProyecto}}"> {{ $objetivoProyecto->descripcion }}</option>
-                                @endforeach
+                            <select>
+                                @foreach ($objetivosProyecto as $tipoobjetivoproyecto)
+                                <option value="{{$tipoobjetivoproyecto->idtipoObjetivoProyecto}}" {{ $tipoobjetivoproyecto->idtipoObjetivoProyecto==$proyecto[0]->fk_idObjetivoProyecto? 'selected="selected"': '' }}>{{ $tipoobjetivoproyecto->descripcion }}</option>
+                                 @endforeach
                             </select>
                         </td>
                         <td>
@@ -158,16 +159,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td contenteditable='true'>Elemento1</td>
-                        <td contenteditable='true'>Elemento2</td>
-                        <td contenteditable='true'>Elemento3</td>
+                        <td contenteditable='true'>{{ $analisisentorno[0]->usoAplicacion }}</td>
+                        <td contenteditable='true'>{{ $analisisentorno[0]->viabilidad }}</td>
+                        <td contenteditable='true'>{{ $analisisentorno[0]->beneficios }}</td>
                     </tr>
                 </tbody>
             </table>
 <br>
 <h1>4.- Colaboración con otras IES</h1>
 <textarea style="resize: vertical" class="form-control" rows="6" placeholder="Colaboración con otras IES
-" title="Descripción IES y tipo de colaboración" name="desIES" required=""></textarea>
+" title="Descripción IES y tipo de colaboración" name="desIES" required="">{{ $colaboracion[0]->descripcion}}</textarea>
 <br>
 <h1>5.- Riesgos</h1>
             <table id="datos" class="table table-hover table-condensed" style="width:100%">
@@ -179,17 +180,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td contenteditable='true'>Elemento1</td>
-                        <td contenteditable='true'>Elemento2</td>
-                        <td contenteditable='true'>Elemento3</td>
+                    @foreach($riesgos as $riesgo)
+                        <tr>
+                            <td>
+                            <select>
+                                @foreach ($tiporiesgos as $tiporiesgo)
+                                <option value="{{$tiporiesgo->idTipoRiesgo}}"  {{ $tiporiesgo->idTipoRiesgo==$riesgo->fk_idTipoRiesgo? 'selected="selected"': '' }}> {{ $tiporiesgo->descripcion }}</option>
+                                @endforeach
+                            </select>
+                            </td>
+
+                        <td contenteditable='true'>{{ $riesgo->descripcionRiesgo}}</td>
+                        <td contenteditable='true'>{{ $riesgo->estrategiaMitigacion}}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             <br>
 <h1>6.- Análisis del Entorno</h1>
 <textarea style="resize: vertical" class="form-control" rows="6" placeholder="Análisis del entorno
-" title="Descripción IES y tipo de colaboración" name="desIES" required=""></textarea>
+" title="Descripción IES y tipo de colaboración" name="desIES" required="">
+    {{ $analisisentorno[0]->descripcionAnalisisEntorno}}
+</textarea>
+
 <br>
 <h1>7.- Recursos</h1>
             <table id="datos" class="table table-hover table-condensed" style="width:100%">
@@ -202,9 +215,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td contenteditable='true'>Elemento1</td>
-                        <td contenteditable='true'>Elemento2</td>
-                        <td contenteditable='true'>Elemento3</td>
+                        <td contenteditable='true'>{{ $analisisentorno[0]->recursosHumanos}}</td>
+                        <td contenteditable='true'>{{ $analisisentorno[0]->recursosTecnologicos}}</td>
+                        <td contenteditable='true'>{{ $analisisentorno[0]->recursosFinancieros}}</td>
                     </tr>
                 </tbody>
             </table>
