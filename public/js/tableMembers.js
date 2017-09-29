@@ -248,6 +248,7 @@ function crearTablaParticipante(tabla){
     if(tabla != null){
          $('#contenedorTablaP').css('display', 'block');
     }
+
     var tbodyPart = document.getElementById("cuerpoTabla");
     var trPart = document.createElement('tr');
 
