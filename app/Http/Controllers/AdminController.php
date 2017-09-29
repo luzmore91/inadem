@@ -33,10 +33,11 @@ INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion'); //
 
     }
 
-    public function actualizar(Request $request){
+    public function actualizarProyecto(Request $request){
         //actualizar
+        if($request->ajax()){
 
-        //redirigir a AdminController@Index
+        }
     }
 
     public function eliminar($id){

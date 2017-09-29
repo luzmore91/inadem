@@ -222,7 +222,7 @@
                 </tbody>
             </table>
  <div align="center">
-        <input class="btn btn-primary" type="submit" value="ACTUALIZAR">
+        <input class="btn btn-primary" type="submit" value="ACTUALIZAR" onclick="guardarCambios();">
         <button type="button" class="btn btn-secondary" onclick=" window.history.back();">VOLVER</button>
         <br>
         <br>
