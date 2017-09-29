@@ -11,7 +11,7 @@ class Riesgos extends Model
     public $primaryKey = 'idRiesgo';
     public $timestamps = false;
 
-    public function TipoRiesgo()
+    public function TipoRiesgo() // 
     {
         return $this->belongsTo('App\TipoRiesgo'); // links this->id to events.course_id
     }
