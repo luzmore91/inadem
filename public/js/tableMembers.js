@@ -248,7 +248,7 @@ function crearTablaParticipante(tabla){
     if(tabla != null){
          $('#contenedorTablaP').css('display', 'block');
     }
-     $( "#cuerpoTabla" ).empty();
+
     var tbodyPart = document.getElementById("cuerpoTabla");
     var trPart = document.createElement('tr');
 
@@ -284,7 +284,7 @@ function crearTablaRiesgos(tabla){
      if(tabla != null){
          $('#contenedorTablaR').css('display', 'block');
     }
-   $( "#contenidoTablaRiesgos" ).empty();
+
     var tbody = document.getElementById("contenidoTablaRiesgos");
     var tr = document.createElement('tr');
 
