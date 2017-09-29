@@ -33,7 +33,7 @@ INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion'); //
 
     }
 
-    public function Actualizar(Request $request){
+    public function actualizar(Request $request){
         //actualizar
 
         //redirigir a AdminController@Index

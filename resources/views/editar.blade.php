@@ -23,17 +23,11 @@
 <h1 align="center">Editar Proyecto</h1>
     <!-- Aquí se manda a llamar el el .blade.php en donde se tienen que cargar el query de los proyectos para
     poder actualizarlos en caso de ser necesario. -->
+
         <div class="container">
             @include('modificar')
         </div>
 
-
-    <div align="center">
-        <input class="btn btn-primary" type="submit" value="ACTUALIZAR">
-        <button type="button" class="btn btn-secondary">VOLVER</button>
-        <br>
-        <br>
-    </div>
 
         <div class="container">
             @include('footer')
