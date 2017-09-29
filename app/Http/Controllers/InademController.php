@@ -26,6 +26,7 @@ use App\TipoSector;
 use App\TipoPropiedadIntelectual;
 use App\TipoObjetivoProyecto;
 use App\TipoProteccion;
+use App\TipoRiesgo;
 use Log;
 
 
@@ -441,8 +442,9 @@ class InademController extends Controller
    }
  }
  
- public function editar($id){
-    //Se obtiene el proyecto con el id
+  public function editar($id){
+
+  //Se obtiene el proyecto con el id
   $sql = "select * from tecnologiaproyecto inner join proyecto on tecnologiaproyecto.idTecnologiaProyecto = proyecto.fk_idTecnologiaProyecto and tecnologiaproyecto.idTecnologiaProyecto = ".$id;
   $proyecto = DB::select($sql);
   if($proyecto != null){
@@ -453,14 +455,34 @@ class InademController extends Controller
     $areasconocimiento = AreaConocimiento::all();
     $trls = Trl::all();
     $sectores = TipoSector::all();
+    //$sector = TipoSector::find($proyecto[0]->fk_idSector);
+
     $propiedadIntelectual = TipoPropiedadIntelectual::all();
+    //$propiedadintelectual = TipoPropiedadIntelectual::find($proyecto[0]->fk_idPropiedadIntelectual);
+
     $objetivosProyecto = TipoObjetivoProyecto::all();
     $tiposProteccion = TipoProteccion::all();
+    //$TipoSector = DB::table('')
     
-    return view('editar', ["proyecto"=>$proyecto, "instituciones"=>$instituciones, "invenciones"=>$invenciones, "participantes"=>$participantes, "gradosestudios"=>$gradosEstudios, "areasconocimiento"=>$areasconocimiento, "trls"=>$trls, "sectores"=>$sectores, "propiedadIntelectual"=>$propiedadIntelectual, "objetivosProyecto"=>$objetivosProyecto, "tiposProteccion"=>$tiposProteccion]); 
+    $analisisentorno = DB::table('proyecto')->join('analisisentorno', 'proyecto.fk_idAnalisisEntorno', '=', 'analisisentorno.idAnalisisEntorno')->select('analisisentorno.*')->where('proyecto.fk_idAnalisisEntorno', '=', $proyecto[0]->fk_idAnalisisEntorno)->get();
+
+    $colaboracion = DB::table('proyecto')->join('colaboracion', 'proyecto.fk_idColaboracion', '=', 'colaboracion.idColaboracion')->select('colaboracion.*')->where('proyecto.fk_idColaboracion', '=', $proyecto[0]->fk_idColaboracion)->get();
+
+    //return json_encode($proyecto);
+
+    $riesgos = DB::table('riesgo')
+    ->join('proyecto', 'riesgo.fk_idProyecto', '=', 'proyecto.idProyecto')
+    ->join('tiporiesgo','riesgo.fk_idTipoRiesgo', '=', 'tiporiesgo.idTipoRiesgo')
+    ->select('riesgo.*', 'tiporiesgo.*')->where('riesgo.fk_idProyecto', '=', $proyecto[0]->idProyecto)->get();
+
+    $tiporiesgos = TipoRiesgo::all();
+
+    return view('editar', ["proyecto"=>$proyecto, "instituciones"=>$instituciones, "invenciones"=>$invenciones, "participantes"=>$participantes, "gradosestudios"=>$gradosEstudios, "areasconocimiento"=>$areasconocimiento, "trls"=>$trls, "sectores"=>$sectores,"propiedadIntelectual"=>$propiedadIntelectual, "objetivosProyecto"=>$objetivosProyecto, "tiposProteccion"=>$tiposProteccion, "analisisentorno"=>$analisisentorno, "colaboracion"=>$colaboracion,"riesgos"=>$riesgos, "tiporiesgos"=>$tiporiesgos]); 
 
   }else{
    return "El proyecto no existe";
- }
-}
+  }
+
+  }
+
 }
