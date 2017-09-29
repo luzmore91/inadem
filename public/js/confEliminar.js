@@ -18,7 +18,7 @@
 function guardarCambios(){
 
      //obtener los valores de cada elemento HTML , como input , select y textarea
-
+ var proyecto = [];
 
     //enviar a un metodo del controlador para almacenar en la BD
 
