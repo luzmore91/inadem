@@ -136,7 +136,7 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
             ->join("objetivoproyecto","proyecto.fk_idObjetivoProyecto","=","objetivoproyecto.idObjetivoProyecto")
             ->join("tipoobjetivoproyecto","objetivoproyecto.fk_idTipoObjetivoProyecto","=","tipoobjetivoproyecto.idtipoObjetivoProyecto")
             ->join("analisisentorno","proyecto.fk_idAnalisisEntorno","=","analisisentorno.idAnalisisEntorno")
-            
+            ->orderBy('proyecto.idProyecto', 'desc')
             ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","trl.descripcion as madurezProyecto","tiposector.descripcion AS tipoSector","tipopropiedadintelectual.descripcion AS propiedadIntelectual","tipoobjetivoproyecto.descripcion AS objetivoProyecto","analisisentorno.descripcionAnalisisEntorno AS analisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","analisisentorno.usoAplicacion","analisisentorno.viabilidad","analisisentorno.beneficios","proyecto.idProyecto")
             ->get();
                 foreach($products as $product) {
@@ -253,6 +253,7 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
             ->join("tipogradoestudios","participante.fk_idGradoEstudios","=","tipogradoestudios.idGradoEstudios")
             ->join("areaconocimiento","participante.fk_idAreaConocimientos","=","areaconocimiento.idAreaConocimiento")
+            ->orderBy('idProyecto', 'desc')
             ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil","proyecto.fk_idTecnologiaProyecto AS idTP","tipogradoestudios.nivel","areaconocimiento.descripcion","idProyecto")
             ->get();
                 foreach($products as $product) {
@@ -327,7 +328,7 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
             ->join("tiporiesgo","riesgo.fk_idTipoRiesgo","=","tiporiesgo.idTipoRiesgo")
             ->join("proyecto","riesgo.fk_idProyecto","=","proyecto.idProyecto")
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
-            
+            ->orderBy('proyecto.idProyecto', 'desc')
             ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo","fk_idProyecto")
             ->get();
                 foreach($products as $product) {
