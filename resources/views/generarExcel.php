@@ -99,6 +99,14 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
 	    $cell->setValue('Beneficios');
 	});
 
+    $sheet->cell('Q1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('ID Proyecto');
+	});
+
+
+
 
 /*
 /////////////////////////////////////////////
@@ -121,7 +129,7 @@ la información completa en el Excel...
             ->join("tipoobjetivoproyecto","objetivoproyecto.fk_idTipoObjetivoProyecto","=","tipoobjetivoproyecto.idtipoObjetivoProyecto")
             ->join("analisisentorno","proyecto.fk_idAnalisisEntorno","=","analisisentorno.idAnalisisEntorno")
             
-            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","trl.descripcion as madurezProyecto","tiposector.descripcion AS tipoSector","tipopropiedadintelectual.descripcion AS propiedadIntelectual","tipoobjetivoproyecto.descripcion AS objetivoProyecto","analisisentorno.descripcionAnalisisEntorno AS analisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","analisisentorno.usoAplicacion","analisisentorno.viabilidad","analisisentorno.beneficios")
+            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","trl.descripcion as madurezProyecto","tiposector.descripcion AS tipoSector","tipopropiedadintelectual.descripcion AS propiedadIntelectual","tipoobjetivoproyecto.descripcion AS objetivoProyecto","analisisentorno.descripcionAnalisisEntorno AS analisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","analisisentorno.usoAplicacion","analisisentorno.viabilidad","analisisentorno.beneficios","proyecto.idProyecto")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
@@ -142,6 +150,7 @@ la información completa en el Excel...
                  	$product->usoAplicacion,
                  	$product->viabilidad,
                  	$product->beneficios,
+                 	$product->idProyecto,
                 );
             }
 
@@ -159,43 +168,61 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Proyecto');
+	    $cell->setValue('idTP');
 
 	});	
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Titulo Comercia Proyecto');
+	    $cell->setValue('tituloProyecto');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Integrantes: Nombre');
+	    $cell->setValue('tituloComercial');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Apellido paterno');
+	    $cell->setValue('nombre');
 
 	});
     $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Apellido materno');
+	    $cell->setValue('apellidoPaterno');
 
 	});	
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Correo electronico');
+	    $cell->setValue('apellidoMaterno');
 
 	});	
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
+	    $cell->setValue('correoElectronico');
+
+	});	
+     	$sheet->cell('H1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
 	    $cell->setValue('Celular');
+
+	});	
+        $sheet->cell('I1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Nivel');
+
+	});	
+        $sheet->cell('J1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Descripción');
 
 	});	
             $products=DB::table('equipoemprendedor')
@@ -203,12 +230,14 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
             ->join("participante","equipoemprendedor.fk_participante","=","participante.idParticipante")
             ->join("proyecto","equipoemprendedor.numeroEquipo","=","proyecto.fk_numeroEquipoEmprendedor")
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
-            
-            ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil")
+            ->join("tipogradoestudios","participante.fk_idGradoEstudios","=","tipogradoestudios.idGradoEstudios")
+            ->join("areaconocimiento","participante.fk_idAreaConocimientos","=","areaconocimiento.idAreaConocimiento")
+            ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil","proyecto.fk_idTecnologiaProyecto AS idTP","tipogradoestudios.nivel","areaconocimiento.descripcion")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
 
+                 	$product->idTP,
                  	$product->tituloProyecto,
                  	$product->tituloComercial,
                  	$product->nombre,
@@ -216,6 +245,8 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
                  	$product->apellidoMaterno,
                  	$product->correoElectronico,
                  	$product->numeroMovil,
+                 	$product->nivel,
+                 	$product->descripcion,
                  	
                  	);
             }
@@ -252,13 +283,19 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
 	    $cell->setValue('Descripción del Riesgo');
 
 	});	
+        $sheet->cell('E1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('ID Proyecto');
+
+	});	
             $products=DB::table('riesgo')
             
             ->join("tiporiesgo","riesgo.fk_idTipoRiesgo","=","tiporiesgo.idTipoRiesgo")
             ->join("proyecto","riesgo.fk_idProyecto","=","proyecto.idProyecto")
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
             
-            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo")
+            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo","fk_idProyecto")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
@@ -267,6 +304,7 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
                  	$product->tituloComercial,
                  	$product->estrategiaMitigacion,
                  	$product->descripcionRiesgo,
+                 	$product->fk_idProyecto,
                  	
                  	);
             }
