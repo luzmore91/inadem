@@ -1,5 +1,6 @@
 <?php
 
+//Se generan las variables necesarias para poder nombrar el archivo excel con la fecha actual y ademas asignarle un ID
 $dia = date("d");
 $mes = date("m");
 $identificador = rand(1, 999);
@@ -107,15 +108,21 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
 
 
 
-
 /*
-/////////////////////////////////////////////
-Aqui va el query que va a llenar el excel con
-los proyectos existentes, este query aun se 
-encuentra I-N-C-O-M-P-L-E-T-O, va a ser necesario 
-terminar de hacerlo para que se muestre toda
-la información completa en el Excel...
-/////////////////////////////////////////////
+Consulta en formato SQL. La consulta debe ser implementada en sintaxis de php:
+
+SELECT tecnologiaproyecto.titulo, tecnologiaproyecto.tituloComercial, tecnologiaproyecto.problematica, tecnologiaproyecto.descripcion, institucion.nombreInstitucion, trl.descripcion as madurezProyecto, tiposector.descripcion AS tipoSector,tipopropiedadintelectual.descripcion AS propiedadIntelectual, tipoobjetivoproyecto.descripcion AS objetivoProyecto, analisisentorno.descripcionAnalisisEntorno AS analisisEntorno, analisisentorno.recursosHumanos, analisisentorno.recursosTecnologicos, analisisentorno.recursosFinancieros, analisisentorno.usoAplicacion, analisisentorno.viabilidad, analisisentorno.beneficios
+FROM proyecto
+INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiaproyecto.idTecnologiaProyecto
+INNER JOIN institucion ON tecnologiaproyecto.fk_idInstitucion = institucion.idInstitucion
+INNER JOIN trl ON proyecto.fk_idTRL = trl.idTRL
+INNER JOIN tiposector ON tecnologiaproyecto.fk_idSector = tiposector.idSector
+INNER JOIN propiedadintelectual ON proyecto.fk_idPropiedadIntelectual = propiedadintelectual.idPropiedadIntelectual
+INNER JOIN tipopropiedadintelectual ON propiedadintelectual.fk_idTipoRegistro = tipopropiedadintelectual.idTipoPropiedadIntelectual
+INNER JOIN objetivoproyecto ON proyecto.fk_idObjetivoProyecto = objetivoproyecto.idObjetivoProyecto
+INNER JOIN tipoobjetivoproyecto ON objetivoproyecto.fk_idTipoObjetivoProyecto = tipoobjetivoproyecto.idtipoObjetivoProyecto
+INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.idAnalisisEntorno
+
 */
             $products=DB::table('proyecto')
             
@@ -225,6 +232,19 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
 	    $cell->setValue('Descripción');
 
 	});	
+
+/*
+Consulta en formato SQL. La consulta debe ser implementada en sintaxis de php:
+
+SELECT tecnologiaproyecto.titulo AS tituloProyecto, tecnologiaproyecto.tituloComercial, participante.nombre, participante.apellidoPaterno, participante.apellidoMaterno, participante.correoElectronico, participante.numeroMovil, proyecto.fk_idTecnologiaProyecto AS idTP, tipogradoestudios.nivel, areaconocimiento.descripcion
+FROM equipoemprendedor
+INNER JOIN participante ON equipoemprendedor.fk_participante = participante.idParticipante
+INNER JOIN proyecto ON equipoemprendedor.numeroEquipo = proyecto.fk_numeroEquipoEmprendedor
+INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = proyecto.fk_idTecnologiaProyecto  
+INNER JOIN tipogradoestudios ON participante.fk_idGradoEstudios = tipogradoestudios.idGradoEstudios
+INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocimiento.idAreaConocimiento
+
+*/
             $products=DB::table('equipoemprendedor')
             
             ->join("participante","equipoemprendedor.fk_participante","=","participante.idParticipante")
@@ -288,7 +308,18 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('ID Proyecto');
 
-	});	
+	});
+
+/*
+Consulta en formato SQL. La consulta debe ser implementada en sintaxis de php:
+
+SELECT * FROM
+riesgo
+INNER JOIN tiporiesgo ON riesgo.fk_idTipoRiesgo = tiporiesgo.idTipoRiesgo
+INNER JOIN proyecto ON riesgo.fk_idProyecto = proyecto.idProyecto
+INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiaproyecto.idTecnologiaProyecto
+
+*/	
             $products=DB::table('riesgo')
             
             ->join("tiporiesgo","riesgo.fk_idTipoRiesgo","=","tiporiesgo.idTipoRiesgo")
