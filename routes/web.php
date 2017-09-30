@@ -50,6 +50,10 @@ Route::post('eliminarParticipante','InademController@eliminarParticipante');
 Route::post('insertarRiesgo','InademController@insertarRiesgo');
 Route::post('eliminarRiesgo','InademController@eliminarRiesgo');
 
+//actualizar cambios del proyecto
+Route::post('actualizarProyecto','AdminController@actualizarProyecto');
+
+
 #DataTables - Admin
 Route::get('datatable', ['uses'=>'PostController@datatable']);
 Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);

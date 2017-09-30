@@ -14,26 +14,58 @@
         <link href="{{ asset('/css/format.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/ie.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" type="text/css">
+
+        <script type="text/javascript" src="{{asset('/js/jquery.min.js')}}"></script>
+         <script type="text/javascript" src="{{asset('/js/bootstrap.js')}}"></script>
+    <!-- Confirmacion de eliminacion de registros -->
+        <script type="text/javascript" src="{{ URL::asset('js/confEliminar.js') }}"></script>
 </head>
         <div class="container">
             @include('header')
         </div>
 
+     <div id="ModalProyActualizado" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Proyecto actualizado</h1>
+            </div>
+            <div class="modal-body">
+               Proyecto actualizado exitosamente.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+     <div id="ModalProyNoActualizado" class="modal fade">
+    <div class="modal-dialog" role="alertdialog" style="left:0%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Proyecto actualizado</h1>
+            </div>
+            <div class="modal-body">
+               Intenta nuevamente, no se ha podido actualizar el proyecto.
+            </div>
+             <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <body>
 <h1 align="center">Editar Proyecto</h1>
     <!-- Aquí se manda a llamar el el .blade.php en donde se tienen que cargar el query de los proyectos para
     poder actualizarlos en caso de ser necesario. -->
+
         <div class="container">
             @include('modificar')
         </div>
 
-
-    <div align="center">
-        <input class="btn btn-primary" type="submit" value="ACTUALIZAR">
-        <button type="button" class="btn btn-secondary">VOLVER</button>
-        <br>
-        <br>
-    </div>
 
         <div class="container">
             @include('footer')

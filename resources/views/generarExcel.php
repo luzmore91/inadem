@@ -9,102 +9,103 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
 
         $excel->sheet('Proyectos INADEM 2017', function($sheet) {
 
-        $sheet->cell('A1', function($cell) {
+    $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Titulo');
-
-	});	
+	    $cell->setValue('Clave de Proyecto');
+	});
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Titulo Comercial');
+	    $cell->setValue('Nombre del Proyecto');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Problematica');
+	    $cell->setValue('Nombre Público');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Descripcion');
-
-	});
-    $sheet->cell('E1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Institucion');
+	    $cell->setValue('Problema');
 
 	});	
-        $sheet->cell('F1', function($cell) {
+        $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Madurez Proyecto');
+	    $cell->setValue('Detalles');
+
+	});
+    $sheet->cell('F1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Escuela de procedencia');
 
 	});	
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
+	    $cell->setValue('Nivel TRL');
+
+	});	
+        $sheet->cell('H1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
 	    $cell->setValue('Sector');
 
 	});
-    $sheet->cell('H1', function($cell) {
+    $sheet->cell('I1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Propiedad Intelectual');
 
 	});	
-        $sheet->cell('I1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Objetivo Proyecto');
-	});	
         $sheet->cell('J1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Analisis Entorno');
-	});
+	    $cell->setValue('Objetivo');
+	});	
         $sheet->cell('K1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Recursos Humanos');
+	    $cell->setValue('Entorno Actualmente');
 	});
         $sheet->cell('L1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Recursos Tecnologicos');
+	    $cell->setValue('Recursos Humanos');
 	});
         $sheet->cell('M1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('Recursos Tecnologicos');
+	});
+        $sheet->cell('N1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('Recursos Financieros');
 
 	});
-        $sheet->cell('N1', function($cell) {
-	    // manipulate the cell
-	    $cell->setFontWeight('bold');
-	    $cell->setValue('Usos/Aplicacion');
-	});
         $sheet->cell('O1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Viabilidad');
-
+	    $cell->setValue('Aplicaciones y/o Usos');
 	});
         $sheet->cell('P1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Beneficios');
-	});
+	    $cell->setValue('Viabilidad del Proyecto');
 
-    $sheet->cell('Q1', function($cell) {
+	});
+        $sheet->cell('Q1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('ID Proyecto');
+	    $cell->setValue('Ventajas de realizacion');
 	});
+
+
 
 
 
@@ -135,12 +136,13 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
             ->join("objetivoproyecto","proyecto.fk_idObjetivoProyecto","=","objetivoproyecto.idObjetivoProyecto")
             ->join("tipoobjetivoproyecto","objetivoproyecto.fk_idTipoObjetivoProyecto","=","tipoobjetivoproyecto.idtipoObjetivoProyecto")
             ->join("analisisentorno","proyecto.fk_idAnalisisEntorno","=","analisisentorno.idAnalisisEntorno")
-            
+            ->orderBy('proyecto.idProyecto', 'desc')
             ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","trl.descripcion as madurezProyecto","tiposector.descripcion AS tipoSector","tipopropiedadintelectual.descripcion AS propiedadIntelectual","tipoobjetivoproyecto.descripcion AS objetivoProyecto","analisisentorno.descripcionAnalisisEntorno AS analisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","analisisentorno.usoAplicacion","analisisentorno.viabilidad","analisisentorno.beneficios","proyecto.idProyecto")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
 
+                 	$product->idProyecto,
                  	$product->titulo,
                  	$product->tituloComercial,
                  	$product->problematica,
@@ -157,7 +159,6 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
                  	$product->usoAplicacion,
                  	$product->viabilidad,
                  	$product->beneficios,
-                 	$product->idProyecto,
                 );
             }
 
@@ -175,43 +176,43 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('idTP');
+	    $cell->setValue('Clave de Proyecto');
 
 	});	
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('tituloProyecto');
+	    $cell->setValue('Nombre del Proyecto');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('tituloComercial');
+	    $cell->setValue('Nombre Público');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('nombre');
+	    $cell->setValue('Integrantes: Nombre');
 
 	});
     $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('apellidoPaterno');
+	    $cell->setValue('Apellidos: Parterno');
 
 	});	
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('apellidoMaterno');
+	    $cell->setValue('Materno');
 
 	});	
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('correoElectronico');
+	    $cell->setValue('EMAIL');
 
 	});	
      	$sheet->cell('H1', function($cell) {
@@ -229,7 +230,7 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
         $sheet->cell('J1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Descripción');
+	    $cell->setValue('Area de Conocimiento');
 
 	});	
 
@@ -252,12 +253,13 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
             ->join("tipogradoestudios","participante.fk_idGradoEstudios","=","tipogradoestudios.idGradoEstudios")
             ->join("areaconocimiento","participante.fk_idAreaConocimientos","=","areaconocimiento.idAreaConocimiento")
-            ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil","proyecto.fk_idTecnologiaProyecto AS idTP","tipogradoestudios.nivel","areaconocimiento.descripcion")
+            ->orderBy('idProyecto', 'desc')
+            ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil","proyecto.fk_idTecnologiaProyecto AS idTP","tipogradoestudios.nivel","areaconocimiento.descripcion","idProyecto")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
 
-                 	$product->idTP,
+                 	$product->idProyecto,
                  	$product->tituloProyecto,
                  	$product->tituloComercial,
                  	$product->nombre,
@@ -277,38 +279,39 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
 
 
     $excel->sheet('Riesgos', function($sheet) {
-
-        // Sheet manipulation
+       
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Proyecto');
+	    $cell->setValue('Clave de Proyecto');
 
-	});	
+	});
+        // Sheet manipulation
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Titulo Comercial');
+	    $cell->setValue('Nombre del Proyecto');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Estrategia de Mitigación');
+	    $cell->setValue('Nombre Público');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Descripción del Riesgo');
+	    $cell->setValue('Estrategia de Mitigación');
 
 	});	
         $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('ID Proyecto');
+	    $cell->setValue('Descripción del Riesgo');
 
-	});
+	});	
+
 
 /*
 Consulta en formato SQL. La consulta debe ser implementada en sintaxis de php:
@@ -325,17 +328,17 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
             ->join("tiporiesgo","riesgo.fk_idTipoRiesgo","=","tiporiesgo.idTipoRiesgo")
             ->join("proyecto","riesgo.fk_idProyecto","=","proyecto.idProyecto")
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
-            
+            ->orderBy('proyecto.idProyecto', 'desc')
             ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo","fk_idProyecto")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
 
+                 	$product->fk_idProyecto,
                  	$product->titulo,
                  	$product->tituloComercial,
                  	$product->estrategiaMitigacion,
                  	$product->descripcionRiesgo,
-                 	$product->fk_idProyecto,
                  	
                  	);
             }
