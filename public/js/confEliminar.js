@@ -18,9 +18,18 @@
 function guardarCambios(){
 
      //obtener los valores de cada elemento HTML , como input , select y textarea
- var proyecto = [];
+     var proyecto = [];
+
+     //obtener los valores de tecnologia proyecto
+     proyecto.titulo = $("#tituloProy").val();
+     proyecto.tituloComercial = $("#tituloComercial").val();
+     proyecto.problematica = $("#problematica").val();
+     proyecto.descripcion = $("#descripcion").val();
+     proyecto.idInstitucion = parseInt($("#institucion").val());
+     proyecto.idTipoInvencion = parseInt($("#tipoInvencion").val());
 
     //enviar a un metodo del controlador para almacenar en la BD
+     console.log("valor del arreglo a enviar ::::::::: ",proyecto);
 
      $.ajax({
         url:'actualizarProyecto',

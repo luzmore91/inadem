@@ -51,7 +51,7 @@ Route::post('insertarRiesgo','InademController@insertarRiesgo');
 Route::post('eliminarRiesgo','InademController@eliminarRiesgo');
 
 //actualizar cambios del proyecto
-Route::post('actualizarProyecto','adminController@actualizarProyecto');
+Route::post('actualizarProyecto','AdminController@actualizarProyecto');
 
 
 #DataTables - Admin

@@ -15,6 +15,8 @@
         <link href="{{ asset('/css/ie.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" type="text/css">
 
+        <script type="text/javascript" src="{{asset('/js/jquery.min.js')}}"></script>
+         <script type="text/javascript" src="{{asset('/js/bootstrap.js')}}"></script>
     <!-- Confirmacion de eliminacion de registros -->
         <script type="text/javascript" src="{{ URL::asset('js/confEliminar.js') }}"></script>
 </head>
