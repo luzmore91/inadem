@@ -12,97 +12,97 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
     $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Clave de Proyecto');
+	    $cell->setValue('CLAVE DE PROYECTO');
 	});
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre del Proyecto');
+	    $cell->setValue('NOMBRE DEL PROYECTO');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre Público');
+	    $cell->setValue('NOMBRE PÚBLICO');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Problema');
+	    $cell->setValue('PROBLEMA');
 
 	});	
         $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Detalles');
+	    $cell->setValue('DETALLES');
 
 	});
     $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Escuela de procedencia');
+	    $cell->setValue('ESCUELA DE PROCEDENCIA');
 
 	});	
         $sheet->cell('G1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nivel TRL');
+	    $cell->setValue('NIVEL TRL');
 
 	});	
         $sheet->cell('H1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Sector');
+	    $cell->setValue('SECTOR');
 
 	});
     $sheet->cell('I1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Propiedad Intelectual');
+	    $cell->setValue('PROPIEDAD INTELECTUAL');
 
 	});	
         $sheet->cell('J1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Objetivo');
+	    $cell->setValue('OBJETIVO');
 	});	
         $sheet->cell('K1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Entorno Actualmente');
+	    $cell->setValue('ENTORNO ACTUALMENTE');
 	});
         $sheet->cell('L1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Recursos Humanos');
+	    $cell->setValue('RECURSOS HUMANOS');
 	});
         $sheet->cell('M1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Recursos Tecnologicos');
+	    $cell->setValue('RECURSOS TECNOLÓGICOS');
 	});
         $sheet->cell('N1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Recursos Financieros');
+	    $cell->setValue('RECURSOS FINANCIEROS');
 
 	});
         $sheet->cell('O1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Aplicaciones y/o Usos');
+	    $cell->setValue('APLICACIONES Y/O USOS');
 	});
         $sheet->cell('P1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Viabilidad del Proyecto');
+	    $cell->setValue('VIABILIDAD DEL PROYECTO');
 
 	});
         $sheet->cell('Q1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Ventajas de realizacion');
+	    $cell->setValue('VENTAJAS DE REALIZARLO');
 	});
 
 
@@ -176,37 +176,37 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Clave de Proyecto');
+	    $cell->setValue('CLAVE DEL PROYECTO');
 
 	});	
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre del Proyecto');
+	    $cell->setValue('NOMBRE DEL PROYECTO');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre Público');
+	    $cell->setValue('NOMBRE PÚBLICO');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Integrantes: Nombre');
+	    $cell->setValue('NOMBRE');
 
 	});
     $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Apellidos: Parterno');
+	    $cell->setValue('APELLIDO PATERNO');
 
 	});	
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Materno');
+	    $cell->setValue('APELLIDO MATERNO');
 
 	});	
         $sheet->cell('G1', function($cell) {
@@ -218,19 +218,19 @@ $excel->sheet('Equipos Emprendedores', function($sheet) {
      	$sheet->cell('H1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Celular');
+	    $cell->setValue('CELULAR');
 
 	});	
         $sheet->cell('I1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nivel');
+	    $cell->setValue('NIVEL');
 
 	});	
         $sheet->cell('J1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Area de Conocimiento');
+	    $cell->setValue('AREA DE CONOCIMIENTO');
 
 	});	
 
@@ -283,32 +283,32 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
         $sheet->cell('A1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Clave de Proyecto');
+	    $cell->setValue('CLAVE DE PROYECTO');
 
 	});
         // Sheet manipulation
         $sheet->cell('B1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre del Proyecto');
+	    $cell->setValue('NOMBRE DEL PROYECTO');
 
 	});	
         $sheet->cell('C1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Nombre Público');
+	    $cell->setValue('NOMBRE PÚBLICO');
 
 	});	
         $sheet->cell('D1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Estrategia de Mitigación');
+	    $cell->setValue('ESTRATEGIA DE MITIGACIÓN');
 
 	});	
         $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('Descripción del Riesgo');
+	    $cell->setValue('DESCRIPCIÓN DEL RIESGO');
 
 	});	
 
