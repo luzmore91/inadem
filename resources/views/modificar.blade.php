@@ -105,9 +105,9 @@
                 <tbody>
                     <tr>
                         <td>
-                            <select>
+                            <select id="trls" required class="form-control selectpicker" data-style="btn-green" name="trls">
                                 @foreach ($trls as $trl)
-                                <option value="{{$trl->idTRL}}"> {{ $trl->descripcion }}</option>
+                                <option value="{{$trl->idTRL}}" {{ $trl->idTRL==$proyecto[0]->fk_idTRL? 'selected="selected"': '' }}> {{ $trl->descripcion }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -116,16 +116,14 @@
                                 <option>Seleccione una opción</option>
                                 @foreach ($sectores as $sector)
                                 <option value="{{$sector->idSector}}" {{$sector->idSector==$proyecto[0]->fk_idSector? 'selected="selected"': '' }}> {{ $sector->descripcion }}</option>
-                                @endforeach
-
-                            
+                                @endforeach                         
                             </select>
 
                             
                         </td>
                         <td>
                             <select>
-                                @foreach ($propiedadIntelectual as $propiedadintelectual)
+                            @foreach ($propiedadIntelectual as $propiedadintelectual)
                                 <option value="{{$propiedadintelectual->idPropiedadIntelectual}}" {{ $propiedadintelectual->idPropiedadIntelectual==$proyecto[0]->fk_idPropiedadIntelectual? 'selected="selected"': '' }}>{{ $propiedadintelectual->descripcion }}</option>
                                  @endforeach
                             </select>
@@ -140,8 +138,8 @@
                         <td>
                             <select id="tipoProteccion" required class="form-control selectpicker" data-style="btn-green" name="tipoProteccion">
                                 <option>Seleccione una opción</option>
-                                @foreach ($tiposProteccion as $tipoProteccion)
-                                <option value="{{$tipoProteccion->idTipoProteccion}}"> {{ $tipoProteccion->descripcion }}</option>
+                                @foreach ($tiposProteccion as $tipoproteccion)
+                                <option value="{{$tipoproteccion->idTipoProteccion}}" {{ $tipoproteccion->idTipoProteccion==$propiedadintelectual->fk_idTipoProteccion? 'selected="selected"': '' }}>{{ $tipoproteccion->descripcion }}</option>
                                 @endforeach
                             </select>
                         </td>

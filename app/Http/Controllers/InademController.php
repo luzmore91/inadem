@@ -453,12 +453,18 @@ class InademController extends Controller
     $participantes = DB::table('equipoemprendedor')->join('participante', 'equipoemprendedor.fk_participante','=','participante.idParticipante')->select('participante.*')->where('equipoemprendedor.numeroEquipo', '=', $proyecto[0]->fk_numeroEquipoEmprendedor)->get();
     $gradosEstudios = TipoGradoEstudios::all();
     $areasconocimiento = AreaConocimiento::all();
+    //$trls = DB::table('proyecto')->join('trl','proyecto.fk_idTRL', '=', 'trl.idTRL')->select('trl.*')->where('proyecto.fk_idTRL', '=', $proyecto[0]->fk_idTRL)->get();
     $trls = Trl::all();
     $sectores = TipoSector::all();
     //$sector = TipoSector::find($proyecto[0]->fk_idSector);
+    //$tipopropiedadintelectual = TipoPropiedadIntelectual::all();
 
     $propiedadIntelectual = TipoPropiedadIntelectual::all();
-    //$propiedadintelectual = TipoPropiedadIntelectual::find($proyecto[0]->fk_idPropiedadIntelectual);
+    //$propiedadintelectual = TipoPropiedadIntelectual::find($proyecto[0]->fk_idPropiedadIntelectual);}
+    //$propiedadIntelectual = DB::table('propiedadintelectual')
+   // ->join('proyecto','propiedadintelectual.fk_idTipoProteccion', '=', 'proyecto.idProyecto')
+    //->join('tipoproteccion','propiedadintelectual.fk_idTipoProteccion', '=', 'tipoproteccion.idTipoProteccion')
+    //->select('propiedadintelectual.*','tipoproteccion.*')->where('proyecto.fk_idPropiedadIntelectual', '=', $proyecto[0]->idProyecto)->get();
 
     $objetivosProyecto = TipoObjetivoProyecto::all();
     $tiposProteccion = TipoProteccion::all();
@@ -475,9 +481,9 @@ class InademController extends Controller
     ->join('tiporiesgo','riesgo.fk_idTipoRiesgo', '=', 'tiporiesgo.idTipoRiesgo')
     ->select('riesgo.*', 'tiporiesgo.*')->where('riesgo.fk_idProyecto', '=', $proyecto[0]->idProyecto)->get();
 
-    $tiporiesgos = TipoRiesgo::all();
+    $tiporiesgos = TipoRiesgo::all(); 
 
-    return view('editar', ["proyecto"=>$proyecto, "instituciones"=>$instituciones, "invenciones"=>$invenciones, "participantes"=>$participantes, "gradosestudios"=>$gradosEstudios, "areasconocimiento"=>$areasconocimiento, "trls"=>$trls, "sectores"=>$sectores,"propiedadIntelectual"=>$propiedadIntelectual, "objetivosProyecto"=>$objetivosProyecto, "tiposProteccion"=>$tiposProteccion, "analisisentorno"=>$analisisentorno, "colaboracion"=>$colaboracion,"riesgos"=>$riesgos, "tiporiesgos"=>$tiporiesgos]); 
+    return view('editar', ["proyecto"=>$proyecto, "instituciones"=>$instituciones, "invenciones"=>$invenciones, "participantes"=>$participantes, "gradosestudios"=>$gradosEstudios, "areasconocimiento"=>$areasconocimiento, "trls"=>$trls, "sectores"=>$sectores,"propiedadIntelectual"=>$propiedadIntelectual, "objetivosProyecto"=>$objetivosProyecto, "tiposProteccion"=>$tiposProteccion, "analisisentorno"=>$analisisentorno, "colaboracion"=>$colaboracion,"riesgos"=>$riesgos, "tiporiesgos"=>$tiporiesgos,]); 
 
   }else{
    return "El proyecto no existe";
