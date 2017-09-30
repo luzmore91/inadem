@@ -15,10 +15,10 @@
                 <tbody>
 
                     <tr>
-                        <td><textarea id="tituloProy">{{ $proyecto[0]->titulo }}</textarea></td>
-                        <td><textarea id="tituloComercial">{{ $proyecto[0]->tituloComercial}}</textarea></td>
-                        <td><textarea id="problematica">{{ $proyecto[0]->problematica}}</textarea></td>
-                        <td><textarea id="descripcion">{{ $proyecto[0]->descripcion}}</textarea></td>
+                        <td><textarea class="form-control" id="tituloProy">{{ $proyecto[0]->titulo }}</textarea></td>
+                        <td><textarea class="form-control" id="tituloComercial">{{ $proyecto[0]->tituloComercial}}</textarea></td>
+                        <td><textarea class="form-control" id="problematica">{{ $proyecto[0]->problematica}}</textarea></td>
+                        <td><textarea class="form-control" id="descripcion">{{ $proyecto[0]->descripcion}}</textarea></td>
                         <td>
                             <select id="institucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
                             <option>Seleccione una opción</option>
@@ -40,7 +40,7 @@
             </table>
             <br>
 <h1>2-. Equipo emprendedor/Inventor</h1>
-            <table id="datos" class="table table-hover table-condensed" style="width:100%">
+            <table id="datosEmprendedor" class="table table-hover table-condensed" style="width:100%">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -70,14 +70,14 @@
                             </select>
                         </td>
                         <td>
-                            <select>
+                            <select id="areaCon" required class="form-control selectpicker" data-style="btn-green" name="area">
                                 @foreach ($areasconocimiento as $areaconocimiento)
                                 <option value="{{$areaconocimiento->idAreaConocimiento}}" {{ $areaconocimiento->idAreaConocimiento==$participante->fk_idAreaConocimientos? 'selected="selected"': '' }}>{{ $areaconocimiento->descripcion }}</option>
                                 @endforeach
                             </select>
                         </td>
-                        <td><input type="text" id="correo" value="{{ $participante->correoElectronico }}" /></td>
-                        <td><input type="text" id="numeroMovil" value="{{ $participante->numeroMovil }}" /></td>
+                        <td><input class="form-control" type="text" id="correo" value="{{ $participante->correoElectronico }}" /></td>
+                        <td><input class="form-control" type="text" id="numeroMovil" value="{{ $participante->numeroMovil }}" /></td>
                         <td>
                             <select id="intitucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
                                 <option>Seleccione una opción</option>
@@ -92,7 +92,7 @@
             </table>
 <br>
 <h1>3.- Descripción del Proyecto</h1>
-            <table id="datos" class="table table-hover table-condensed" style="width:100%">
+            <table id="datosDescripcion" class="table table-hover table-condensed" style="width:100%">
                 <thead>
                     <tr>
                         <th>Estado de Desarollo/Madurez (TLR)</th>
@@ -105,7 +105,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <select>
+                            <select id="trl" required class="form-control selectpicker" data-style="btn-green" name="trl">
                                 @foreach ($trls as $trl)
                                 <option value="{{$trl->idTRL}}"> {{ $trl->descripcion }}</option>
                                 @endforeach
@@ -124,14 +124,14 @@
                             
                         </td>
                         <td>
-                            <select>
+                            <select  id="propiedadInt" required class="form-control selectpicker" data-style="btn-green" name="propInt">
                                 @foreach ($propiedadIntelectual as $propiedadintelectual)
                                 <option value="{{$propiedadintelectual->idPropiedadIntelectual}}" {{ $propiedadintelectual->idPropiedadIntelectual==$proyecto[0]->fk_idPropiedadIntelectual? 'selected="selected"': '' }}>{{ $propiedadintelectual->descripcion }}</option>
                                  @endforeach
                             </select>
                         </td>
                         <td>
-                            <select>
+                            <select id="objProy" required class="form-control selectpicker" data-style="btn-green" name="objPro">
                                 @foreach ($objetivosProyecto as $tipoobjetivoproyecto)
                                 <option value="{{$tipoobjetivoproyecto->idtipoObjetivoProyecto}}" {{ $tipoobjetivoproyecto->idtipoObjetivoProyecto==$proyecto[0]->fk_idObjetivoProyecto? 'selected="selected"': '' }}>{{ $tipoobjetivoproyecto->descripcion }}</option>
                                  @endforeach
@@ -149,7 +149,7 @@
                 </tbody>
             </table>
 
-            <table id="datos" class="table table-hover table-condensed" style="width:100%">
+            <table id="datosAnalisis" class="table table-hover table-condensed" style="width:100%">
                 <thead>
                     <tr>
                         <th>Usos/Aplicaciones</th>
@@ -159,19 +159,19 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><textarea id="usoAplicacion">{{ $analisisentorno[0]->usoAplicacion }}</textarea></td>
-                        <td><textarea id="viabilidad">{{ $analisisentorno[0]->viabilidad }}</textarea></td>
-                        <td><textarea id="beneficios">{{ $analisisentorno[0]->beneficios }}</textarea></td>
+                        <td><textarea class="form-control" id="usoAplicacion">{{ $analisisentorno[0]->usoAplicacion }}</textarea></td>
+                        <td><textarea class="form-control" id="viabilidad">{{ $analisisentorno[0]->viabilidad }}</textarea></td>
+                        <td><textarea class="form-control" id="beneficios">{{ $analisisentorno[0]->beneficios }}</textarea></td>
                     </tr>
                 </tbody>
             </table>
 <br>
 <h1>4.- Colaboración con otras IES</h1>
 <textarea style="resize: vertical" class="form-control" rows="6" placeholder="Colaboración con otras IES
-" title="Descripción IES y tipo de colaboración" name="desIES" required="">{{ $colaboracion[0]->descripcion}}</textarea>
+" title="Descripción IES y tipo de colaboración" name="desIES" id="desIES" required="">{{ $colaboracion[0]->descripcion}}</textarea>
 <br>
 <h1>5.- Riesgos</h1>
-            <table id="datos" class="table table-hover table-condensed" style="width:100%">
+            <table id="datosRiesgos" class="table table-hover table-condensed" style="width:100%">
                 <thead>
                     <tr>
                         <th>Tipo de Riesgo</th>
@@ -183,15 +183,15 @@
                     @foreach($riesgos as $riesgo)
                         <tr>
                             <td>
-                            <select>
+                            <select id="tipoRiesgo" required class="form-control selectpicker" data-style="btn-green" name="tipoRiesgos">
                                 @foreach ($tiporiesgos as $tiporiesgo)
                                 <option value="{{$tiporiesgo->idTipoRiesgo}}"  {{ $tiporiesgo->idTipoRiesgo==$riesgo->fk_idTipoRiesgo? 'selected="selected"': '' }}> {{ $tiporiesgo->descripcion }}</option>
                                 @endforeach
                             </select>
                             </td>
 
-                        <td><textarea id="descripcionRiesgo">{{ $riesgo->descripcionRiesgo}}</textarea></td>
-                        <td><textarea id="estrategiaMitigacion">{{ $riesgo->estrategiaMitigacion}}</textarea></td>
+                        <td><textarea class="form-control" id="descripcionRiesgo">{{ $riesgo->descripcionRiesgo}}</textarea></td>
+                        <td><textarea  class="form-control" id="estrategiaMitigacion">{{ $riesgo->estrategiaMitigacion}}</textarea></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -199,7 +199,7 @@
             <br>
 <h1>6.- Análisis del Entorno</h1>
 <textarea style="resize: vertical" class="form-control" rows="6" placeholder="Análisis del entorno
-" title="Descripción IES y tipo de colaboración" name="desIES" required="">
+" title="Descripción IES y tipo de colaboración" name="desIES" required="" id="analisisEntorno">
     {{ $analisisentorno[0]->descripcionAnalisisEntorno}}
 </textarea>
 
@@ -215,16 +215,15 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><textarea id="recursosHumanos">{{ $analisisentorno[0]->recursosHumanos}}</textarea></td>
-                        <td><textarea id="recursosTecnologicos">{{ $analisisentorno[0]->recursosTecnologicos}}</textarea></td>
-                        <td><textarea id="recursosFinancieros">{{ $analisisentorno[0]->recursosFinancieros}}</textarea></td>
+                        <td><textarea class="form-control" id="recursosHumanos">{{ $analisisentorno[0]->recursosHumanos}}</textarea></td>
+                        <td><textarea class="form-control" id="recursosTecnologicos">{{ $analisisentorno[0]->recursosTecnologicos}}</textarea></td>
+                        <td><textarea class="form-control" id="recursosFinancieros">{{ $analisisentorno[0]->recursosFinancieros}}</textarea></td>
                     </tr>
                 </tbody>
             </table>
  <div align="center">
-        <input class="btn btn-primary" type="submit" value="ACTUALIZAR" onclick="guardarCambios();">
-        <button type="button" class="btn btn-secondary" onclick=" window.history.back();">VOLVER</button>
+        <button type="button" class="btn btn-primary"  onclick="guardarCambios();">Actualizar</button>
+        <button type="button" class="btn btn-secondary" onclick=" window.history.back();">Volver</button>
         <br>
         <br>
     </div>
-
