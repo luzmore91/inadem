@@ -79,10 +79,11 @@
                 <h1 class="modal-title">Registro Eliminado</h1>
             </div>
             <div class="modal-body">
-               Se ha eliminado con exito el registro seleccionado.
+               ¿Esta seguro de eliminar el proyecto?
             </div>
              <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button id="AceptarEliminar" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
