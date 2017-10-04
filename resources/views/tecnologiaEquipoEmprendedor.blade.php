@@ -67,7 +67,7 @@
       <!---mostrar si hay datos en la tabla -->
       <div class="col-xs-12">
 
-          <div class="col-xs-2"><label for="Nombre" >Nombre</label></div>
+          <div class="col-xs-2"><label for="Nombre" >Nombre completo</label></div>
 
           <div class="col-xs-2"><label for="gradoEstudios" >Último grado de estudios</label></div>
 
