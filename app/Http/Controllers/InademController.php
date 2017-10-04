@@ -117,7 +117,7 @@ class InademController extends Controller
                 INNER JOIN areaconocimiento
                 ON areaconocimiento.idAreaConocimiento=participante.fk_idAreaConocimientos
                 WHERE
-                participante.fk_idTokenAppIn  = '.$idT);
+                participante.fk_idTokenAppIn  = '.$idT.' order by participante.idParticipante');
               $insertados = $participanteQuery;
             }else{
              $insertados = 0;
@@ -160,7 +160,7 @@ class InademController extends Controller
 
             if($saved){
     //consultar los valores insertados
-              $insertados = DB::select('select riesgo.idRiesgo,riesgo.descripcionRiesgo, riesgo.estrategiaMitigacion,tiporiesgo.descripcion from riesgo INNER JOIN tiporiesgo on tiporiesgo.idTipoRiesgo = riesgo.fk_idTipoRiesgo INNER JOIN tokeninadem ON riesgo.fk_idTokenAppIn = tokeninadem.idToken where riesgo.fk_idTokenAppIn ='.$idTokenResult);
+              $insertados = DB::select('select riesgo.idRiesgo,riesgo.descripcionRiesgo, riesgo.estrategiaMitigacion,tiporiesgo.descripcion from riesgo INNER JOIN tiporiesgo on tiporiesgo.idTipoRiesgo = riesgo.fk_idTipoRiesgo INNER JOIN tokeninadem ON riesgo.fk_idTokenAppIn = tokeninadem.idToken where riesgo.fk_idTokenAppIn ='.$idTokenResult.' order by riesgo.idRiesgo');
 
             }
             else {
