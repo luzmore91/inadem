@@ -208,7 +208,7 @@ function enviarRiesgos(){
             }
       },
 error: function(response){
-    console.log('Error'+JSON.stringify(response));
+      $("#ModalError").modal("show");
      RiesArreglo = [];
     }
     });
@@ -235,7 +235,7 @@ function enviarParticipante() {
 
       },
 error: function(response){
-     $("#ModalEliminadoCancel").modal("show");
+     $("#ModalError").modal("show");
      ParArreglo = [];
     }
     });
