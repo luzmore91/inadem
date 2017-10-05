@@ -35,10 +35,13 @@ class InademController extends Controller
 {
 
   public function tokenInademApp(Request $request){
+
     if($request->ajax()){
       $dato =$request->llave;
       $llavecita = new TokenIna;
       $llavecita->llave=$dato;
+      $llavecita->nombreEquipo = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+      $llavecita->ipEquipoCliente = $request->ipEquipo;
       $llavecita->save();
 
       return response()->json('almacenado');
