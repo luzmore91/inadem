@@ -63,8 +63,8 @@ class InademController extends Controller
     $equipo = new EquipoEmprendedor;
 
 
-         //consulta a la tabla tecnologiaProyecto, el ultimo ID integrado
-    $idTec = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
+         //consulta a la tabla token, el nombre del equipo y token
+    $idTec = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'" AND nombreEquipo ="'.gethostbyaddr($_SERVER['REMOTE_ADDR']).'"');
     $result = json_decode(json_encode($idTec), true);
 
 
@@ -151,7 +151,7 @@ class InademController extends Controller
 
              }
 
-             $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
+             $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'" AND nombreEquipo ="'.gethostbyaddr($_SERVER['REMOTE_ADDR']).'"');
 
              $result = json_decode(json_encode($token), true);
              foreach($result as $i){
