@@ -4,6 +4,7 @@
 
     <head>
          <title>Convocatoria INADEM</title>
+
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">
@@ -25,7 +26,7 @@
 
         <!-- Confirmacion de eliminacion de registros -->
         <script type="text/javascript" src="{{ URL::asset('js/confEliminar.js') }}"></script>
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
         <div class="container">
             @include('header')
@@ -57,11 +58,9 @@
                             {{ Form::close() }}
                             </td>
                         <td center="center">
-                        <a href="#" onclick="eliminarProyecto()">
-                        {{ Form::open(array('action' => array('AdminController@eliminar', $proyecto->idProyecto))) }}
-                            {{ Form::submit('Eliminar', ['class' => 'btn btn-danger']) }}
-                            {{ Form::close() }}
-                        </a>
+
+                          <button onclick="eliminarProyecto({{$proyecto->idProyecto}})" id="AceptarEliminar" type="button" class="btn btn-danger">Eliminar</button>
+
 
                             </td>
                     </tr>
@@ -73,20 +72,7 @@
 
         <!-- Modal HTML Markup -->
 <div id="ModalEliminadoConf1" class="modal fade">
-    <div class="modal-dialog" role="alertdialog" style="left:0%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Registro Eliminado</h1>
-            </div>
-            <div class="modal-body">
-               ¿Esta seguro de eliminar el proyecto?
-            </div>
-             <div class="modal-footer">
-        <button id="AceptarEliminar" type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-      </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+
 </div><!-- /.modal -->
 
 <div id="ModalDeleteConf1" class="modal fade">
@@ -99,22 +85,22 @@
                Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
             </div>
              <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
       </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div id="ModalDeleteConf1" class="modal fade">
+<div id="ModalDeleteConf2" class="modal fade">
     <div class="modal-dialog" role="alertdialog" style="left:0%">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Eliminar registro</h1>
             </div>
             <div class="modal-body">
-               Por el momento no se ha podido eliminar el registro seleccionado, intente de nuevo por favor.
+              Se ha eliminado con exito el registro seleccionado.
             </div>
              <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:location.reload();">Aceptar</button>
       </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -127,11 +113,8 @@
            $('#ModalEliminadoConf1').modal('show');
 </script>
 @endif
-@if(!empty(Session::get('nodelete_code')) && Session::get('nodelete_code') == 5)
-<script>
-           $('#ModalDeleteConf1').modal('show');
-</script>
-@endif
+
+
 @if(!empty(Session::get('noEdit_code')) && Session::get('noEdit_code') === 7)
 <script>
            $('#ModalEditarConf1').modal('show');

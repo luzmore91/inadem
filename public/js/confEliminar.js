@@ -2,21 +2,36 @@ $(document).ready(function(){
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 });
 
-//Ventana de confirmacion para elimnar un proyecto.
-function eliminarProyecto()
-{
-  /*  var txt;
-    if (confirm("Eliminar proyecto?") == true) {
-        txt = "Precione OK!";
-        alert(txt);
-    } else {
-        //Si el proyecto no se elimina se procede a realizar nada.
-    }
-    document.getElementById("demo").innerHTML = txt;
-    */
 
-  //  $("#ModalDeleteConf").modal('show');
+//Ventana de confirmacion para elimnar un proyecto.
+function eliminarProyecto(valorId)
+{
+    console.log("valor del id ",valorId);
+     $( "#ModalEliminadoConf1" ).empty();
+    $( "#ModalEliminadoConf1" ).append("<div class='modal-dialog' role='alertdialog' style='left:0%'><div class='modal-content'><div class='modal-header'><h1 class='modal-title'>Registro Eliminado</h1></div><div class='modal-body'>¿Esta seguro de eliminar el proyecto?</div><div class='modal-footer'><button type='button' class='btn btn-success' data-dismiss='modal' onclick='eliminarPro("+valorId+")'>Eliminar</button><button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button></div></div></div>");
+
+   $('#ModalEliminadoConf1').modal('show');
+
 }
+function eliminarPro(idProyectR){
+  console.log("entramos a la funcion de eliminar ",idProyectR);
+     $.ajax({
+        url:'eliminar',
+        type: 'POST',
+        dataType: 'json',
+        data:{proyecto:idProyectR},  //envio del objeto que tendra guardado todos los valores del proyecto editado
+        success: function(success) {
+            console.log("Retorno: " + success);
+           $('#ModalDeleteConf2').modal('show');
+        },
+         error: function(response){
+            console.log("Retorno: " + response);
+          $('#ModalDeleteConf1').modal('show');
+        }
+        } );
+
+}
+
 
 function guardarCambios(){
 

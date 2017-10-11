@@ -24,7 +24,7 @@ class AdminController extends Controller
         $proyectos = DB::select('select proy.idProyecto,tp.titulo, inst.nombreInstitucion,ti.descripcion
 from proyecto as proy INNER JOIN tecnologiaproyecto as tp ON proy.fk_idTecnologiaProyecto = tp.idTecnologiaProyecto
  INNER JOIN institucion as inst ON tp.fk_idInstitucion=inst.idInstitucion
-INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion'); //Tecnologia::all();
+INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion where proy.bajaLogica = 1'); //Tecnologia::all();
         return view('datatable', ['proyectos'=>$proyectos]);
     }
 
@@ -114,14 +114,20 @@ INNER JOIN tipoinvencion as ti ON tp.fk_idTipoInvencion=ti.idTipoInvencion'); //
     private function actualizarRiesgo($riesgos,$riesgosParam){
     	
     }
-    public function eliminar($id){
+    public function eliminar(Request $request){
         //eliminar
-        $proyecto = Proyecto::find($id);
-        $deleted = $proyecto->delete();
-        if($deleted){
-            return redirect()->back()->with('delete_code', 5);
-        }else{
-            return redirect()->back()->with('nodelete_code', 5);
+        if($request->ajax()){
+        $proyecto = $request->proyecto;
+        $deleted =  DB::select('UPDATE proyecto SET proyecto.bajaLogica = 0 where proyecto.idProyecto = '.$proyecto);
+        if($deleted == true){
+            $valorRetorno = "success";
+            }
+        else{
+            $valorRetorno = "not success";
+        }
+
+
+             return json_encode("{resultados:".$valorRetorno."}");
         }
 
         //redirigir a AdminController@Index

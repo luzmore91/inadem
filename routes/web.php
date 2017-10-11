@@ -32,7 +32,7 @@ Route::post('/proyecto/actualizarProyecto','AdminController@actualizarProyecto')
 //Route::get('admin', function () {return view('admin');});
 Route::get('admin','AdminController@index');
 Route::get('admin/{id}','AdminController@editar');
-Route::post('admin/{id}','AdminController@eliminar');
+Route::post('eliminar','AdminController@eliminar');
 
 //Enrutamiento de la modificacion de proyectos (lo que sigue de admin)
 Route::get('editar', function(){
