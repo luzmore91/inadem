@@ -26,7 +26,8 @@ Route::get('home', function () {
 Route::get('/','InademController@ver');
 //Enrutamiento de la modificacion de proyectos (lo que sigue de admin)
 Route::get('/proyecto/{id}','InademController@editar');
-
+//actualizar cambios del proyecto
+Route::post('/proyecto/actualizarProyecto','AdminController@actualizarProyecto');
 
 //Route::get('admin', function () {return view('admin');});
 Route::get('admin','AdminController@index');
@@ -49,10 +50,6 @@ Route::post('insertarParticipante','InademController@insertarParticipante');
 Route::post('eliminarParticipante','InademController@eliminarParticipante');
 Route::post('insertarRiesgo','InademController@insertarRiesgo');
 Route::post('eliminarRiesgo','InademController@eliminarRiesgo');
-
-//actualizar cambios del proyecto
-Route::post('actualizarProyecto','AdminController@actualizarProyecto');
-
 
 #DataTables - Admin
 Route::get('datatable', ['uses'=>'PostController@datatable']);
