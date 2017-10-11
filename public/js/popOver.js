@@ -23,7 +23,7 @@
             valor = $(this).val();
               console.log("valor ",valor);
 
-            if(valor !== "-1"){
+           if(valor === "4" || valor === "5"){
 
                 $('#bloquePatente').css('display', 'block');
             }else{
