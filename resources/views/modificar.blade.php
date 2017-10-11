@@ -1,4 +1,4 @@
-<h1>1.- Tecnología/Proyecto</h1>
+<h1>0.- Tecnología/Proyecto</h1>
 <br>
 <h4>*<i>Haga doble click encima de un campo para editarlo.</i></h4>
             <table id="datos" class="table table-hover table-condensed" style="width:100%">
@@ -50,7 +50,7 @@
                 </tbody>
             </table>
          
-<h1>2-. Equipo emprendedor/Inventor</h1>
+<h1>1-. Equipo emprendedor/Inventor</h1>
             <table id="datosEmprendedor" class="table table-hover table-condensed" style="width:100%">
                 <thead>
                     <tr>
@@ -104,7 +104,7 @@
                 </tbody>
             </table>
 <br>
-<h1>3.- Descripción del Proyecto</h1>
+<h1>2.- Descripción del Proyecto</h1>
             <table id="datosDescripcion" class="table table-hover table-condensed" style="width:100%">
                 <thead>
                     <tr>
@@ -184,13 +184,13 @@
                 </tbody>
             </table>
 <br>
-<h1>4.- Colaboración con otras IES</h1>
+<h1>3.- Colaboración con otras IES</h1>
 <div class="form-group col-md-12">
 <textarea style="resize: vertical" class="form-control" rows="6" placeholder="Colaboración con otras IES
 " title="Descripción IES y tipo de colaboración" name="desIES" id="desIES" required="">{{ $colaboracion[0]->descripcion}}</textarea>
 </div>
 <br>
-<h1>5.- Riesgos</h1>
+<h1>4.- Riesgos</h1>
 <div class="form-group col-md-12">
             <table id="datosRiesgos" class="table table-hover table-condensed" style="width:100%">
                 <thead>
@@ -219,7 +219,7 @@
             </table>
         </div>
             <br>
-<h1>6.- Análisis del Entorno</h1>
+<h1>5.- Análisis del Entorno</h1>
 <tr>
 <div class="form-group col-md-12">
 <textarea style="resize: vertical" class="form-control col-md-6"  placeholder="Análisis del entorno
@@ -229,7 +229,7 @@
 </div>
 </tr>
 <br>
-<h1>7.- Recursos</h1>
+<h1>6.- Recursos</h1>
             <table id="datos" class="table table-hover table-condensed" style="width:100%">
                 <tbody>
                     <tr>
