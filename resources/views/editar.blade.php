@@ -22,7 +22,7 @@
 </head>
  <body>
         <div class="container">
-            @include('header')
+            @include('headerEditar')
         </div>
 
 
@@ -68,7 +68,7 @@
 
 
         <div class="container">
-            @include('footer')
+            @include('footerEditar')
         </div>
 </body>
 </html>
