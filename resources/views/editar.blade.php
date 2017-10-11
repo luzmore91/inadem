@@ -20,9 +20,11 @@
     <!-- Confirmacion de eliminacion de registros -->
         <script type="text/javascript" src="{{ URL::asset('js/confEliminar.js') }}"></script>
 </head>
+ <body>
         <div class="container">
             @include('header')
         </div>
+
 
      <div id="ModalProyActualizado" class="modal fade">
     <div class="modal-dialog" role="alertdialog" style="left:0%">
@@ -57,7 +59,6 @@
 </div><!-- /.modal -->
 
 
-<body>
 <h1 align="center">Editar Proyecto</h1>
     <!-- Aquí se manda a llamar el el .blade.php en donde se tienen que cargar el query de los proyectos para poder actualizarlos en caso de ser necesario. -->
     
