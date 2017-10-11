@@ -18,4 +18,20 @@
 
         });
 
+          $("select[name=estadoAct]").change(function(){
+
+            valor = $(this).val();
+              console.log("valor ",valor);
+
+            if(valor !== "-1"){
+
+                $('#bloquePatente').css('display', 'block');
+            }else{
+
+                $('#bloquePatente').css('display', 'none');
+            }
+
+        });
+
+
 	});
