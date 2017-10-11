@@ -1,6 +1,9 @@
-//Ventana de confirmacion para elimnar un proyecto.
+$(document).ready(function(){
+    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+});
 
-	function eliminarProyecto()
+//Ventana de confirmacion para elimnar un proyecto.
+function eliminarProyecto()
 {
   /*  var txt;
     if (confirm("Eliminar proyecto?") == true) {
@@ -18,8 +21,9 @@
 function guardarCambios(){
 
      //obtener los valores de cada elemento HTML , como input , select y textarea
-     var proyecto = [];
+     var proyecto = {};
      //obtener los valores de tecnologia proyecto
+     proyecto.idProyecto = $("#idProyecto").text();
      proyecto.titulo = $("#tituloProy").val();
      proyecto.tituloComercial = $("#tituloComercial").val();
      proyecto.problematica = $("#problematica").val();
@@ -29,12 +33,16 @@ function guardarCambios(){
 
     //obtener valores de participantes
     var participantes = [];
-    $('#datosEmprendedor tr').each(function() {
-     participantes.idGradoEstudios = parseInt($("#gradoestudios").val());
-     participantes.idAreaConocimiento =parseInt($("#areaCon").val());
-     participantes.correo =$("#correo").val();
-     participantes.numeroMovil =$("#numeroMovil").val();
-     participantes.idInstitucion = parseInt($("#institucion").val());
+    $('#datosEmprendedor tr.item').each(function() {
+        $actual = $(this);
+        var participante = {};
+        participante.nombre = $actual.find("#nombrePart").val()
+        participante.idGradoEstudios = parseInt($actual.find("#gradoestudios").val());
+        participante.idAreaConocimiento =parseInt($actual.find("#areaCon").val());
+        participante.correo =$actual.find("#correo").val();
+        participante.numeroMovil = $actual.find("#numeroMovil").val();
+        participante.idInstitucion = parseInt($actual.find("#institucion").val());
+        participantes.push(participante);
     });
 
     proyecto.participantes = participantes;
@@ -56,12 +64,14 @@ function guardarCambios(){
     proyecto.colaboracionIES = $("#desIES").val();
 
     //obtener valores de Riesgos
-
      var riesgos = [];
-    $('#datosRiesgos tr').each(function() {
-     riesgos.idTipoRiegos = parseInt($("#tipoRiesgo").val());
-     riesgos.descripcionRiesgo = parseInt($("#descripcionRiesgo").val());
-     riesgos.estrategiaMitigacion = parseInt($("#estrategiaMitigacion").val());
+    $('#datosRiesgos tr.item').each(function() {
+        $actual = $(this);
+        var riesgo = {};
+        riesgo.idTipoRiesgo = parseInt($actual.find("#tipoRiesgo").val());
+        riesgo.descripcionRiesgo = $actual.find("#descripcionRiesgo").val();
+        riesgo.estrategiaMitigacion = $actual.find("#estrategiaMitigacion").val();
+        riesgos.push(riesgo);
     });
 
     proyecto.riesgos = riesgos;
@@ -74,19 +84,20 @@ function guardarCambios(){
     proyecto.recursosHumanos = $("#recursosHumanos").val();
     proyecto.recursosFinancieros = $("#recursosFinancieros").val();
     proyecto.recursosTecnologicos = $("#recursosTecnologicos").val();
-
+    var proyectoJson = JSON.stringify(proyecto);
+    //console.log("valor del arreglo a enviar ::::::::: ",proyectoJson);
     //enviar a un metodo del controlador para almacenar en la BD
-     console.log("valor del arreglo a enviar ::::::::: ",proyecto);
      $.ajax({
         url:'actualizarProyecto',
         type: 'POST',
         dataType: 'json',
-        data:{proyecto:proyecto},  //envio del objeto que tendra guardado todos los valores del proyecto editado
+        data:{proyecto:proyectoJson},  //envio del objeto que tendra guardado todos los valores del proyecto editado
         success: function(success) {
-            console.log("Retorno  "+success);
+            console.log("Retorno: " + success);
             $("#ModalProyActualizado").modal("show");
         },
          error: function(response){
+            console.log("Retorno: " + response);
           $("#ModalProyNoActualizado").modal("show");
         }
         } );
