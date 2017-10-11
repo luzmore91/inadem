@@ -34,7 +34,7 @@
                Proyecto actualizado exitosamente.
             </div>
              <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
       </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -44,13 +44,13 @@
     <div class="modal-dialog" role="alertdialog" style="left:0%">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title">Proyecto actualizado</h1>
+                <h1 class="modal-title">Actualizacion fallida</h1>
             </div>
             <div class="modal-body">
                Intenta nuevamente, no se ha podido actualizar el proyecto.
             </div>
              <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
       </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -59,9 +59,8 @@
 
 <body>
 <h1 align="center">Editar Proyecto</h1>
-    <!-- Aquí se manda a llamar el el .blade.php en donde se tienen que cargar el query de los proyectos para
-    poder actualizarlos en caso de ser necesario. -->
-
+    <!-- Aquí se manda a llamar el el .blade.php en donde se tienen que cargar el query de los proyectos para poder actualizarlos en caso de ser necesario. -->
+    
         <div class="container">
             @include('modificar')
         </div>
