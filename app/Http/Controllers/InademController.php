@@ -35,10 +35,13 @@ class InademController extends Controller
 {
 
   public function tokenInademApp(Request $request){
+
     if($request->ajax()){
       $dato =$request->llave;
       $llavecita = new TokenIna;
       $llavecita->llave=$dato;
+      $llavecita->nombreEquipo = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+      $llavecita->ipEquipoCliente = $request->ipEquipo;
       $llavecita->save();
 
       return response()->json('almacenado');
@@ -60,8 +63,8 @@ class InademController extends Controller
     $equipo = new EquipoEmprendedor;
 
 
-         //consulta a la tabla tecnologiaProyecto, el ultimo ID integrado
-    $idTec = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
+         //consulta a la tabla token, el nombre del equipo y token
+    $idTec = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'" AND nombreEquipo ="'.gethostbyaddr($_SERVER['REMOTE_ADDR']).'"');
     $result = json_decode(json_encode($idTec), true);
 
 
@@ -117,7 +120,7 @@ class InademController extends Controller
                 INNER JOIN areaconocimiento
                 ON areaconocimiento.idAreaConocimiento=participante.fk_idAreaConocimientos
                 WHERE
-                participante.fk_idTokenAppIn  = '.$idT);
+                participante.fk_idTokenAppIn  = '.$idT.' order by participante.idParticipante');
               $insertados = $participanteQuery;
             }else{
              $insertados = 0;
@@ -148,7 +151,7 @@ class InademController extends Controller
 
              }
 
-             $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'"');
+             $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'" AND nombreEquipo ="'.gethostbyaddr($_SERVER['REMOTE_ADDR']).'"');
 
              $result = json_decode(json_encode($token), true);
              foreach($result as $i){
@@ -160,7 +163,7 @@ class InademController extends Controller
 
             if($saved){
     //consultar los valores insertados
-              $insertados = DB::select('select riesgo.idRiesgo,riesgo.descripcionRiesgo, riesgo.estrategiaMitigacion,tiporiesgo.descripcion from riesgo INNER JOIN tiporiesgo on tiporiesgo.idTipoRiesgo = riesgo.fk_idTipoRiesgo INNER JOIN tokeninadem ON riesgo.fk_idTokenAppIn = tokeninadem.idToken where riesgo.fk_idTokenAppIn ='.$idTokenResult);
+              $insertados = DB::select('select riesgo.idRiesgo,riesgo.descripcionRiesgo, riesgo.estrategiaMitigacion,tiporiesgo.descripcion from riesgo INNER JOIN tiporiesgo on tiporiesgo.idTipoRiesgo = riesgo.fk_idTipoRiesgo INNER JOIN tokeninadem ON riesgo.fk_idTokenAppIn = tokeninadem.idToken where riesgo.fk_idTokenAppIn ='.$idTokenResult.' order by riesgo.idRiesgo');
 
             }
             else {

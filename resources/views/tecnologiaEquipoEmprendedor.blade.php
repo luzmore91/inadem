@@ -17,7 +17,7 @@
             	<!-- Input titulo comercial -->
               	<div class="col-xs-12" style="padding-top: 20px;">
                 	 <div class="col-xs-2"><label for="tituloComercial">Título comercial:</label></div>
-                	 <div class="col-xs-10"><textarea style="resize: vertical" class="form-control" required id="tituloComercial" rows="1" placeholder="Titulo comercial del proyecto o tecnología" name="tituloComercial"></textarea></div>
+                	 <div class="col-xs-10"><textarea style="resize: vertical"Nombre class="form-control" required id="tituloComercial" rows="1" placeholder="Titulo comercial del proyecto o tecnología" name="tituloComercial"></textarea></div>
               	</div>
             	<!-- Input problematica -->
               	<div class="col-xs-12" style="padding-top: 20px;">
@@ -67,7 +67,7 @@
       <!---mostrar si hay datos en la tabla -->
       <div class="col-xs-12">
 
-          <div class="col-xs-2"><label for="Nombre" >Nombre</label></div>
+          <div class="col-xs-2"><label for="Nombre" >Nombre completo</label></div>
 
           <div class="col-xs-2"><label for="gradoEstudios" >Último grado de estudios</label></div>
 

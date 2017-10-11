@@ -111,7 +111,7 @@ Excel::create('Proyectos INADEM 2017 dia:'.$dia.' mes:'.$mes.'- ID:'.$identifica
 
 /*
 Consulta en formato SQL. La consulta debe ser implementada en sintaxis de php:
-
+(requerimiento obligatorio de Laravel - Elquent ORM)
 SELECT tecnologiaproyecto.titulo, tecnologiaproyecto.tituloComercial, tecnologiaproyecto.problematica, tecnologiaproyecto.descripcion, institucion.nombreInstitucion, trl.descripcion as madurezProyecto, tiposector.descripcion AS tipoSector,tipopropiedadintelectual.descripcion AS propiedadIntelectual, tipoobjetivoproyecto.descripcion AS objetivoProyecto, analisisentorno.descripcionAnalisisEntorno AS analisisEntorno, analisisentorno.recursosHumanos, analisisentorno.recursosTecnologicos, analisisentorno.recursosFinancieros, analisisentorno.usoAplicacion, analisisentorno.viabilidad, analisisentorno.beneficios
 FROM proyecto
 INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiaproyecto.idTecnologiaProyecto
@@ -299,13 +299,22 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
 	    $cell->setValue('NOMBRE PÚBLICO');
 
 	});	
+
+
         $sheet->cell('D1', function($cell) {
+	    // manipulate the cell
+	    $cell->setFontWeight('bold');
+	    $cell->setValue('TIPO DEL RIESGO');
+
+	});	
+
+        $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('ESTRATEGIA DE MITIGACIÓN');
 
 	});	
-        $sheet->cell('E1', function($cell) {
+        $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
 	    $cell->setValue('DESCRIPCIÓN DEL RIESGO');
@@ -316,8 +325,8 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
 /*
 Consulta en formato SQL. La consulta debe ser implementada en sintaxis de php:
 
-SELECT * FROM
-riesgo
+SELECT fk_idProyecto, titulo, tituloComercial, estrategiaMitigacion, descripcionRiesgo
+FROM riesgo
 INNER JOIN tiporiesgo ON riesgo.fk_idTipoRiesgo = tiporiesgo.idTipoRiesgo
 INNER JOIN proyecto ON riesgo.fk_idProyecto = proyecto.idProyecto
 INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiaproyecto.idTecnologiaProyecto
@@ -329,7 +338,7 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
             ->join("proyecto","riesgo.fk_idProyecto","=","proyecto.idProyecto")
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
             ->orderBy('proyecto.idProyecto', 'desc')
-            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo","fk_idProyecto")
+            ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo","fk_idProyecto","tiporiesgo.descripcion")
             ->get();
                 foreach($products as $product) {
                  $data[] = array(
@@ -337,6 +346,7 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
                  	$product->fk_idProyecto,
                  	$product->titulo,
                  	$product->tituloComercial,
+                 	$product->descripcion,
                  	$product->estrategiaMitigacion,
                  	$product->descripcionRiesgo,
                  	
@@ -347,6 +357,7 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
 
     });
 
+$excel->setActiveSheetIndex(0);
 
     })->export('xls');
 
