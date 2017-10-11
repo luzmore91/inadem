@@ -5,6 +5,7 @@
                 
                 <tbody>
                   <tr>
+                    <span id="idProyecto" class="hidden">{{ $proyecto[0]->idProyecto}}</span>
                      <div class="form-group col-md-12">
                         <label for="titulo" ><strong>Título:</strong></label>
                          <textarea style="resize: vertical" class="form-control col-md-6" id="tituloProy" rows="2">{{ $proyecto[0]->titulo }}</textarea>
@@ -63,7 +64,7 @@
                 </thead>
                 <tbody>
                     @foreach ($participantes as $participante)
-                    <tr>
+                    <tr class="item">
                      
                         <td><input id="nombrePart" type="text" value="{{ $participante->nombre }}"/></td>
                         <td> 
@@ -91,7 +92,7 @@
                         <td><input class="form-control" type="text" id="correo" value="{{ $participante->correoElectronico }}" /></td>
                         <td><input class="form-control" type="text" id="numeroMovil" value="{{ $participante->numeroMovil }}" /></td>
                         <td>
-                            <select id="intitucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
+                            <select id="institucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
                                 <option>Seleccione una opción</option>
                                 @foreach ($instituciones as $institucion)
                                 <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$participante->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
@@ -136,8 +137,8 @@
                         <td>
                             <select  id="propiedadInt" required class="form-control selectpicker" data-style="btn-green" name="propInt">
                             @foreach ($propiedadIntelectual as $propiedadintelectual)
-                                <option value="{{$propiedadintelectual->idPropiedadIntelectual}}" {{ $propiedadintelectual->idPropiedadIntelectual==$proyecto[0]->fk_idPropiedadIntelectual? 'selected="selected"': '' }}>{{ $propiedadintelectual->descripcion }}</option>
-                                 @endforeach
+                                <option value="{{$propiedadintelectual->idTipoPropiedadIntelectual}}" {{ $propiedadintelectual->idPropiedadIntelectual==$proyecto[0]->fk_idPropiedadIntelectual? 'selected="selected"': '' }}>{{ $propiedadintelectual->descripcion }}</option>
+                            @endforeach
                             </select>
                         </td>
                         <td>
@@ -201,7 +202,7 @@
                 </thead>
                 <tbody>
                     @foreach($riesgos as $riesgo)
-                        <tr>
+                        <tr class="item">
                             <td>
                             <select id="tipoRiesgo" required class="form-control selectpicker" data-style="btn-green" name="tipoRiesgos">
                                 @foreach ($tiporiesgos as $tiporiesgo)
