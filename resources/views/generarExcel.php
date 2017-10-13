@@ -162,9 +162,18 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
                 );
             }
 
-             $sheet->fromArray($data, null, 'A2', false, false);
-        
+            $sheet->fromArray($data, null, 'A2', false, false);
+/*
+            if (isset($data)) 
+            {
+            $sheet->fromArray($data, null, 'A2', false, false);
+			}
+			else
+			{
 
+			}	
+ 
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         });
@@ -273,7 +282,17 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
                  	);
             }
 
-             $sheet->fromArray($data, null, 'A2', false, false);
+			$sheet->fromArray($data, null, 'A2', false, false);
+/*
+            if (isset($data)) 
+            {
+            $sheet->fromArray($data, null, 'A2', false, false);
+			}
+			else
+			{
+				
+			}	
+ */
 
     });
 
@@ -352,8 +371,18 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
                  	
                  	);
             }
-
-             $sheet->fromArray($data, null, 'A2', false, false);
+            
+            $sheet->fromArray($data, null, 'A2', false, false);
+/*
+            if (isset($data)) 
+            {
+            $sheet->fromArray($data, null, 'A2', false, false);
+			}
+			else
+			{
+				
+			}	
+ */
 
     });
 
