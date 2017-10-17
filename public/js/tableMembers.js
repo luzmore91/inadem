@@ -421,7 +421,7 @@ function validaNombreParticipante(nombreParticipante)
     if(!(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(nombreParticipante)) || tamanoNombre.length<3){
         //console.log("Entra al if ");
         
-        divTexto.innerHTML = "¡Nombre incorrecto, por favor verifiquelo!";
+        divTexto.innerHTML = "¡Nombre incorrecto, por favor verifíquelo!";
         modal.style.display='block';
         validaNombre = false;
     }  
@@ -437,7 +437,7 @@ function validaCorreoParticipante(correoParticipante)
     if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(correoParticipante))){
         //console.log("Entra al if ");
         
-        divTexto.innerHTML = "¡Correo electronico incorrecto, por favor verifiquelo!";
+        divTexto.innerHTML = "¡Correo electrónico incorrecto, por favor verifíquelo!";
         modal.style.display='block';
         validaCorreo = false;
     }   
@@ -452,7 +452,7 @@ function validaCelularParticipante(celularParticipante)
     if(!(/^\d{10}$/.test(celularParticipante))){
         //console.log("Entra al if ");
         
-        divTexto.innerHTML = "¡telefono incorrecto, por favor verifiquelo deben de ser 10 digitos!";
+        divTexto.innerHTML = "¡teléfono incorrecto, por favor verifíquelo deben de ser 10 dígitos!";
         modal.style.display='block';
         validarCelular = false;
     } 
@@ -532,7 +532,7 @@ function validaSelects()
    
     if(sectorEstrategico<0){
         
-        divTexto.innerHTML = "¡Seleccione un sector estrategico por favor!";
+        divTexto.innerHTML = "¡Seleccione un sector éstrategico por favor!";
         modal.style.display='block';
         validaEnvio = false;
 
@@ -588,7 +588,7 @@ function validaComponentes(objetivoProyeecto)
         
         if(otroObjetivoProyecto == null || otroObjetivoProyecto.length == 0)
          {
-             divTexto.innerHTML = "¡Objetivo de proyecto incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Objetivo de proyecto incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          } 
@@ -614,79 +614,79 @@ function validaComponentes(objetivoProyeecto)
     
      if(titulo == null || titulo.length == 0)
          {
-             divTexto.innerHTML = "¡Titulo incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Titulo incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }  
     if(tituloComercial == null || tituloComercial.length == 0)
          {
-             divTexto.innerHTML = "¡Titulo comercial incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Titulo comercial incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(problemaResolver == null || problemaResolver.length == 0)
          {
-             divTexto.innerHTML = "¡Problema a resolver, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Problema a resolver, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(descripcionProyecto == null || descripcionProyecto.length == 0)
          {
-             divTexto.innerHTML = "¡Descripción de poryecto incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Descripción de proyecto incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(ies == null || ies.length == 0)
          {
-             divTexto.innerHTML = "¡IES incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡IES incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(analisisEntorno == null || analisisEntorno.length == 0)
          {
-             divTexto.innerHTML = "¡Analisis de entrono incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Análisis de entorno incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(rh == null || rh.length == 0)
          {
-             divTexto.innerHTML = "¡Recursos humanos incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Recursos humanos incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(rt == null || rt.length == 0)
          {
-             divTexto.innerHTML = "¡Recursos tecnologicos incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Recursos tecnológicos incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(rf == null || rf.length == 0)
          {
-             divTexto.innerHTML = "¡Recursos financieros incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Recursos financieros incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }  
     if(usosAplicacion == null || usosAplicacion.length == 0)
          {
-             divTexto.innerHTML = "¡Usos/Aplicaciones incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Usos/Aplicaciones incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(viabilidad == null || viabilidad.length == 0)
          {
-             divTexto.innerHTML = "¡Viabilidad incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Viabilidad incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     if(beneficios == null || beneficios.length == 0)
          {
-             divTexto.innerHTML = "¡Beneficios incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡Beneficios incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }
     /*if(numeroRegistro == null || numeroRegistro.length == 0 || !(/^[0-9a-zA-Z]+$/.test(numeroRegistro)))
          {
-             divTexto.innerHTML = "¡número de registro incorrecto, por favor verifiquelo!";
+             divTexto.innerHTML = "¡número de registro incorrecto, por favor verifíquelo!";
              modal.style.display='block';
              validaEnvio=false;
          }*/ 
@@ -705,7 +705,7 @@ return validaEnvio;
     if(!(/[^0-9A-Za-z]/.test(numeroRegistro))){
         //console.log("Entra al if ");
         
-        divTexto.innerHTML = "¡numerode registro incorrecto, por favor verifiquelo!";
+        divTexto.innerHTML = "¡numerode registro incorrecto, por favor verifíquelo!";
         modal.style.display='block';
     }  
 }*/
