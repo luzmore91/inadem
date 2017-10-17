@@ -30,7 +30,7 @@
                         <tr>
                         <div class="form-group col-md-6">
                             <label for="name"><strong>Institución:</strong></label>
-                            <select id="institucion" required class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-gree" name="instEq">
+                            <select id="institucion" required class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-green" name="instEq">
                             <option value="-1">Seleccione una opción</option>
                             @foreach ($instituciones as $institucion)
                             <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$proyecto[0]->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
@@ -92,7 +92,7 @@
                         <td><input class="form-control" type="text" id="correo" value="{{ $participante->correoElectronico }}" /></td>
                         <td><input class="form-control" type="text" id="numeroMovil" value="{{ $participante->numeroMovil }}" /></td>
                         <td>
-                            <select id="institucion" required class="form-control selectpicker" data-style="btn-green" name="instEq">
+                            <select id="institucion" required class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-green" name="instEq">
                                 <option>Seleccione una opción</option>
                                 @foreach ($instituciones as $institucion)
                                 <option value="{{$institucion->idInstitucion}}" {{$institucion->idInstitucion==$participante->fk_idInstitucion? 'selected="selected"': '' }}> {{ $institucion->nombreInstitucion }}</option>
@@ -103,59 +103,65 @@
                      @endforeach
                 </tbody>
             </table>
-<br>
+
 <h1>2.- Descripción del Proyecto</h1>
             <table id="datosDescripcion" class="table table-hover table-condensed" style="width:100%">
                 <thead>
-                    <tr>
-                        <th>Estado de Desarollo/Madurez (TLR)</th>
-                        <th>Sector estratégico</th>
-                        <th>Propiedad intelectual</th>
-                        <th>Lo que persigue el Proyecto/Tecnología</th>
-                        <th>Tipo de protección <i>(Sólo si aplica)</i></th>
-                    </tr>
+
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
+                        
+                            <div class="form-group col-md-4">
+                            <label for="problematica"><strong>Estado de Desarollo/Madurez (TLR):</strong></label>
                             <select id="trl" required class="form-control selectpicker" data-style="btn-green" name="trl">
                                 @foreach ($trls as $trl)
                                 <option value="{{$trl->idTRL}}" {{ $trl->idTRL==$proyecto[0]->fk_idTRL? 'selected="selected"': '' }}> {{ $trl->descripcion }}</option>
                                 @endforeach
                             </select>
-                        </td>
-                        <td>
+                        </div>
+                        
+                        
+                            <div class="form-group col-md-4">
+                            <label for="problematica"><strong>Sector estratégico:</strong></label>
                             <select id="sector" required class="form-control selectpicker" data-style="btn-green" name="sector">
                                 <option>Seleccione una opción</option>
                                 @foreach ($sectores as $sector)
                                 <option value="{{$sector->idSector}}" {{$sector->idSector==$proyecto[0]->fk_idSector? 'selected="selected"': '' }}> {{ $sector->descripcion }}</option>
                                 @endforeach                         
                             </select>
-
-                            
-                        </td>
-                        <td>
+                        </div>                            
+                        
+                        
+                            <div class="form-group col-md-4">
+                            <label for="problematica"><strong>Propiedad intelectual:</strong></label>
                             <select  id="propiedadInt" required class="form-control selectpicker" data-style="btn-green" name="propInt">
                             @foreach ($propiedadIntelectual as $propiedadintelectual)
                                 <option value="{{$propiedadintelectual->idTipoPropiedadIntelectual}}" {{ $propiedadintelectual->idPropiedadIntelectual==$proyecto[0]->fk_idPropiedadIntelectual? 'selected="selected"': '' }}>{{ $propiedadintelectual->descripcion }}</option>
                             @endforeach
                             </select>
-                        </td>
-                        <td>
+                        </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group col-md-4">
+                            <label for="problematica"><strong>Lo que persigue el Proyecto/Tecnología:</strong></label>
                             <select id="objProy" required class="form-control selectpicker" data-style="btn-green" name="objPro">
                                 @foreach ($objetivosProyecto as $tipoobjetivoproyecto)
                                 <option value="{{$tipoobjetivoproyecto->idtipoObjetivoProyecto}}" {{ $tipoobjetivoproyecto->idtipoObjetivoProyecto==$proyecto[0]->fk_idObjetivoProyecto? 'selected="selected"': '' }}>{{ $tipoobjetivoproyecto->descripcion }}</option>
                                  @endforeach
                             </select>
-                        </td>
-                        <td>
+                        </div>
+                        
+                        
+                            <div class="form-group col-md-4">
+                            <label for="problematica"><strong>Tipo de protección <i>(Sólo si aplica):</strong></label>
                             <select id="tipoProteccion" required class="form-control selectpicker" data-style="btn-green" name="tipoProteccion">
                                 <option>Seleccione una opción</option>
                                 @foreach ($tiposProteccion as $tipoproteccion)
                                 <option value="{{$tipoproteccion->idTipoProteccion}}" {{ $tipoproteccion->idTipoProteccion==$propiedadintelectual->fk_idTipoProteccion? 'selected="selected"': '' }}>{{ $tipoproteccion->descripcion }}</option>
                                 @endforeach
                             </select>
-                        </td>
+                        </div>
                     </tr>
                 </tbody>
             </table>
@@ -183,13 +189,13 @@
                     </tr>
                 </tbody>
             </table>
-<br>
+
 <h1>3.- Colaboración con otras IES</h1>
 <div class="form-group col-md-12">
 <textarea style="resize: vertical" class="form-control" rows="6" placeholder="Colaboración con otras IES
 " title="Descripción IES y tipo de colaboración" name="desIES" id="desIES" required="">{{ $colaboracion[0]->descripcion}}</textarea>
 </div>
-<br>
+
 <h1>4.- Riesgos</h1>
 <div class="form-group col-md-12">
             <table id="datosRiesgos" class="table table-hover table-condensed" style="width:100%">
@@ -218,7 +224,7 @@
                 </tbody>
             </table>
         </div>
-            <br>
+            
 <h1>5.- Análisis del Entorno</h1>
 <tr>
 <div class="form-group col-md-12">
@@ -228,7 +234,7 @@
 </textarea>
 </div>
 </tr>
-<br>
+
 <h1>6.- Recursos</h1>
             <table id="datos" class="table table-hover table-condensed" style="width:100%">
                 <tbody>

@@ -299,16 +299,19 @@ class InademController extends Controller
      $col = new Colaboracion;
      $riesgo = new Riesgos;
 
+    $tokenValue = Input::get("tokenInademInput");
 
 
      /*TOKEN DE LA SESION DEL FORMULARIO */
-     $token = DB::select('select idToken from tokeninadem ORDER BY idToken DESC LIMIT 1 ');
-     $result = json_decode(json_encode($token), true);
-     foreach($result as $i){
+     $token = DB::select('select idToken from tokeninadem WHERE llave ="'.$tokenValue.'" AND nombreEquipo ="'.gethostbyaddr($_SERVER['REMOTE_ADDR']).'"');
+     $resultT = json_decode(json_encode($token), true);
+     foreach($resultT as $i){
       $idToken = $i['idToken'];
     }
-    
-    
+    if(empty($idToken)){
+       //print_r("Esta vacia");
+         return redirect()->back()->with('error_code', 5);
+    }else{
     /* Tabla tecnologia  */
     $tecnologia->titulo = Input::get('titulo');
     $tecnologia->tituloComercial = Input::get('tituloComercial');
@@ -372,6 +375,11 @@ class InademController extends Controller
       $saved5= $col->save();
 
       //Tabla proyecto
+     if(empty($idEqEmp)){
+       //print_r("Esta vacia");
+         return redirect()->back()->with('error_code', 5);
+      }else{
+
       if($saved && $saved1  && $saved3 && $saved4 && $saved5){
        //obtener el ultimo id de la tabla colaboracion
        $idColaboracionQuery = DB::select('SELECT colaboracion.idColaboracion FROM `colaboracion` ORDER BY  idColaboracion desc limit 1');
@@ -432,17 +440,28 @@ class InademController extends Controller
         }
 
      ///actualizar tabla riesgos para saber a que proyecto pertenecen
-        $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
+        $riesgosProy = DB::select('select idRiesgo from riesgo where riesgo.fk_idTokenAppIn ='.$idToken);
+        $riesgosProyQuery = json_decode(json_encode($riesgosProy), true);
+        foreach($riesgosProyQuery as $i){
+          $numeroRiesgos= $i["idRiesgo"];
+        }
+        for($x = 0; $x <= $numeroRiesgos->count();$x++){
+          $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.idRiesgo = '.$numeroRiesgos[$x]);
+        }
+
       //return redirect()->back();
         return redirect()->back()->with('success_code', 5);
       }
 
 
       
-    }else{
+    }
+        else{
      return redirect()->back()->with('error_code', 5);
 
-   }
+         }
+     }
+    }
  }
  
   public function editar($id){

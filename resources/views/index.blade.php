@@ -358,7 +358,9 @@ error: function(response){
         localStorage.setItem("tokenAppInadem", tokenInadem);
 
      });
-
+//añadir tokenAppInaddem a input
+           console.log("valor del unput ",localStorage.getItem("tokenAppInadem"));
+           $("#tokenInademInput").val(localStorage.getItem("tokenAppInadem").toString());
    </script>
     <script type="text/javascript" src="{{ asset('/js/ajaxValidacion.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/tableMembers.js') }}"></script>
