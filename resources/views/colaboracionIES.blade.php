@@ -88,4 +88,5 @@
 <div class="col-xs-12">
 <label style="font-style:italic">Indique el tamaño de la industria a la que va dirigida su tecnología/proyecto, la industria que le proveería sus insumos, clientes/consumidores de su tecnología/proyecto, las tecnologías/proyectos competidores y sus ofertas, y sus factores de demanda.</label>
 <textarea name="analisisEnt" id="analisisEnt" style="resize: vertical" class="form-control" rows="10" placeholder= "Indique el tamaño de la industria a la que va dirigida su tecnología" title="Indique el tamaño de la industria" name="analisisEnt" required></textarea><!--tenia 6 en rows-->
+<input type="text" value="" id="tokenInademInput" name="tokenInademInput" style="display:none"/>
 </div></div>

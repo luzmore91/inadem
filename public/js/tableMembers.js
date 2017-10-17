@@ -491,11 +491,11 @@ function validaRiesgos(tipoRiesgo, descripcion, estrategiaMitigacion)
 
 function validaSelects() 
 { 
+
     var modal = document.getElementById("myModal");
     var divTexto = document.getElementById("setTexto");
     var validaEnvio = true;
-    
-    
+
     var institucion = document.getElementById("institucion").value;
     var tipoInvension = document.getElementById("tipoInvension").value;
     
@@ -548,9 +548,11 @@ function validaSelects()
     
     if(tipoProteccion<0){
         
+        if(estadoActual === 4 || estadoActual === 5){
         divTexto.innerHTML = "¡Seleccione un tipo de protección por favor!";
         modal.style.display='block';
         validaEnvio = false;
+        }
 
     } 
     
