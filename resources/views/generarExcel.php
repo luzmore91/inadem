@@ -330,13 +330,13 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
         $sheet->cell('E1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('ESTRATEGIA DE MITIGACIÓN');
+	    $cell->setValue('DESCRIPCIÓN DEL RIESGO');
 
 	});	
         $sheet->cell('F1', function($cell) {
 	    // manipulate the cell
 	    $cell->setFontWeight('bold');
-	    $cell->setValue('DESCRIPCIÓN DEL RIESGO');
+	    $cell->setValue('ESTRATEGIA DE MITIGACIÓN');
 
 	});	
 
@@ -366,8 +366,8 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
                  	$product->titulo,
                  	$product->tituloComercial,
                  	$product->descripcion,
-                 	$product->estrategiaMitigacion,
                  	$product->descripcionRiesgo,
+                 	$product->estrategiaMitigacion,
                  	
                  	);
             }

@@ -431,26 +431,35 @@ class InademController extends Controller
       $proyecto->bajaLogica = 1;
 
       $savedProyecto = $proyecto->save();
+
       if($savedProyecto){
               //obtener el id de proyecto
         $idProyectoQuery = DB::select('select idProyecto from proyecto order by idProyecto desc limit 1');
         $resultIdProy = json_decode(json_encode($idProyectoQuery), true);
         foreach($resultIdProy as $i){
           $idProy= $i['idProyecto'];
-        }
+          }
 
      ///actualizar tabla riesgos para saber a que proyecto pertenecen
-        $riesgosProy = DB::select('select idRiesgo from riesgo where riesgo.fk_idTokenAppIn ='.$idToken);
-        $riesgosProyQuery = json_decode(json_encode($riesgosProy), true);
-        foreach($riesgosProyQuery as $i){
-          $numeroRiesgos= $i["idRiesgo"];
-        }
-        for($x = 0; $x <= $numeroRiesgos->count();$x++){
-          $actualizarRiesgos = DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.idRiesgo = '.$numeroRiesgos[$x]);
-        }
 
+     $actualizarRiesgos = DB::table('riesgo')
+            ->where('fk_idTokenAppIn',$idToken)
+            ->update(array('fk_idProyecto' => $idProy));
+
+
+     //    DB::select('UPDATE riesgo SET riesgo.fk_idProyecto ='.$idProy.' where riesgo.fk_idTokenAppIn = '.$idToken);
+
+      // print_r(json_decode(json_encode($actualizarRiesgos), true));
+        //    print_r("valor del token ".$idToken);
+          //  print_r("valor del id proyecto".$idProy);
       //return redirect()->back();
-        return redirect()->back()->with('success_code', 5);
+      if(!empty($actualizarRiesgos)){
+          return redirect()->back()->with('success_code', 5);
+          }else{
+          return redirect()->back()->with('error_code', 5);
+      }
+      }else{
+        return redirect()->back()->with('error_code', 5);
       }
 
 
