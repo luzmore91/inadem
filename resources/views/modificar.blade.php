@@ -260,7 +260,7 @@
             </table>
  <div align="center">
         <button type="button" class="btn btn-primary"  onclick="guardarCambios();">Actualizar</button>
-        <button type="button" class="btn btn-secondary" onclick=" window.history.back();">Volver</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='../admin'">Volver</button>
         <br>
         <br>
     </div>

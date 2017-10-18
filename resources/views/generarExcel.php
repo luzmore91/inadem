@@ -123,7 +123,7 @@ INNER JOIN tipopropiedadintelectual ON propiedadintelectual.fk_idTipoRegistro = 
 INNER JOIN objetivoproyecto ON proyecto.fk_idObjetivoProyecto = objetivoproyecto.idObjetivoProyecto
 INNER JOIN tipoobjetivoproyecto ON objetivoproyecto.fk_idTipoObjetivoProyecto = tipoobjetivoproyecto.idtipoObjetivoProyecto
 INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.idAnalisisEntorno
-
+WHERE proyecto.bajaLogica = 1
 */
             $products=DB::table('proyecto')
             
@@ -253,6 +253,7 @@ INNER JOIN proyecto ON equipoemprendedor.numeroEquipo = proyecto.fk_numeroEquipo
 INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = proyecto.fk_idTecnologiaProyecto  
 INNER JOIN tipogradoestudios ON participante.fk_idGradoEstudios = tipogradoestudios.idGradoEstudios
 INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocimiento.idAreaConocimiento
+WHERE proyecto.bajaLogica = 1
 
 */
             $products=DB::table('equipoemprendedor')
@@ -350,6 +351,7 @@ FROM riesgo
 INNER JOIN tiporiesgo ON riesgo.fk_idTipoRiesgo = tiporiesgo.idTipoRiesgo
 INNER JOIN proyecto ON riesgo.fk_idProyecto = proyecto.idProyecto
 INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiaproyecto.idTecnologiaProyecto
+WHERE proyecto.bajaLogica = 1
 
 */	
             $products=DB::table('riesgo')
