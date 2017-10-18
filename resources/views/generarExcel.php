@@ -137,6 +137,7 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
             ->join("tipoobjetivoproyecto","objetivoproyecto.fk_idTipoObjetivoProyecto","=","tipoobjetivoproyecto.idtipoObjetivoProyecto")
             ->join("analisisentorno","proyecto.fk_idAnalisisEntorno","=","analisisentorno.idAnalisisEntorno")
             ->orderBy('proyecto.idProyecto', 'desc')
+            ->where('proyecto.bajaLogica','=',1)
             ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","tecnologiaproyecto.problematica","tecnologiaproyecto.descripcion","institucion.nombreInstitucion","trl.descripcion as madurezProyecto","tiposector.descripcion AS tipoSector","tipopropiedadintelectual.descripcion AS propiedadIntelectual","tipoobjetivoproyecto.descripcion AS objetivoProyecto","analisisentorno.descripcionAnalisisEntorno AS analisisEntorno","analisisentorno.recursosHumanos","analisisentorno.recursosTecnologicos","analisisentorno.recursosFinancieros","analisisentorno.usoAplicacion","analisisentorno.viabilidad","analisisentorno.beneficios","proyecto.idProyecto")
             ->get();
                 foreach($products as $product) {
@@ -162,8 +163,8 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
                 );
             }
 
-            $sheet->fromArray($data, null, 'A2', false, false);
-/*
+ //           $sheet->fromArray($data, null, 'A2', false, false);
+
             if (isset($data)) 
             {
             $sheet->fromArray($data, null, 'A2', false, false);
@@ -173,7 +174,6 @@ INNER JOIN analisisentorno ON proyecto.fk_idAnalisisEntorno = analisisentorno.id
 
 			}	
  
-*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         });
@@ -263,6 +263,7 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
             ->join("tipogradoestudios","participante.fk_idGradoEstudios","=","tipogradoestudios.idGradoEstudios")
             ->join("areaconocimiento","participante.fk_idAreaConocimientos","=","areaconocimiento.idAreaConocimiento")
             ->orderBy('idProyecto', 'desc')
+            ->where('proyecto.bajaLogica','=',1)
             ->select("tecnologiaproyecto.titulo AS tituloProyecto","tecnologiaproyecto.tituloComercial","participante.nombre","participante.apellidoPaterno","participante.apellidoMaterno","participante.correoElectronico","participante.numeroMovil","proyecto.fk_idTecnologiaProyecto AS idTP","tipogradoestudios.nivel","areaconocimiento.descripcion","idProyecto")
             ->get();
                 foreach($products as $product) {
@@ -282,8 +283,8 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
                  	);
             }
 
-			$sheet->fromArray($data, null, 'A2', false, false);
-/*
+//			$sheet->fromArray($data, null, 'A2', false, false);
+
             if (isset($data)) 
             {
             $sheet->fromArray($data, null, 'A2', false, false);
@@ -292,7 +293,7 @@ INNER JOIN areaconocimiento ON participante.fk_idAreaConocimientos = areaconocim
 			{
 				
 			}	
- */
+ 
 
     });
 
@@ -357,6 +358,7 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
             ->join("proyecto","riesgo.fk_idProyecto","=","proyecto.idProyecto")
             ->join("tecnologiaproyecto","proyecto.fk_idTecnologiaProyecto","=","tecnologiaproyecto.idTecnologiaProyecto")
             ->orderBy('proyecto.idProyecto', 'desc')
+            ->where('proyecto.bajaLogica','=',1)
             ->select("tecnologiaproyecto.titulo","tecnologiaproyecto.tituloComercial","estrategiaMitigacion","descripcionRiesgo","fk_idProyecto","tiporiesgo.descripcion")
             ->get();
                 foreach($products as $product) {
@@ -372,8 +374,8 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
                  	);
             }
             
-            $sheet->fromArray($data, null, 'A2', false, false);
-/*
+  //          $sheet->fromArray($data, null, 'A2', false, false);
+
             if (isset($data)) 
             {
             $sheet->fromArray($data, null, 'A2', false, false);
@@ -382,8 +384,7 @@ INNER JOIN tecnologiaproyecto ON proyecto.fk_idTecnologiaProyecto = tecnologiapr
 			{
 				
 			}	
- */
-
+ 
     });
 
 $excel->setActiveSheetIndex(0);
