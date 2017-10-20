@@ -50,7 +50,8 @@ Route::post('insertarParticipante','InademController@insertarParticipante');
 Route::post('eliminarParticipante','InademController@eliminarParticipante');
 Route::post('insertarRiesgo','InademController@insertarRiesgo');
 Route::post('eliminarRiesgo','InademController@eliminarRiesgo');
-
+// enrutamiento para obtener el id proyecto
+Route::get('obtenerIdProyecto','InademController@obtenerIdProyecto');
 #DataTables - Admin
 Route::get('datatable', ['uses'=>'PostController@datatable']);
 Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);

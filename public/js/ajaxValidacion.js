@@ -1,6 +1,24 @@
    function openModal(Tipo){
-        if(Tipo == 1){
-             $('#ModalLoginForm').modal('show');
+        if(Tipo === 1){
+              //obtener el id del proyecto
+             $.ajax({
+        url:'obtenerIdProyecto',
+        type: 'GET',
+        dataType: 'json',
+        data:{},
+        success: function(success) {
+            $( "#ModalLoginForm .modal-body" ).append( "<p>Su numero de proyecto es "+success.idProyecto+" por favor guardelo para consultas previas del proyecto.</p>" );
+            if(success.length !== 0){
+                $('#ModalLoginForm').modal('show');
+            }
+      },
+error: function(response){
+    console.log("Error en el ajax de obtener id proyecto");
+    }
+    });
+
+
+
         }else{
              $('#ModalLoginFormE').modal('show');
         }

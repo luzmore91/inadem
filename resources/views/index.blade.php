@@ -119,7 +119,7 @@
                 <h1 class="modal-title">Registro</h1>
             </div>
             <div class="modal-body">
-               Almacenamiento de información exitosa
+               Almacenamiento de información exitosa.
             </div>
              <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -355,17 +355,21 @@ error: function(response){
         var tokenInadem = generar();
         guardarToken(tokenInadem);
   //almacenarlo en localstorage
+        localStorage.clear();
         localStorage.setItem("tokenAppInadem", tokenInadem);
+         //añadir tokenAppInaddem a input
+           console.log("Session ::: ",localStorage.getItem("tokenAppInadem"));
+           $("#tokenInademInput").val(localStorage.getItem("tokenAppInadem").toString());
 
      });
-//añadir tokenAppInaddem a input
-           console.log("valor del unput ",localStorage.getItem("tokenAppInadem"));
-           $("#tokenInademInput").val(localStorage.getItem("tokenAppInadem").toString());
+
    </script>
-    <script type="text/javascript" src="{{ asset('/js/ajaxValidacion.js') }}"></script>
+
     <script type="text/javascript" src="{{ asset('/js/tableMembers.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('/js/ajaxValidacion.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sorttable.js') }}"></script>
 @if(!empty(Session::get('success_code')) && Session::get('success_code') == 5)
+
 <script>
 openModal(1);
 </script>

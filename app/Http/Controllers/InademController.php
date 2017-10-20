@@ -524,4 +524,16 @@ class InademController extends Controller
 
   }
 
+   public function obtenerIdProyecto(Request $request){
+       if($request->ajax()){
+        $idProyectoQuery = DB::select('select idProyecto from proyecto order by idProyecto desc limit 1');
+        $resultIdProy = json_decode(json_encode($idProyectoQuery), true);
+        foreach($resultIdProy as $i){
+          $idProy= $i['idProyecto'];
+          }
+
+       return response()->json(['idProyecto'=>$idProy]);
+       }
+   }
+
 }
