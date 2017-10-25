@@ -17,13 +17,13 @@
 
 
 
-<div class="col-xs-13 espacioTitulosContenido">
-<div class="col-xs-2"><h2>7. Riesgos.</h2></div>
-<!--div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Ayuda"
+<div class="col-xs-12 espacioTitulosContenido">
+<div class="col-xs-4"><h2>7. Riesgos.</h2></div>
+       <div class="col-xs-1"><button type="button" class="btn btn-green popAyuda" title="Agregar Riesgos del Proyecto"
               data-container="body" data-toggle="popover" data-placement="right"
-              data-content="Describa los riesgos asociados con su proyecto y sus estrategias de mitigación.">
+              data-content="En esta sección se registran los riesgos del proyecto/tecnologia/prototipo, se describe el riesgo y la mitigación, se pueden registrar uno o varios riesgos completando los campos de información, para registrar al riesgo se debe dar clic en el botón con el simbolo +. Los riesgos del equipo se muestran en la tabla que aparece cuando se registra el primer riesgo.">
               <span class="glyphicon glyphicon-question-sign"></span>
-           </button></div-->
+           </button></div>
 </div>
 <div class="col-xs-12">
 <label style="font-style:italic">Describa los riesgos asociados con su proyecto/tecnología, y sus estrategias de mitigación.</label></div>
@@ -52,10 +52,10 @@
         <div class="col-xs-4"><textarea class="form-control" id="estMitigacion" placeholder="Estrategia" name="estMitigacion" style="resize: none" title="Se requiere una estrategia" required="required"></textarea></div>
 
     </div>
-
+    
     <div class="col-xs-12 text-right">
-        <button type="button" class="btn btn-green popAyuda"  title="Ayuda" onclick="obtenerDatosRiesgos();" style="margin-top: 10px; margin-right: 15px;"data-container="body" data-toggle="popover" data-placement="bottom"
-              data-content="Insertar nuevo Riesgo">
+        <button type="button" class="btn btn-green popAyuda"  title="Agregar Riesgos" onclick="obtenerDatosRiesgos();" style="margin-top: 10px; margin-right: 15px;"data-container="body" data-toggle="popover" data-placement="bottom"
+              data-content="Llenar los campos y dar clic para agregar un nuevo Riesgo">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
     </div>
