@@ -3,7 +3,7 @@
 
 
     <head>
-         <title>Convocatoria INADEM</title>
+         <title>Banco Nacional de Proyectos</title>
 
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">

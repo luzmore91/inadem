@@ -35,7 +35,7 @@
     line-height: 40px;
     width: 500px;
     left: -30px;
-    position: relative;">Convocatoria INADEM
+    position: relative;">Banco Nacional de Proyectos
                 </div>
             </div>
             <div id="middleHeader3" class="col-xs-4">
